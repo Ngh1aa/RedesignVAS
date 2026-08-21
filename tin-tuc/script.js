@@ -1,6 +1,8 @@
 /* Trang Tin tức */
+const imageUrl = (source, w, h) => source.startsWith("http") ? source : img(source, w, h);
+
 const FEATURED = {
-  tag: "Sự kiện", date: "18/08/2026", img: "1641683521844-700c456379bd",
+  tag: "Sự kiện", date: "18/08/2026", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/vas-chao-don-gan-8000-hoc-sinh-vao-ngay-tuu-truong",
   title: "VAS chào đón gần 8.000 học sinh trở lại trường năm học 2026 – 2027",
   excerpt: "Sáng 18/08, không khí tựu trường rộn ràng trên khắp 6 cơ sở khi gần 8.000 học sinh VAS bước vào năm học mới — đánh dấu một cột mốc mới của cộng đồng trường học lớn nhất khối song ngữ tại TP.HCM.",
 };
@@ -23,7 +25,7 @@ const EVENTS = [
 const CATS = ["Tất cả", "Học thuật", "Ngoại khóa", "Chất lượng", "Cộng đồng"];
 
 document.getElementById("featured").innerHTML = `
-  <div class="fa-img"><img src="${img(FEATURED.img, 1000, 700)}" alt="${esc(FEATURED.title)}" /></div>
+  <div class="fa-img"><img src="${imageUrl(FEATURED.img, 1000, 700)}" alt="${esc(FEATURED.title)}" /></div>
   <div class="fa-body">
     <p class="meta" style="display:flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--vas-red)"><b>${esc(FEATURED.tag)}</b> · <em style="font-style:normal;color:var(--ink-soft)">${esc(FEATURED.date)}</em></p>
     <h2>${esc(FEATURED.title)}</h2>

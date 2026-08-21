@@ -1,11 +1,13 @@
 /* Trang Các cơ sở */
+const imageUrl = (source, w, h) => source.startsWith("http") ? source : img(source, w, h);
+
 const CAMPUSES = [
-  { name: "Ba Tháng Hai", district: "Quận 10", ages: "2–18 tuổi", img: "1786013522160-00ac876da3ab", note: "Cơ sở chính, trụ sở của hệ thống ngay trung tâm thành phố." },
-  { name: "Riverside", district: "Quận 7", ages: "2–18 tuổi", img: "1781877641721-dc3d4974bf25", note: "Không gian ven sông yên bình với cơ sở vật chất quốc tế." },
-  { name: "Sunrise", district: "Quận 7", ages: "2–18 tuổi", img: "1780247723262-bf9fab11592c", note: "Không gian hiện đại, tươi sáng tại khu Phú Mỹ Hưng." },
-  { name: "Sala", district: "TP. Thủ Đức", ages: "2–15 tuổi", img: "1764943630631-b63aadf86e19", note: "Cơ sở mới tại khu đô thị Sala hiện đại." },
-  { name: "Garden Hills", district: "Gò Vấp", ages: "2–18 tuổi", img: "1772551419793-75c00555bf7b", note: "Khuôn viên xanh, rộng rãi cho cộng đồng xuyên cấp." },
-  { name: "Hoàng Văn Thụ", district: "Phú Nhuận", ages: "2–11 tuổi", img: "1781032161857-41214c66559f", note: "Khởi đầu êm đềm cho khối Mầm non và Tiểu học." },
+  { name: "Ba Tháng Hai", district: "Quận 10", ages: "2–18 tuổi", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/tkpCBTcMmoj2bGdaIQ486f1suUMI31f4O79QPklE.jpeg", note: "Cơ sở chính, trụ sở của hệ thống ngay trung tâm thành phố." },
+  { name: "Riverside", district: "Quận 7", ages: "2–18 tuổi", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/giju3EonpIqxIQZ9elHcTqHYODyGVoxRhTJfA52A.jpeg", note: "Không gian ven sông yên bình với cơ sở vật chất quốc tế." },
+  { name: "Sunrise", district: "Quận 7", ages: "2–18 tuổi", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fcoso-sunrise-2710.jpg&w=3840&q=75", note: "Không gian hiện đại, tươi sáng tại khu Phú Mỹ Hưng." },
+  { name: "Sala", district: "TP. Thủ Đức", ages: "2–15 tuổi", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FDSC06094.jpg&w=3840&q=75", note: "Cơ sở mới tại khu đô thị Sala hiện đại." },
+  { name: "Garden Hills", district: "Gò Vấp", ages: "2–18 tuổi", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/3pzEV3VqNl8Eefi0SwcqqtGXC27WCNElPoTqpFXc.jpeg", note: "Khuôn viên xanh, rộng rãi cho cộng đồng xuyên cấp." },
+  { name: "Hoàng Văn Thụ", district: "Phú Nhuận", ages: "2–11 tuổi", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FDSCF5583.jpg&w=3840&q=75", note: "Khởi đầu êm đềm cho khối Mầm non và Tiểu học." },
 ];
 
 const FACILITIES = [
@@ -18,7 +20,7 @@ const FACILITIES = [
 document.getElementById("campusGrid").innerHTML = CAMPUSES.map((c, i) => `
   <article class="campus-card">
     <div class="photo">
-      <img src="${img(c.img, 800, 550)}" alt="Cơ sở VAS ${esc(c.name)}" loading="lazy" />
+      <img src="${imageUrl(c.img, 800, 550)}" alt="Cơ sở VAS ${esc(c.name)}" loading="lazy" />
       <span class="badge">Cơ sở 0${i + 1}</span>
     </div>
     <div class="body">

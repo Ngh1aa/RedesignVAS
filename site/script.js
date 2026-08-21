@@ -1,6 +1,7 @@
 /* ================= data ================= */
 const img = (id, w, h) =>
   `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&q=80`;
+const imageUrl = (source, w, h) => source.startsWith("http") ? source : img(source, w, h);
 
 const MENU = {
   "Về VAS": {
@@ -43,10 +44,10 @@ const PROOF = [
 ];
 
 const DIFF = [
-  { t: "Chuẩn Cambridge", d: "Chương trình được công nhận toàn cầu, mở ra cánh cửa đến các đại học trên khắp thế giới.", img: "1758685734062-165cc0094e61" },
-  { t: "Tiềm năng cá nhân", d: "Mỗi đứa trẻ học theo một cách riêng. Chúng tôi tạo không gian và sự hỗ trợ để con phát triển.", img: "1581726707445-75cbe4efc586" },
-  { t: "Giáo dục song ngữ", d: "Thành thạo cả tiếng Anh và tiếng Việt — tầm nhìn toàn cầu, giữ vững gốc rễ quê hương.", img: "1561089489-f13d5e730d72" },
-  { t: "Bản sắc Việt Nam", d: "Tự tin bước ra thế giới, với niềm tự hào sâu sắc về nơi mình sinh ra.", img: "1677128346173-f460d0e2560a" },
+  { t: "Chuẩn Cambridge", d: "Chương trình được công nhận toàn cầu, mở ra cánh cửa đến các đại học trên khắp thế giới.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F3fc139c1-e71a-4077-94b7-0ea09ed2cfd4.jpeg&w=1200&q=75" },
+  { t: "Tiềm năng cá nhân", d: "Mỗi đứa trẻ học theo một cách riêng. Chúng tôi tạo không gian và sự hỗ trợ để con phát triển.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fky-nang-tu-ve-la-mot-trong-nhung-ky-nang-song-thiet-yeu-danh-cho-tre&w=1200&q=75" },
+  { t: "Giáo dục song ngữ", d: "Thành thạo cả tiếng Anh và tiếng Việt — tầm nhìn toàn cầu, giữ vững gốc rễ quê hương.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FTAM09998%20(1)%201.jpg&w=3840&q=75" },
+  { t: "Bản sắc Việt Nam", d: "Tự tin bước ra thế giới, với niềm tự hào sâu sắc về nơi mình sinh ra.", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/0A9A9302%20(1).jpg" },
 ];
 
 const STAGES = [
@@ -63,9 +64,9 @@ const PROGRAMMES = [
 ];
 
 const PEOPLE = [
-  { name: "TS. Emma Whitfield", role: "Trưởng Chương trình Cambridge", exp: "18 năm · Cambridge, Anh Quốc", quote: "Nhiệm vụ của tôi là giúp mỗi học sinh tìm ra câu hỏi khiến em bừng sáng.", img: "1581065178047-8ee15951ede6" },
-  { name: "Cô Nguyễn Thu Hà", role: "Trưởng khối Tiểu học · Riverside", exp: "14 năm · Mầm non & Tiểu học", quote: "Sự tự tin của con bắt đầu từ cảm giác được thấu hiểu và yêu thương.", img: "1573496527892-904f897eb744" },
-  { name: "Thầy James Okoro", role: "Cố vấn Đại học & Hướng nghiệp", exp: "12 năm · Tuyển sinh toàn cầu", quote: "Chúng tôi vạch lối đến đúng ngôi trường — không chỉ một cái tên nổi tiếng.", img: "1590650213165-c1fef80648c4" },
+  { name: "Cô Nguyễn Thị Y Vân", role: "Khối tiểu học", exp: "20 năm kinh nghiệm", quote: "Nhiệm vụ của tôi là giúp mỗi học sinh tìm ra tiềm năng của bản thân giúp các em bừng sáng.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fco-nguyen-thi-y-van.jpeg&w=3840&q=75" },
+  { name: "Cô Nguyễn Thu Hà", role: "Trưởng khối Tiểu học · Riverside", exp: "14 năm · Mầm non & Tiểu học", quote: "Sự tự tin của con bắt đầu từ cảm giác được thấu hiểu và yêu thương.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fco-melanie-martir-maligon.jpeg&w=3840&q=75" },
+  { name: "Cô Văn Phương Liên", role: "Cố vấn Đại học & Hướng nghiệp", exp: "12 năm · Tuyển sinh toàn cầu", quote: "Chúng tôi vạch lối cho các con đến đúng ước mơ mà các con muốn", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F496096070_24085485431044575_61883385863057877_Lien%20Van%20Phuong.jpg&w=3840&q=75" },
 ];
 
 const DAY = [
@@ -80,18 +81,18 @@ const DAY = [
 ];
 
 const CAMPUSES = [
-  { name: "Ba Tháng Hai", district: "Quận 10", ages: "2–18 tuổi", img: "1786013522160-00ac876da3ab", note: "Cơ sở chính, trụ sở của hệ thống ngay trung tâm thành phố." },
-  { name: "Riverside", district: "Quận 7", ages: "2–18 tuổi", img: "1781877641721-dc3d4974bf25", note: "Không gian ven sông yên bình với cơ sở vật chất quốc tế." },
-  { name: "Sunrise", district: "Quận 7", ages: "2–18 tuổi", img: "1780247723262-bf9fab11592c", note: "Không gian hiện đại, tươi sáng tại khu Phú Mỹ Hưng." },
-  { name: "Sala", district: "TP. Thủ Đức", ages: "2–15 tuổi", img: "1764943630631-b63aadf86e19", note: "Cơ sở mới tại khu đô thị Sala hiện đại." },
-  { name: "Garden Hills", district: "Gò Vấp", ages: "2–18 tuổi", img: "1772551419793-75c00555bf7b", note: "Khuôn viên xanh, rộng rãi cho cộng đồng xuyên cấp." },
-  { name: "Hoàng Văn Thụ", district: "Phú Nhuận", ages: "2–11 tuổi", img: "1781032161857-41214c66559f", note: "Khởi đầu êm đềm cho khối Mầm non và Tiểu học." },
+  { name: "Ba Tháng Hai", district: "Quận 10", ages: "2–18 tuổi", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F20241218-163223.jpeg&w=1200&q=40", note: "Cơ sở chính, trụ sở của hệ thống ngay trung tâm thành phố." },
+  { name: "Riverside", district: "Quận 7", ages: "2–18 tuổi", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/giju3EonpIqxIQZ9elHcTqHYODyGVoxRhTJfA52A.jpeg", note: "Không gian ven sông yên bình với cơ sở vật chất quốc tế." },
+  { name: "Sunrise", district: "Quận 7", ages: "2–18 tuổi", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fcoso-sunrise-2710.jpg&w=3840&q=75", note: "Không gian hiện đại, tươi sáng tại khu Phú Mỹ Hưng." },
+  { name: "Sala", district: "TP. Thủ Đức", ages: "2–15 tuổi", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FDSC06094.jpg&w=3840&q=75", note: "Cơ sở mới tại khu đô thị Sala hiện đại." },
+  { name: "Garden Hills", district: "Gò Vấp", ages: "2–18 tuổi", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/3pzEV3VqNl8Eefi0SwcqqtGXC27WCNElPoTqpFXc.jpeg", note: "Khuôn viên xanh, rộng rãi cho cộng đồng xuyên cấp." },
+  { name: "Hoàng Văn Thụ", district: "Phú Nhuận", ages: "2–11 tuổi", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FDSCF5583.jpg&w=3840&q=75", note: "Khởi đầu êm đềm cho khối Mầm non và Tiểu học." },
 ];
 
 const STORIES = [
-  { name: "Minh Anh", grade: "Lớp 11 · Riverside", quote: "Em đã tìm thấy đam mê với robotics tại VAS.", img: "1673533582990-3542202b0a8f" },
-  { name: "Đức Huy", grade: "Lớp 12 · Ba Tháng Hai", quote: "Thầy cô giúp em tin rằng mình có thể du học ngành y.", img: "1698072556956-1a5d2307a7a1" },
-  { name: "Gia Bảo", grade: "Lớp 9 · Garden Hills", quote: "Trên sân bóng là nơi em học được cách dẫn dắt.", img: "1626788215369-3ba6c6ae88c0" },
+  { name: "Minh Anh", grade: "Lớp 11 · Riverside", quote: "Em đã tìm thấy đam mê với robotics tại VAS.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FTestimonial_Nga.jpg&w=3840&q=75" },
+  { name: "Đức Huy", grade: "Lớp 12 · Ba Tháng Hai", quote: "Thầy cô giúp em tin rằng mình có thể du học ngành y.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FTestimonial_Khôi.jpg&w=3840&q=75" },
+  { name: "Gia Bảo", grade: "Lớp 9 · Garden Hills", quote: "Trên sân bóng là nơi em học được cách dẫn dắt.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FNam-sinh-do-dai-hoc-john-hopkins-1.jpeg&w=3840&q=75" },
 ];
 
 const OUTCOMES = [
@@ -115,7 +116,7 @@ const STEPS = [
 ];
 
 const NEWS = [
-  { tag: "Sự kiện", date: "18/08/2026", title: "VAS chào đón gần 8.000 học sinh trở lại trường năm học 2026 – 2027", img: "1641683521844-700c456379bd" },
+  { tag: "Sự kiện", date: "18/08/2026", title: "VAS chào đón gần 8.000 học sinh trở lại trường năm học 2026 – 2027", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/vas-chao-don-gan-8000-hoc-sinh-vao-ngay-tuu-truong" },
   { tag: "Ngoại khóa", date: "08/2026", title: "Khép lại chuỗi Trại hè Quốc tế 2026 tại Mỹ, Anh, Úc & New Zealand", img: "1587794032575-de0040fe9186" },
   { tag: "Chất lượng", date: "13/07/2026", title: "Khảo sát mức độ hài lòng của phụ huynh VAS 2026 vượt kỳ vọng", img: "1758270703127-9f6ae686ce7b" },
 ];
@@ -231,7 +232,7 @@ document.getElementById("proofGrid").innerHTML = PROOF.map((p, i) => `
 // differentiators
 document.getElementById("diffGrid").innerHTML = DIFF.map((d, i) => `
   <article class="diff-card reveal" style="transition-delay:${i * 90}ms">
-    <div class="diff-img"><img src="${img(d.img, 640, 800)}" alt="${esc(d.t)}" loading="lazy" /></div>
+    <div class="diff-img"><img src="${imageUrl(d.img, 640, 800)}" alt="${esc(d.t)}" loading="lazy" /></div>
     <div class="diff-body">
       <h3>${esc(d.t)}</h3><p>${esc(d.d)}</p>
       <a href="#" class="diff-more">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
@@ -274,7 +275,7 @@ renderProg(0);
 // people
 document.getElementById("peopleGrid").innerHTML = PEOPLE.map((m, i) => `
   <article class="person reveal" style="transition-delay:${i * 100}ms">
-    <div class="pic"><img src="${img(m.img, 720, 900)}" alt="Chân dung ${esc(m.name)}" loading="lazy" /></div>
+    <div class="pic"><img src="${imageUrl(m.img, 720, 900)}" alt="Chân dung ${esc(m.name)}" loading="lazy" /></div>
     <div class="body">
       <p class="name">${esc(m.name)}</p>
       <p class="role">${esc(m.role)}</p>
@@ -298,7 +299,7 @@ function renderCampus(idx) {
   campusFeature.classList.add("animate-rise");
   campusFeature.innerHTML = `
     <div class="campus-photo">
-      <img src="${img(c.img, 1100, 700)}" alt="Cơ sở VAS ${esc(c.name)}" />
+      <img src="${imageUrl(c.img, 1100, 700)}" alt="Cơ sở VAS ${esc(c.name)}" />
       <div class="grad"></div>
       <div class="cap"><h3>${esc(c.name)}</h3><p>${esc(c.district)} · ${esc(c.ages)}</p></div>
     </div>
@@ -325,7 +326,7 @@ renderCampus(0);
 // stories
 document.getElementById("storiesGrid").innerHTML = STORIES.map((s, i) => `
   <article class="story reveal" style="transition-delay:${i * 100}ms">
-    <img src="${img(s.img, 720, 900)}" alt="${esc(s.name)}, ${esc(s.grade)}" loading="lazy" />
+    <img src="${imageUrl(s.img, 720, 900)}" alt="${esc(s.name)}, ${esc(s.grade)}" loading="lazy" />
     <div class="grad"></div>
     <div class="cap"><p>“${esc(s.quote)}”</p><span>${esc(s.name)} · ${esc(s.grade)}</span></div>
   </article>`).join("");
@@ -364,7 +365,7 @@ document.getElementById("stepsGrid").innerHTML = STEPS.map(([n, t, d], i) => `
 // news
 document.getElementById("articlesGrid").innerHTML = NEWS.map((a, i) => `
   <a href="#" class="article reveal" style="transition-delay:${i * 90}ms">
-    <div class="thumb"><img src="${img(a.img, 600, 420)}" alt="${esc(a.title)}" loading="lazy" /></div>
+    <div class="thumb"><img src="${imageUrl(a.img, 600, 420)}" alt="${esc(a.title)}" loading="lazy" /></div>
     <p class="meta">${esc(a.tag)} <i></i> <em>${esc(a.date)}</em></p>
     <h3>${esc(a.title)}</h3>
   </a>`).join("");
@@ -411,3 +412,14 @@ const countIO = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.4 });
 document.querySelectorAll("[data-count]").forEach((n) => countIO.observe(n));
+
+/* ================= UI feedback tool ================= */
+import(new URL("ui-feedback.js", document.baseURI).href)
+  .then(({ createUIFeedback }) => {
+    createUIFeedback({
+      storageKey: "redesignvas-ui-feedback",
+      accent: "#b3282d",
+      githubRepo: "Ngh1aa/RedesignVAS",
+    });
+  })
+  .catch((error) => console.warn("UI Feedback Tool unavailable", error));

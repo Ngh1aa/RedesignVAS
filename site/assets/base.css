@@ -252,8 +252,8 @@ h1, h2, h3, h4, p { margin: 0; }
 @media (min-width: 768px) { .people-grid { grid-template-columns: repeat(3, 1fr); } }
 .person { height: 100%; overflow: hidden; border-radius: 24px; background: var(--paper); border: 1px solid var(--line); }
 .person .pic { aspect-ratio: 4/5; overflow: hidden; background: var(--paper-deep); }
-.person .pic img { height: 100%; width: 100%; object-fit: cover; filter: grayscale(1); transition: filter .7s, transform .7s; }
-.person:hover .pic img { filter: grayscale(0); transform: scale(1.03); }
+.person .pic img { height: 100%; width: 100%; object-fit: cover; transition: transform .7s; }
+.person:hover .pic img { transform: scale(1.03); }
 .person .body { padding: 24px; }
 .person .name { font-family: var(--font-display); font-size: 1.35rem; }
 .person .role { margin-top: 4px; font-size: 14px; font-weight: 500; color: var(--vas-red); }
