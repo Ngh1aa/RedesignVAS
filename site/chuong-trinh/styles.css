@@ -140,7 +140,7 @@
 .english-row strong { color: var(--vas-red); font-family: var(--font-display); font-size: 1.4rem; }
 .english-row b { color: var(--ink); font-size: 13px; }
 .english-row span { color: var(--ink-soft); font-size: 12px; }
-.bar { height: 13px; overflow: hidden; border-radius: 999px; background: #e1d7c9; }
+.bar { height: 13px; overflow: hidden; border-radius: 999px; background: #ffffff; border: 1px solid var(--line); }
 .bar i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--vas-red), var(--gold)); }
 
 .faq-section .section-head { max-width: 48rem; }
@@ -167,3 +167,23 @@
   .english-row { grid-template-columns: 45px 1fr auto; }
   .english-row span { grid-column: 2 / -1; margin-top: -8px; }
 }
+
+/* ---------- strict white / brand-red alternation ---------- */
+.quiz-card,
+.transfer-map,
+.cam-step,
+.cambridge-rail {
+  background: var(--vas-red);
+}
+.quiz-card,
+.transfer-map,
+.cambridge-rail,
+.cam-step {
+  border-color: rgba(255,255,255,.34);
+}
+.cam-step.highlight { background: var(--paper); color: var(--ink); }
+.cam-step.highlight small { color: var(--ink-soft); }
+.cam-step.highlight b,
+.cam-step.highlight > span { color: var(--vas-red); }
+.bar { background: #ffffff; border: 1px solid var(--line); }
+.pathway-outcome { border: 1px solid var(--line); background: #ffffff; }

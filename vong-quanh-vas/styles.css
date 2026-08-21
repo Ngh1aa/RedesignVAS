@@ -52,15 +52,15 @@
 .club-mark { color: var(--red); font-size: 1.15rem; }
 .club-card h3 { margin: 0; font-size: 1.2rem; font-weight: 600; }
 .club-card p { grid-column: 2; margin: -4px 0 0; color: var(--ink-muted); }
-.bg-red-deep .eyebrow { color: rgba(247,241,232,.7); }
+.bg-red .eyebrow { color: rgba(255,255,255,.7); }
 .community-layout { color: var(--paper); }
 .community-layout .display { max-width: 520px; margin: 18px 0; }
-.light-copy { max-width: 520px; color: rgba(247,241,232,.78); font-size: 1.05rem; line-height: 1.75; }
-.community-projects { border-top: 1px solid rgba(247,241,232,.28); }
-.community-tagline { margin: 0; padding: 18px 0; color: rgba(247,241,232,.72); font-family: var(--serif); font-size: 1.25rem; }
-.project-row { display: grid; grid-template-columns: 1fr 1.5fr 22px; gap: 18px; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(247,241,232,.28); }
+.light-copy { max-width: 520px; color: rgba(255,255,255,.78); font-size: 1.05rem; line-height: 1.75; }
+.community-projects { border-top: 1px solid rgba(255,255,255,.28); }
+.community-tagline { margin: 0; padding: 18px 0; color: rgba(255,255,255,.72); font-family: var(--serif); font-size: 1.25rem; }
+.project-row { display: grid; grid-template-columns: 1fr 1.5fr 22px; gap: 18px; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.28); }
 .project-row strong { color: var(--paper); font-size: .95rem; }
-.project-row span { color: rgba(247,241,232,.74); font-size: .88rem; line-height: 1.45; }
+.project-row span { color: rgba(255,255,255,.74); font-size: .88rem; line-height: 1.45; }
 .project-row i { color: var(--paper); font-style: normal; }
 .care-layout { grid-template-columns: 1fr; }
 .care-layout .media { max-height: 520px; }

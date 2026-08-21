@@ -307,7 +307,7 @@ function renderCampus(idx) {
       <p>${esc(c.note)}</p>
       <div class="actions">
         <a href="#admissions" class="btn btn-light">Đăng ký tư vấn</a>
-        <a href="#" class="btn btn-outline-light" style="border-color:rgba(247,241,232,.4)">Xem cơ sở</a>
+        <a href="#" class="btn btn-outline-light" style="border-color:rgba(255,255,255,.4)">Xem cơ sở</a>
       </div>
     </div>`;
 }

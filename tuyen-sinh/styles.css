@@ -1,6 +1,6 @@
 /* Tuyển sinh — journey rõ ràng, editorial ấm áp, CTA không áp lực */
-.admissions-hero .lead { margin-top: 20px; font-size: clamp(1.25rem, 2.2vw, 1.65rem); color: rgba(247,241,232,.94); }
-.admissions-hero .hero-copy { max-width: 42rem; margin-top: 10px; color: rgba(247,241,232,.82); font-size: 16px; line-height: 1.65; }
+.admissions-hero .lead { margin-top: 20px; font-size: clamp(1.25rem, 2.2vw, 1.65rem); color: rgba(255,255,255,.94); }
+.admissions-hero .hero-copy { max-width: 42rem; margin-top: 10px; color: rgba(255,255,255,.82); font-size: 16px; line-height: 1.65; }
 .admissions-intro-grid { display: grid; gap: 48px; align-items: start; grid-template-columns: 1fr; }
 @media (min-width: 1024px) { .admissions-intro-grid { grid-template-columns: .78fr 1.22fr; gap: 88px; } }
 .section-intro { max-width: 38rem; margin-top: 20px; color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
@@ -34,8 +34,8 @@
 .tuition-preview-grid { display: grid; gap: 40px; align-items: end; grid-template-columns: 1fr; }
 @media (min-width: 1024px) { .tuition-preview-grid { grid-template-columns: 1fr 1fr; gap: 96px; } }
 .tuition-preview .display { margin-top: 20px; max-width: 34rem; font-size: clamp(2.2rem, 4.8vw, 4.4rem); line-height: 1.02; }
-.tuition-preview-copy { max-width: 35rem; color: rgba(247,241,232,.9); font-size: 16px; line-height: 1.65; }
-.tuition-preview-copy .muted-light { margin-top: 16px; color: rgba(247,241,232,.68); font-size: 14px; }
+.tuition-preview-copy { max-width: 35rem; color: rgba(255,255,255,.9); font-size: 16px; line-height: 1.65; }
+.tuition-preview-copy .muted-light { margin-top: 16px; color: rgba(255,255,255,.68); font-size: 14px; }
 .tuition-preview-copy .btn { margin-top: 28px; }
 .req-list { display: flex; flex-direction: column; gap: 16px; }
 .req-list li { position: relative; padding-left: 32px; font-size: 15.5px; color: var(--ink-soft); line-height: 1.55; }
@@ -43,11 +43,11 @@
 .contact-grid { display: grid; gap: 48px; grid-template-columns: 1fr; align-items: start; }
 @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 72px; } }
 .contact-info { margin-top: 32px; display: grid; gap: 20px; grid-template-columns: 1fr 1fr; }
-.contact-info p { font-size: 14.5px; color: rgba(247,241,232,.9); line-height: 1.5; }
+.contact-info p { font-size: 14.5px; color: rgba(255,255,255,.9); line-height: 1.5; }
 .contact-info a { color: inherit; }
 .contact-info b { color: var(--gold-soft); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
 .journey-mini { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-top: 28px; color: var(--gold-soft); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
-.journey-mini i { color: rgba(247,241,232,.55); font-style: normal; }
+.journey-mini i { color: rgba(255,255,255,.55); font-style: normal; }
 .enquiry { background: var(--paper); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
 @media (min-width: 1024px) { .enquiry { padding: 40px; } }
 .enquiry label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink); }

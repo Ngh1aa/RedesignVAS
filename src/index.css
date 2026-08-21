@@ -8,17 +8,17 @@
 
   /* VAS brand palette — deep academic red on warm paper */
   --color-paper: #ffffff;
-  --color-paper-deep: #efe6d6;
+  --color-paper-deep: #ffffff;
   --color-ink: #2a1a17;
   --color-ink-soft: #6b5a52;
 
   --color-vas-red: #B51F1F;
-  --color-vas-red-deep: #8a1414;
-  --color-vas-red-bright: #d63232;
+  --color-vas-red-deep: #b51f1f;
+  --color-vas-red-bright: #b51f1f;
   --color-gold: #c69a4c;
   --color-gold-soft: #e3c98e;
 
-  --color-line: #e0d4c2;
+  --color-line: #e3e3e3;
 }
 
 @layer base {

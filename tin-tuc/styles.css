@@ -69,14 +69,14 @@
 .activity-card p { margin-top: 8px; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
 .archive-grid { display: grid; gap: 14px; margin-top: 52px; grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 768px) { .archive-grid { grid-template-columns: repeat(5, 1fr); grid-auto-rows: 220px; } }
-.archive-card { position: relative; min-height: 190px; overflow: hidden; border-radius: 16px; color: var(--paper); background: var(--ink); }
+.archive-card { position: relative; min-height: 190px; overflow: hidden; border-radius: 16px; color: var(--paper); background: var(--vas-red); }
 @media (min-width: 768px) { .archive-1 { grid-row: span 2; } .archive-2, .archive-3 { grid-row: span 1; } .archive-4, .archive-5 { grid-row: span 1; } }
 .archive-card img { width: 100%; height: 100%; object-fit: cover; opacity: .78; transition: transform .5s ease, opacity .4s ease; }
 .archive-card:hover img { transform: scale(1.05); opacity: .58; }
 .archive-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.72)); }
 .archive-card > span { position: absolute; z-index: 1; right: 18px; bottom: 16px; left: 18px; display: grid; gap: 4px; }
 .archive-card strong { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; }
-.archive-card small { color: rgba(247,241,232,.82); font-size: 12px; line-height: 1.35; }
+.archive-card small { color: rgba(255,255,255,.82); font-size: 12px; line-height: 1.35; }
 @media (max-width: 599px) { .contact-info { grid-template-columns: 1fr; } .story-item { grid-template-columns: 104px 1fr; gap: 12px; } .story-item img { width: 104px; height: 96px; } }
 
 

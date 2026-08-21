@@ -27,9 +27,9 @@
 .map-section .section-head p { max-width: 43rem; }
 .map-layout { display: grid; gap: 20px; margin-top: 52px; grid-template-columns: 1fr; }
 @media (min-width: 940px) { .map-layout { grid-template-columns: 1.35fr .65fr; align-items: stretch; } }
-.campus-map { position: relative; min-height: 460px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #e9e5dc; isolation: isolate; }
+.campus-map { position: relative; min-height: 460px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #ffffff; isolation: isolate; }
 .district-map-image { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.56) sepia(.08) contrast(.92); pointer-events: none; }
-.map-image-overlay { position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(247,241,232,.12) 48%, rgba(247,241,232,.72)); pointer-events: none; }
+.map-image-overlay { position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.12) 48%, rgba(255,255,255,.72)); pointer-events: none; }
 .map-marker-layer { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
 .map-marker { position: absolute; z-index: 4; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 2px solid rgba(255,255,255,.78); border-radius: 50%; color: var(--paper); background: var(--vas-red); box-shadow: 0 8px 0 rgba(106,13,13,.2), 0 2px 12px rgba(31,27,23,.2); cursor: pointer; pointer-events: auto; transition: transform .2s, background .2s, box-shadow .2s; }
 .map-marker::after { position: absolute; z-index: -1; bottom: -7px; width: 12px; height: 12px; content: ""; background: inherit; transform: rotate(45deg); }
@@ -140,7 +140,7 @@
   .campus-map { min-height: 390px; border-radius: 18px; }
   .map-marker { width: 40px; height: 40px; }
   .district-map-image { object-position: 52% center; }
-  .map-image-overlay { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(247,241,232,.2) 45%, rgba(247,241,232,.82)); }
+  .map-image-overlay { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.2) 45%, rgba(255,255,255,.82)); }
   .marker-sala { top: 21%; right: 10%; }
   .marker-riverside { bottom: 24%; right: 17%; }
   .marker-garden { top: 24%; left: 13%; }
@@ -158,3 +158,17 @@
   .life-card { min-height: 190px; padding: 24px; }
   .life-card-copy { margin-top: 42px; }
 }
+
+/* ---------- strict white / brand-red alternation ---------- */
+.campus-map { background: #ffffff; }
+.finder-panel { background: var(--vas-red); border-color: rgba(255,255,255,.36); }
+.finder-panel .choice:hover,
+.finder-panel .choice:focus-visible { background: transparent; }
+.life-grid { background: var(--vas-red); border-color: rgba(255,255,255,.42); }
+.life-card { background: var(--vas-red); border: 1px solid rgba(255,255,255,.24); }
+.life-card:hover,
+.life-card:focus-visible { background: var(--vas-red); border-color: var(--gold-soft); }
+.life-card.is-active { background: #ffffff; border-color: #ffffff; }
+.map-card,
+.campus-editorial-card,
+.comparison-wrap { border: 1px solid var(--line); }
