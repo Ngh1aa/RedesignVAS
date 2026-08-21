@@ -78,3 +78,40 @@
 .archive-card strong { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; }
 .archive-card small { color: rgba(247,241,232,.82); font-size: 12px; line-height: 1.35; }
 @media (max-width: 599px) { .contact-info { grid-template-columns: 1fr; } .story-item { grid-template-columns: 104px 1fr; gap: 12px; } .story-item img { width: 104px; height: 96px; } }
+
+
+/* vasfb2 — editorial surfaces and events contrast */
+#tin-moi-nhat,
+#thu-vien-anh { background-color: #ffffff !important; }
+
+#storyFeature .story-feature { background: #ffffff; }
+#storyFeature .story-feature-copy {
+  background: #ffffff;
+  border: 0;
+}
+
+#su-kien {
+  background-color: var(--vas-red) !important;
+  color: #ffffff;
+}
+#su-kien .section-head h2,
+#su-kien .section-head p,
+#su-kien .cms-note,
+#su-kien .eyebrow { color: #ffffff !important; }
+#su-kien .cms-note { border-left-color: rgba(255,255,255,.72); }
+#su-kien .events {
+  background: #ffffff;
+  border-color: rgba(255,255,255,.72);
+}
+#su-kien .activity-card {
+  background: #ffffff;
+  border: 1px solid rgba(35,29,25,.14);
+}
+#su-kien .activity-card > div { background: #ffffff; }
+
+
+/* vasfb2 — readable event details on white panel */
+#su-kien .events .info b { color: var(--ink); }
+#su-kien .events .info span { color: var(--ink-soft); }
+#su-kien .events .arrow { color: var(--line); }
+#su-kien .events .event:hover .info b { color: var(--vas-red); }

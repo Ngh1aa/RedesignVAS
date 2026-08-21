@@ -77,3 +77,56 @@
 @media (max-width: 900px) {
   .timeline h4 { white-space: normal; }
 }
+
+
+/* vasfb2 — contrast, timeline rhythm and card surfaces */
+#doi-song-hoc-duong,
+#nghe-thuat { background-color: #ffffff !important; }
+
+#dayList.timeline li {
+  grid-template-columns: 18px 88px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  min-width: 0;
+}
+#dayList.timeline h4 {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+#sportStory .sport-card { background: #ffffff; }
+#sportStory .sport-card-copy {
+  background: #ffffff;
+  border: 1px solid rgba(35, 29, 25, .14);
+}
+
+
+/* vasfb2 — prevent timeline column collapse */
+#dayList.timeline {
+  width: 100%;
+  min-width: 0;
+}
+#dayList.timeline li {
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: 18px 88px minmax(0, 1fr) !important;
+}
+#dayList.timeline h4 {
+  display: block;
+  width: auto;
+  min-width: 0 !important;
+  max-width: none;
+  white-space: normal !important;
+  overflow-wrap: break-word;
+}
+
+
+/* vasfb2 — absolute timeline dot must not collapse content columns */
+#dayList.timeline .yr { grid-column: 2; }
+#dayList.timeline h4 { grid-column: 3; }
+@media (max-width: 900px) {
+  #dayList.timeline .yr { grid-column: 2; }
+  #dayList.timeline h4 { grid-column: 3; }
+}

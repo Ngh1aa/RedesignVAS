@@ -59,3 +59,31 @@
 .form-progress { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 10px; text-transform: uppercase; letter-spacing: .09em; }
 .form-progress span:nth-child(odd) { color: var(--vas-red); font-family: var(--font-display); font-size: 15px; letter-spacing: 0; }
 .form-msg { margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--vas-red); }
+
+
+/* vasfb2 — admissions process contrast */
+#quy-trinh {
+  background-color: var(--vas-red) !important;
+  color: #ffffff;
+}
+#quy-trinh .section-head h2,
+#quy-trinh .section-head p,
+#quy-trinh .process-note,
+#quy-trinh .process-note p,
+#quy-trinh .process-note a,
+#quy-trinh .eyebrow { color: #ffffff !important; }
+#quy-trinh .process-note { border-top-color: rgba(255,255,255,.45); }
+#quy-trinh .process-note a { text-decoration-color: rgba(255,255,255,.8); }
+#quy-trinh .note-mark { background: #ffffff; color: var(--vas-red); }
+#quy-trinh .step {
+  background: #ffffff;
+  border-color: rgba(255,255,255,.7);
+}
+
+#faq { background-color: #ffffff !important; }
+
+
+/* vasfb2 — readable process cards on white surface */
+#quy-trinh .step .n { color: var(--vas-red); }
+#quy-trinh .step h4 { color: var(--ink); }
+#quy-trinh .step p { color: var(--ink-soft); }
