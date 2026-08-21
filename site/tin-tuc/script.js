@@ -10,7 +10,7 @@ const HUB_ITEMS = [
 
 const LATEST = [
   {
-    cat: "Cộng đồng", date: "20/08/2026", img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1000&h=700&fit=crop&auto=format&q=80",
+    cat: "Cộng đồng", date: "20/08/2026", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/vas-chao-don-gan-8000-hoc-sinh-vao-ngay-tuu-truong-1",
     title: "VAS đã chuẩn bị gì cho đội ngũ giáo viên trước khi chào đón gần 8.000 học sinh trở lại trường?",
     ex: "VAS tổ chức chương trình tập huấn đầu năm học 2026–2027 tại 6 cơ sở, với hơn 1.000 giáo viên Cambridge và MOET, tập trung vào chuyên môn, chuyển đổi số, AI, safeguarding và môi trường học tập an toàn, hạnh phúc.",
   },
@@ -27,9 +27,9 @@ const LATEST = [
 ];
 
 const STORIES = [
-  ["Thành tích Cambridge", "Mỗi thành tích bắt đầu từ một hành trình.", "Học sinh VAS chinh phục các kỳ thi Cambridge bằng sự bền bỉ, tò mò và niềm tin vào khả năng của chính mình.", "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1100&h=800&fit=crop&auto=format&q=80"],
-  ["English Speaking Contest", "Gần 100 học sinh từ lớp 1 đến lớp 12 tham gia vòng chung kết hệ thống tại Riverside.", "Một sân khấu để học sinh nói lên suy nghĩ, lắng nghe nhau và tự tin sử dụng tiếng Anh trong những tình huống thật.", "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&h=600&fit=crop&auto=format&q=80"],
-  ["Dự án học sinh", "Từ câu hỏi nhỏ đến giải pháp lớn.", "Robotics, nghệ thuật, Community Programme và những dự án liên môn giúp học sinh biến ý tưởng thành hành động.", "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop&auto=format&q=80"],
+  ["Thành tích Cambridge", "Mỗi thành tích bắt đầu từ một hành trình.", "Học sinh VAS chinh phục các kỳ thi Cambridge bằng sự bền bỉ, tò mò và niềm tin vào khả năng của chính mình.", "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F4J4A2277%201.jpg&w=3840&q=75"],
+  ["English Speaking Contest", "Gần 100 học sinh từ lớp 1 đến lớp 12 tham gia vòng chung kết hệ thống tại Riverside.", "Một sân khấu để học sinh nói lên suy nghĩ, lắng nghe nhau và tự tin sử dụng tiếng Anh trong những tình huống thật.", "https://cdn2.tuoitre.vn/thesaigontimes/uploads/2024/11/VAS_1.jpg"],
+  ["Dự án học sinh", "Từ câu hỏi nhỏ đến giải pháp lớn.", "Robotics, nghệ thuật, Community Programme và những dự án liên môn giúp học sinh biến ý tưởng thành hành động.", "https://timtruongquocte.com/storage/app/resources/resize/1920_880_0_0_auto/truong-mam-non-quoc-te-viet-uc-vas_b481ba2cfd8a4e69f339a4b289580ece.webp"],
 ];
 
 const EVENTS = [
@@ -39,17 +39,17 @@ const EVENTS = [
 ];
 
 const ACTIVITIES = [
-  ["VAS Olympics", "Hơn 2.000 học sinh và phụ huynh tham gia, gần 900 huy chương được trao ở 6 bộ môn.", "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=900&h=650&fit=crop&auto=format&q=80"],
-  ["VAS Robotics", "Không gian để học sinh thử nghiệm, hợp tác và giải quyết vấn đề bằng tư duy sáng tạo.", "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&h=650&fit=crop&auto=format&q=80"],
-  ["VAS Summer Fair 2026", "Trại hè kết thúc bằng một ngày hội trải nghiệm, biểu diễn và triển lãm dành cho học sinh và gia đình tại Sala.", "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=900&h=650&fit=crop&auto=format&q=80"],
+  ["VAS Olympics", "Hơn 2.000 học sinh và phụ huynh tham gia, gần 900 huy chương được trao ở 6 bộ môn.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/2Rss8Y19k1HSYe2nN478uJTay6qCwc4CtWxjyNbz.jpeg"],
+  ["VAS Robotics", "Không gian để học sinh thử nghiệm, hợp tác và giải quyết vấn đề bằng tư duy sáng tạo.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/chung-ket-cuoc-thi-vas-robotics-2025-2026-anh-11"],
+  ["VAS Summer Fair 2026", "Trại hè kết thúc bằng một ngày hội trải nghiệm, biểu diễn và triển lãm dành cho học sinh và gia đình tại Sala.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/trai-he-song-ngu-vas-2026-hinh-6.jpg"],
 ];
 
 const ARCHIVE = [
-  ["Đời sống VAS", "Khoảnh khắc thường ngày tại trường.", "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1000&h=850&fit=crop&auto=format&q=80"],
-  ["Học tập", "Lớp học, dự án và hoạt động học thuật.", "https://images.unsplash.com/photo-1503676382389-4809596d5290?w=800&h=850&fit=crop&auto=format&q=80"],
-  ["Sự kiện", "Lễ khai giảng, hội thao và các cuộc thi.", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=850&fit=crop&auto=format&q=80"],
-  ["Ngoại khóa", "Thể thao, nghệ thuật, dã ngoại và trải nghiệm.", "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&h=850&fit=crop&auto=format&q=80"],
-  ["Cộng đồng", "Kết nối phụ huynh, học sinh và giáo viên.", "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=850&fit=crop&auto=format&q=80"],
+  ["Đời sống VAS", "Khoảnh khắc thường ngày tại trường.", "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F3fc139c1-e71a-4077-94b7-0ea09ed2cfd4.jpeg&w=1200&q=75"],
+  ["Học tập", "Lớp học, dự án và hoạt động học thuật.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/trai-he-song-ngu-vas-2026-hinh-1.jpg"],
+  ["Sự kiện", "Lễ khai giảng, hội thao và các cuộc thi.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/trai-he-song-ngu-vas-2026-hinh-2.jpg"],
+  ["Ngoại khóa", "Thể thao, nghệ thuật, dã ngoại và trải nghiệm.", "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Feca%201.jpg&w=2048&q=75"],
+  ["Cộng đồng", "Kết nối phụ huynh, học sinh và giáo viên.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/kxAsMml1ucokFucmA2fOocm0BLhTrdCQIwcofmz5.jpeg"],
 ];
 
 document.getElementById("newsHub").innerHTML = HUB_ITEMS.map(([id, title, desc], index) => `

@@ -32,9 +32,9 @@ const JOURNEY = [
 ];
 
 const PEOPLE = [
-  { name: "Hơn 1.000 giáo viên", role: "Trong và ngoài nước", exp: "Chuyên môn quốc tế · Am hiểu giáo dục Việt Nam", img: "1524178232363-1fb2b075b655" },
-  { name: "Trung tâm đào tạo giáo viên quốc tế", role: "Đối tác Cambridge được ủy quyền", exp: "Phát triển năng lực giáo viên tại Việt Nam", img: "1524178923640-23b2e4c7b4f6" },
-  { name: "XCL Education", role: "Hệ thống giáo dục tại Đông Nam Á", exp: "Nuôi dưỡng học thuật · kỹ năng · sự đồng cảm", img: "1546410531-bb4caa6b424d" },
+  { name: "Hơn 1.000 giáo viên", role: "Trong và ngoài nước", exp: "Chuyên môn quốc tế · Am hiểu giáo dục Việt Nam", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fsecondary.jpg&w=1200&q=40" },
+  { name: "Trung tâm đào tạo giáo viên quốc tế", role: "Đối tác Cambridge được ủy quyền", exp: "Phát triển năng lực giáo viên tại Việt Nam", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/1FJQ6zCfORcNAigcDjpT19zw1hQKFxQxkbA6apYq.jpeg" },
+  { name: "XCL Education", role: "Hệ thống giáo dục tại Đông Nam Á", exp: "Nuôi dưỡng học thuật · kỹ năng · sự đồng cảm", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/eosVsm3gMQGuJJ3HqOfRhOFiPfZLAgm8GZZRGyzm.jpeg" },
 ];
 
 document.getElementById("valueGrid").innerHTML = VALUES.map((v) => `
@@ -60,7 +60,7 @@ document.getElementById("journeyList").innerHTML = JOURNEY.map((j) => `
 
 document.getElementById("peopleGrid").innerHTML = PEOPLE.map((m) => `
   <article class="person">
-    <div class="pic"><img src="${img(m.img, 720, 900)}" alt="${esc(m.name)}" loading="lazy" /></div>
+    <div class="pic"><img src="${imageUrl(m.img, 720, 900)}" alt="${esc(m.name)}" loading="lazy" /></div>
     <div class="body">
       <p class="name">${esc(m.name)}</p>
       <p class="role">${esc(m.role)}</p>

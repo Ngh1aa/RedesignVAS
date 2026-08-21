@@ -1,35 +1,45 @@
 /* Trang Về VAS — nội dung động */
 const VALUES = [
-  { ic: "◆", t: "Tôn trọng", d: "Trân trọng cá tính, gốc rễ và tốc độ phát triển riêng của mỗi học sinh." },
-  { ic: "✦", t: "Chính trực", d: "Nuôi dưỡng sự trung thực, trách nhiệm và lòng tự trọng ở người trẻ." },
-  { ic: "❖", t: "Ham học hỏi", d: "Khơi dậy sự tò mò và niềm vui khám phá suốt đời." },
-  { ic: "✧", t: "Bản sắc Việt", d: "Vươn ra thế giới với niềm tự hào sâu sắc về nơi mình sinh ra." },
+  { ic: "01", t: "Tự tin", d: "Đương đầu thử thách và mạnh dạn thể hiện quan điểm." },
+  { ic: "02", t: "Xuất sắc", d: "Đặt ra và theo đuổi những tiêu chuẩn cao." },
+  { ic: "03", t: "Chính trực", d: "Trung thực, có trách nhiệm và giữ lời cam kết." },
+  { ic: "04", t: "Tự hào dân tộc", d: "Hiểu và trân trọng di sản, văn hóa và ngôn ngữ Việt Nam." },
+  { ic: "05", t: "Đam mê", d: "Nuôi dưỡng tinh thần học tập và khám phá suốt đời." },
+  { ic: "06", t: "Tôn trọng", d: "Chấp nhận sự khác biệt và tôn trọng cộng đồng." },
+  { ic: "07", t: "Đồng đội", d: "Hợp tác, truyền cảm hứng và phát triển tố chất lãnh đạo." },
 ];
 
 const HISTORY = [
-  { yr: "2004", h: "VAS ra đời", p: "Cơ sở đầu tiên khai giảng, mang chương trình song ngữ chuẩn quốc tế đến TP.HCM." },
-  { yr: "2010", h: "Mở rộng hệ thống", p: "Nhiều cơ sở mới được thành lập, phục vụ cộng đồng phụ huynh ngày càng lớn." },
-  { yr: "2015", h: "Chuẩn Cambridge toàn diện", p: "Triển khai đầy đủ ba lộ trình CAPI, CAP, CEP xuyên suốt các cấp học." },
-  { yr: "2020", h: "Dẫn đầu khối song ngữ", p: "Trở thành hệ thống chuẩn Cambridge lớn nhất TP.HCM với thành tích học sinh nổi bật." },
-  { yr: "2026", h: "Gần 8.000 học sinh", p: "6 cơ sở trên khắp thành phố, cựu học sinh theo học tại 200+ đại học toàn cầu." },
+  { yr: "2004", h: "VAS ra đời", p: "Bắt đầu với 430 học sinh, VAS đặt nền móng cho mô hình giáo dục song ngữ kết hợp Chương trình Giáo dục Quốc gia Việt Nam với chương trình Cambridge." },
+  { yr: "2024", h: "Một cộng đồng đang lớn lên", p: "VAS đạt gần 8.000 học sinh tại 6 cơ sở và cung cấp 3 lộ trình học tập xuyên suốt từ Mầm non đến lớp 12: CEP, CAP và CAPI." },
+  { yr: "2025–2026", h: "Bằng chứng, không phải lời nói", p: "Học sinh VAS đạt hơn 2.600 giải thưởng, hơn 150 suất học bổng đại học trị giá 6,47 triệu USD và thêm 2 danh hiệu Top in Vietnam Cambridge." },
+  { yr: "Tiếp nối", h: "Sẵn sàng tạo nên thay đổi", p: "VAS tiếp tục nuôi dưỡng những công dân toàn cầu vững vàng về học thuật, giàu bản sắc Việt và có trách nhiệm với cộng đồng." },
 ];
 
 const STATS = [
-  { n: 20, s: " năm", l: "dẫn đầu khối song ngữ" },
-  { n: 6, s: " cơ sở", l: "trên khắp TP.HCM" },
-  { n: 8000, s: "+", l: "học sinh mỗi năm học" },
-  { n: 200, s: "+", l: "điểm đến đại học toàn cầu" },
+  { n: 2600, s: "+", l: "Giải thưởng trong nước & quốc tế" },
+  { n: 150, s: "+", l: "Suất học bổng đại học" },
+  { value: "6,47 triệu USD", l: "Tổng giá trị học bổng 2025–2026" },
+  { n: 2, s: "", l: "Danh hiệu Top in Vietnam Cambridge" },
+];
+
+const JOURNEY = [
+  { step: "01", t: "Khám phá bản thân", d: "Khảo sát tính cách và thiên hướng nghề nghiệp." },
+  { step: "02", t: "Định hướng", d: "Làm việc cùng chuyên gia tư vấn để hiểu rõ năng lực và sở thích." },
+  { step: "03", t: "Lập kế hoạch", d: "Xây dựng kế hoạch học tập theo mục tiêu tương lai." },
+  { step: "04", t: "Khám phá đại học", d: "Tìm hiểu trường, ngành và yêu cầu tuyển sinh phù hợp." },
+  { step: "05", t: "Chinh phục", d: "Hoàn thiện hồ sơ và chuẩn bị chiến lược học bổng." },
 ];
 
 const PEOPLE = [
-  { name: "TS. Emma Whitfield", role: "Trưởng Chương trình Cambridge", exp: "18 năm · Cambridge, Anh Quốc", img: "1581065178047-8ee15951ede6" },
-  { name: "Cô Nguyễn Thu Hà", role: "Trưởng khối Tiểu học · Riverside", exp: "14 năm · Mầm non & Tiểu học", img: "1573496527892-904f897eb744" },
-  { name: "Thầy James Okoro", role: "Cố vấn Đại học & Hướng nghiệp", exp: "12 năm · Tuyển sinh toàn cầu", img: "1590650213165-c1fef80648c4" },
+  { name: "Hơn 1.000 giáo viên", role: "Trong và ngoài nước", exp: "Chuyên môn quốc tế · Am hiểu giáo dục Việt Nam", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fsecondary.jpg&w=1200&q=40" },
+  { name: "Trung tâm đào tạo giáo viên quốc tế", role: "Đối tác Cambridge được ủy quyền", exp: "Phát triển năng lực giáo viên tại Việt Nam", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/1FJQ6zCfORcNAigcDjpT19zw1hQKFxQxkbA6apYq.jpeg" },
+  { name: "XCL Education", role: "Hệ thống giáo dục tại Đông Nam Á", exp: "Nuôi dưỡng học thuật · kỹ năng · sự đồng cảm", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/eosVsm3gMQGuJJ3HqOfRhOFiPfZLAgm8GZZRGyzm.jpeg" },
 ];
 
 document.getElementById("valueGrid").innerHTML = VALUES.map((v) => `
   <article class="feature">
-    <span class="ic">${v.ic}</span>
+    <span class="ic">${esc(v.ic)}</span>
     <h3>${esc(v.t)}</h3><p>${esc(v.d)}</p>
   </article>`).join("");
 
@@ -41,13 +51,16 @@ document.getElementById("historyList").innerHTML = HISTORY.map((h) => `
 
 document.getElementById("statGrid").innerHTML = STATS.map((s) => `
   <div class="stat-cell">
-    <div class="stat-num" data-count="${s.n}" data-suffix="${esc(s.s)}">0</div>
+    ${s.value ? `<div class="stat-num stat-static">${esc(s.value)}</div>` : `<div class="stat-num" data-count="${s.n}" data-suffix="${esc(s.s)}">0</div>`}
     <p>${esc(s.l)}</p>
   </div>`).join("");
 
+document.getElementById("journeyList").innerHTML = JOURNEY.map((j) => `
+  <li><span class="step">${esc(j.step)}</span><div><h3>${esc(j.t)}</h3><p>${esc(j.d)}</p></div></li>`).join("");
+
 document.getElementById("peopleGrid").innerHTML = PEOPLE.map((m) => `
   <article class="person">
-    <div class="pic"><img src="${img(m.img, 720, 900)}" alt="Chân dung ${esc(m.name)}" loading="lazy" /></div>
+    <div class="pic"><img src="${imageUrl(m.img, 720, 900)}" alt="${esc(m.name)}" loading="lazy" /></div>
     <div class="body">
       <p class="name">${esc(m.name)}</p>
       <p class="role">${esc(m.role)}</p>

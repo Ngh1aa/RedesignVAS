@@ -22,7 +22,7 @@ const SPORT = {
   body: "Một ngày hội để học sinh và phụ huynh cùng vận động, cổ vũ và kết nối qua thể thao.",
   stats: [["2.000+", "học sinh & phụ huynh"], ["6", "bộ môn"], ["900", "huy chương gần nhất"]],
   sports: "Bóng đá · Bóng rổ · Cờ vua · Điền kinh · Bơi lội · Nhảy",
-  image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1100&h=800&fit=crop&auto=format&q=80",
+  image: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/KAjhkSiP1JY9ZXkM4bmjujxG1dyclT1caoOqLMvZ.jpeg",
 };
 const ARTS = [
   ["Music", "Âm nhạc và những sân khấu để học sinh cất tiếng."],

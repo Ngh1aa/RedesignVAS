@@ -71,3 +71,9 @@
 .alumni-layout h2 { max-width: 520px; margin: 18px 0 0; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1; }
 @media (min-width: 820px) { .sport-layout, .clubs-layout, .care-layout, .community-layout, .alumni-layout { grid-template-columns: .8fr 1.2fr; gap: 90px; } .sport-card { grid-template-columns: 1fr 1fr; } .sport-card img { height: 100%; min-height: 420px; } .care-layout { grid-template-columns: 1.15fr .85fr; } .community-layout { grid-template-columns: .85fr 1.15fr; } }
 @media (max-width: 600px) { .around-hub-item { grid-template-columns: 38px 1fr 18px; gap: 10px; padding: 19px 0; } .hub-copy small { font-size: .82rem; } .tag-grid { grid-template-columns: 1fr; } .tag-card, .tag-card:nth-child(odd), .tag-card:nth-child(even) { padding: 22px 0; border-right: 0; } .sport-stats { gap: 8px; } .sport-stats strong { font-size: 1.35rem; } .project-row { grid-template-columns: 1fr 20px; } .project-row span { grid-column: 1; grid-row: 2; } .project-row i { grid-column: 2; grid-row: 1; } }
+
+.timeline li { grid-template-columns: 22px 72px minmax(0, 1fr); }
+.timeline h4 { min-width: 0; white-space: nowrap; }
+@media (max-width: 900px) {
+  .timeline h4 { white-space: normal; }
+}
