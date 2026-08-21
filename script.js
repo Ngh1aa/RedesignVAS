@@ -411,3 +411,14 @@ const countIO = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.4 });
 document.querySelectorAll("[data-count]").forEach((n) => countIO.observe(n));
+
+/* ================= UI feedback tool ================= */
+import(new URL("ui-feedback.js", document.baseURI).href)
+  .then(({ createUIFeedback }) => {
+    createUIFeedback({
+      storageKey: "redesignvas-ui-feedback",
+      accent: "#b3282d",
+      githubRepo: "Ngh1aa/RedesignVAS",
+    });
+  })
+  .catch((error) => console.warn("UI Feedback Tool unavailable", error));

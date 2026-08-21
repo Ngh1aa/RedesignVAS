@@ -237,4 +237,15 @@
   }
   window.VAS_initObservers = initObservers;
   window.addEventListener("load", initObservers);
+
+  /* ---------- UI feedback tool ---------- */
+  import(new URL(`${BASE}ui-feedback.js`, document.baseURI).href)
+    .then(({ createUIFeedback }) => {
+      createUIFeedback({
+        storageKey: "redesignvas-ui-feedback",
+        accent: "#b3282d",
+        githubRepo: "Ngh1aa/RedesignVAS",
+      });
+    })
+    .catch((error) => console.warn("UI Feedback Tool unavailable", error));
 })();
