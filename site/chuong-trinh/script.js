@@ -1,52 +1,112 @@
-/* Trang Chương trình */
-const STAGES = [
-  { ic: "01", age: "2–5 tuổi", t: "Mầm non", d: "Khởi đầu bằng sự tò mò và nền tảng song ngữ.", detail: "Học qua vui chơi, tương tác và trải nghiệm; làm quen với ICT và chuẩn bị nền tảng chuyển tiếp lên Cambridge." },
-  { ic: "02", age: "Lớp 1–5", t: "Tiểu học", d: "Xây nền tảng học thuật và tư duy toàn cầu.", detail: "Lựa chọn CAPI, CAP hoặc CEP; học sinh CAPI có thể dự thi Cambridge International Primary Checkpoint cuối Lớp 5." },
-  { ic: "03", age: "Lớp 6–8", t: "Trung học cơ sở", d: "Mở rộng năng lực, khám phá hướng đi.", detail: "Tiếp tục hoặc chuyển đổi giữa CAPI, CAP và CEP; CAPI tập trung vào Toán, Tiếng Anh, Khoa học, ICT và Global Perspectives." },
-  { ic: "04", age: "Lớp 9–12", t: "Trung học phổ thông", d: "Chuẩn bị cho đại học và tương lai toàn cầu.", detail: "Lộ trình CAPI đi từ IGCSE đến AS Level và A Level; các bằng cấp Cambridge được công nhận quốc tế." },
+/* Chương trình — bản đồ lộ trình học tập */
+const clean = window.esc || ((value) => String(value).replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[char])));
+
+const PATHWAYS = [
+  {
+    code: "CEP",
+    name: "Cambridge English Programme",
+    strap: "Giữ nền tảng Việt Nam. Mở rộng năng lực tiếng Anh quốc tế.",
+    description: "CEP kết hợp Chương trình Giáo dục Quốc gia (MOET) với Chương trình Tiếng Anh Cambridge. Đây là lựa chọn phù hợp với học sinh muốn theo đầy đủ chương trình Việt Nam nhưng học tập trong môi trường tiếng Anh quốc tế.",
+    fit: ["Muốn con học chương trình Việt Nam đầy đủ.", "Muốn tiếng Anh tốt nhưng không nhất thiết theo Cambridge học thuật toàn diện.", "Muốn giữ nhiều lựa chọn đại học tại Việt Nam.", "Muốn có khả năng chuyển sang CAP/CAPI khi định hướng thay đổi."],
+    journey: ["Mầm non → Tiểu học → THCS → THPT", "Cambridge English theo cấp học", "Cambridge English / IELTS"],
+    outcome: "THPT Việt Nam + Cambridge English + IELTS",
+    note: "VAS hiện nêu mục tiêu IELTS khoảng 6.0+ vào cuối Lớp 12 trên trang tuyển sinh."
+  },
+  {
+    code: "CAP",
+    name: "Cambridge Academic Programme",
+    strap: "Nền tảng Việt Nam. Tư duy Cambridge.",
+    description: "CAP kết hợp Chương trình Giáo dục Quốc gia với Chương trình Giáo dục Phổ thông Cambridge, giúp học sinh phát triển song song nền tảng học thuật Việt Nam và năng lực học tập quốc tế.",
+    fit: ["Muốn song song nền tảng Việt Nam và Cambridge.", "Muốn con phát triển tư duy học thuật bằng tiếng Anh.", "Muốn có thể điều chỉnh hướng đi sau mỗi giai đoạn.", "Muốn tiếp tục hoặc chuyển sang CAPI/CEP tùy định hướng."],
+    journey: ["Lớp 1–5 → Primary Checkpoint", "Lớp 6–8 → Secondary Checkpoint", "Lớp 9–10 → IGCSE", "Sau Lớp 10 → có thể tiếp tục/chuyển lộ trình"],
+    outcome: "IGCSE và khả năng chuyển tiếp theo định hướng",
+    note: "CAP giúp học sinh không phải lựa chọn hoàn toàn giữa chương trình Việt Nam và chương trình quốc tế."
+  },
+  {
+    code: "CAPI",
+    name: "Cambridge Academic Programme International",
+    strap: "Học thuật quốc tế từ sớm. Sẵn sàng cho đại học toàn cầu.",
+    description: "CAPI là lộ trình tích hợp chuyên sâu chương trình Cambridge cùng một số môn của chương trình MOET theo quy định. Đây là bản đồ rõ nhất cho hành trình từ Lớp 1 đến A Level.",
+    fit: ["Gia đình định hướng đại học quốc tế mạnh.", "Con hứng thú với các môn học thuật bằng tiếng Anh.", "Muốn theo chuỗi Checkpoint → IGCSE → AS Level → A Level.", "Muốn có thể hướng tới IELTS 6.5+ và vẫn có lựa chọn thi tốt nghiệp THPT Việt Nam."],
+    journey: ["Lớp 1–5 → Cambridge Primary / Primary Checkpoint", "Lớp 6–8 → Cambridge Lower Secondary / Secondary Checkpoint", "Lớp 9–10 → IGCSE", "Lớp 11 → AS Level", "Lớp 12 → A Level"],
+    outcome: "A Level + IELTS; có thể lấy bằng THPT Việt Nam",
+    note: "VAS hiện xác định Checkpoint → IGCSE → AS Level → A Level là chuỗi chứng chỉ chính của CAPI."
+  }
 ];
 
-const PROGRAMMES = [
-  { code: "CAPI", name: "Cambridge toàn phần", tag: "Chuyên sâu từ Tiểu học đến A Level", english: "Checkpoint → IGCSE → AS/A Level", d: "Lộ trình Cambridge chuyên sâu từ Tiểu học đến A Level.", for: "Học sinh ưu tiên môi trường quốc tế và mục tiêu đại học toàn cầu.", detail: "Cambridge Academic Programme International — học phần lớn các môn bằng tiếng Anh, xuyên suốt từ Tiểu học đến Trung học phổ thông." },
-  { code: "CAP", name: "Song ngữ Cambridge", tag: "Cân bằng Việt Nam và quốc tế", english: "Cambridge + Chương trình Quốc gia", d: "Cambridge kết hợp Chương trình Giáo dục Quốc gia.", for: "Học sinh muốn phát triển song song nền tảng Việt Nam và năng lực học thuật quốc tế.", detail: "Cambridge Academic Programme — học sinh có thể đạt Primary Checkpoint, Secondary Checkpoint và IGCSE theo từng cấp học." },
-  { code: "CEP", name: "Tiếng Anh Cambridge", tag: "Tiếng Anh học thuật", english: "Cambridge English Programme", d: "Phát triển tiếng Anh học thuật trong môi trường quốc tế.", for: "Học sinh muốn xây nền tiếng Anh vững chắc bên cạnh chương trình quốc gia.", detail: "Cambridge English Programme — kết hợp chương trình giáo dục quốc gia với tiếng Anh Cambridge và các kỳ thi tương ứng theo cấp học." },
+const QUIZ = [
+  { label: "Con đang học lớp nào?", options: ["Mầm non", "Lớp 1–5", "Lớp 6–8", "Lớp 9–12"] },
+  { label: "Gia đình ưu tiên điều gì?", options: ["Đại học Việt Nam", "Song song Việt Nam + quốc tế", "Đại học quốc tế"] },
+  { label: "Mức độ tiếng Anh hiện tại?", options: ["Đang xây nền", "Khá", "Tốt"] },
+  { label: "Con thích học các môn học thuật bằng tiếng Anh?", options: ["Có", "Một phần", "Chưa chắc"] }
 ];
 
-const CERTS = [
-  { ic: "◆", t: "Cambridge Primary & Lower Secondary", d: "Đánh giá chuẩn quốc tế theo dõi sự tiến bộ qua từng cấp học." },
-  { ic: "✦", t: "Cambridge IGCSE", d: "Chứng chỉ trung học được công nhận rộng rãi trên toàn cầu." },
-  { ic: "❖", t: "Cambridge A Level & IELTS", d: "Chìa khóa vào các đại học hàng đầu ở Úc, Anh, Bắc Mỹ và châu Á." },
-];
+const quizState = { step: 0, answers: [] };
+const quizContent = document.getElementById("quizContent");
+const quizProgressLabel = document.getElementById("quizProgressLabel");
+const quizProgressBar = document.getElementById("quizProgressBar");
 
-document.getElementById("stageGrid").innerHTML = STAGES.map((s) => `
-  <article class="feature">
-    <span class="ic">${s.ic}</span>
-    <p style="font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--vas-red);font-weight:600">${esc(s.age)}</p>
-    <h3 style="margin-top:6px">${esc(s.t)}</h3><p>${esc(s.d)}</p><p class="stage-detail">${esc(s.detail)}</p>
-  </article>`).join("");
-
-const progTabs = document.getElementById("progTabs");
-const progPanel = document.getElementById("progPanel");
-function renderProg(idx) {
-  const p = PROGRAMMES[idx];
-  progTabs.querySelectorAll(".prog-tab").forEach((t, i) => t.classList.toggle("active", i === idx));
-  progPanel.classList.remove("animate-rise"); void progPanel.offsetWidth; progPanel.classList.add("animate-rise");
-  progPanel.innerHTML = `
-    <div class="prog-badges">
-      <span class="badge">${esc(p.code)}</span>
-      <span class="badge soft">${esc(p.english)}</span>
-    </div>
-    <h3>${esc(p.name)}</h3>
-    <p class="desc">${esc(p.d)}</p>
-    <div class="prog-for"><p class="k">Phù hợp với</p><p class="v">${esc(p.for)}</p><p class="prog-detail">${esc(p.detail)}</p></div>
-    <a href="../tuyen-sinh/#dang-ky" class="btn btn-red" style="margin-top:24px;padding:12px 24px;font-size:14px">Tìm lộ trình cho con <span aria-hidden="true">→</span></a>`;
+function renderQuiz() {
+  if (!quizContent) return;
+  if (quizState.step >= QUIZ.length) return renderQuizResult();
+  const question = QUIZ[quizState.step];
+  quizProgressLabel.textContent = `Câu ${quizState.step + 1} / ${QUIZ.length}`;
+  quizProgressBar.style.width = `${((quizState.step + 1) / QUIZ.length) * 100}%`;
+  quizContent.innerHTML = `<p class="quiz-kicker">Tìm lộ trình phù hợp cho con</p><h3>${clean(question.label)}</h3><div class="quiz-options">${question.options.map((option, index) => `<button class="quiz-option" type="button" data-option="${index}">${clean(option)}<span aria-hidden="true">→</span></button>`).join("")}</div>${quizState.step ? `<button class="quiz-back" type="button" id="quizBack">← Câu trước</button>` : ""}`;
+  quizContent.querySelectorAll(".quiz-option").forEach((button) => button.addEventListener("click", () => {
+    quizState.answers[quizState.step] = Number(button.dataset.option);
+    quizState.step += 1;
+    renderQuiz();
+  }));
+  const back = document.getElementById("quizBack");
+  if (back) back.addEventListener("click", () => { quizState.step -= 1; renderQuiz(); });
 }
-PROGRAMMES.forEach((p, i) => {
-  const b = el(`<button class="prog-tab pill-tab" style="justify-content:space-between;display:flex;align-items:center;text-align:left"><span><span class="code">${esc(p.code)}</span> <span class="tagname">${esc(p.tag)}</span></span><span class="arrow" aria-hidden="true">→</span></button>`);
-  b.addEventListener("click", () => renderProg(i));
-  progTabs.appendChild(b);
-});
-renderProg(0);
 
-document.getElementById("certGrid").innerHTML = CERTS.map((c) => `
-  <article class="feature"><span class="ic">${c.ic}</span><h3>${esc(c.t)}</h3><p>${esc(c.d)}</p></article>`).join("");
+function renderQuizResult() {
+  const priority = quizState.answers[1];
+  const english = quizState.answers[2];
+  const academic = quizState.answers[3];
+  let code = "CAP";
+  if (priority === 0) code = "CEP";
+  if (priority === 2 && english >= 1 && academic === 0) code = "CAPI";
+  const result = PATHWAYS.find((path) => path.code === code);
+  quizProgressLabel.textContent = "Hoàn thành";
+  quizProgressBar.style.width = "100%";
+  quizContent.innerHTML = `<p class="quiz-kicker">Gợi ý ban đầu</p><div class="quiz-result-code">${clean(result.code)}</div><h3>Lộ trình đề xuất: ${clean(result.code)}</h3><p class="quiz-result-text">${clean(result.note)} ${clean(result.strap)}</p><div class="quiz-result-actions"><button class="btn btn-light" type="button" id="viewSuggested">Xem lộ trình ${clean(result.code)} <span aria-hidden="true">→</span></button><a class="btn btn-outline-light" href="../tuyen-sinh/#dang-ky">Đăng ký tư vấn <span aria-hidden="true">→</span></a></div><button class="quiz-back" type="button" id="quizReset">Làm lại từ đầu</button>`;
+  document.getElementById("viewSuggested").addEventListener("click", () => {
+    const index = PATHWAYS.findIndex((path) => path.code === result.code);
+    renderPathway(index);
+    document.getElementById("chi-tiet-lo-trinh").scrollIntoView({ behavior: "smooth" });
+  });
+  document.getElementById("quizReset").addEventListener("click", () => { quizState.step = 0; quizState.answers = []; renderQuiz(); });
+}
+renderQuiz();
+
+const pathwayTabs = document.getElementById("pathwayTabs");
+const pathwayPanel = document.getElementById("pathwayPanel");
+function renderPathway(index) {
+  const path = PATHWAYS[index];
+  pathwayTabs.querySelectorAll("[role=tab]").forEach((tab, tabIndex) => {
+    const active = tabIndex === index;
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-selected", String(active));
+  });
+  pathwayPanel.innerHTML = `<div class="pathway-panel-head"><div><span class="pathway-code">${clean(path.code)}</span><h3>${clean(path.name)}</h3><p class="pathway-strap">${clean(path.strap)}</p></div><a href="../tuyen-sinh/#dang-ky" class="btn btn-red">Đăng ký tư vấn <span aria-hidden="true">→</span></a></div><div class="pathway-content"><div><p class="pathway-label">Tổng quan</p><p>${clean(path.description)}</p><p class="pathway-label">Hành trình</p><ul class="journey-list">${path.journey.map((item) => `<li>${clean(item)}</li>`).join("")}</ul></div><div class="pathway-fit"><p class="pathway-label">Phù hợp với gia đình</p><ul>${path.fit.map((item) => `<li>${clean(item)}</li>`).join("")}</ul><div class="pathway-outcome"><span>Đầu ra nổi bật</span><strong>${clean(path.outcome)}</strong></div></div></div><p class="pathway-note">${clean(path.note)}</p>`;
+}
+PATHWAYS.forEach((path, index) => {
+  const tab = document.createElement("button");
+  tab.type = "button";
+  tab.className = "pathway-tab";
+  tab.setAttribute("role", "tab");
+  tab.setAttribute("aria-selected", "false");
+  tab.innerHTML = `<span class="pathway-tab-code">${clean(path.code)}</span><span>${clean(path.strap)}</span><b aria-hidden="true">→</b>`;
+  tab.addEventListener("click", () => renderPathway(index));
+  pathwayTabs.appendChild(tab);
+});
+renderPathway(0);
+
+/* Keep details native but ensure the plus sign reflects open/closed state in browsers without CSS support. */
+document.querySelectorAll(".faq details").forEach((detail) => detail.addEventListener("toggle", () => {
+  const mark = detail.querySelector(".mk");
+  if (mark) mark.textContent = detail.open ? "−" : "+";
+}));
