@@ -9,6 +9,7 @@
   --vas-red: #B51F1F;
   --vas-red-deep: #b51f1f;
   --vas-red-bright: #b51f1f;
+  --footer-red: #8a1414;
   --gold: #c69a4c;
   --gold-soft: #e3c98e;
   --line: #e3e3e3;
@@ -393,7 +394,7 @@ h1, h2, h3, p { margin: 0; }
 .event:hover .arrow { color: var(--vas-red); }
 
 /* ---------- footer ---------- */
-.footer { background: var(--vas-red-deep); color: var(--paper); padding-top: 80px; }
+.footer { background: var(--footer-red); color: var(--paper); padding-top: 80px; }
 .footer-top { display: grid; gap: 48px; border-bottom: 1px solid rgba(255,255,255,.15); padding-bottom: 64px; grid-template-columns: 1fr; }
 @media (min-width: 1024px) { .footer-top { grid-template-columns: 1.4fr 2fr; } }
 .footer-brand .mark { display: inline-grid; place-items: center; padding: 12px 18px; border-radius: 12px; background: var(--paper); }
