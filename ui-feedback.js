@@ -1124,8 +1124,10 @@ button { cursor: pointer; }
 .ui-feedback-image-heading small { display: block; margin-top: 3px; color: var(--_text-muted); font-size: 10px; }
 .ui-feedback-image-state { flex-shrink: 0; border-radius: 99px; padding: 3px 7px; color: #166534; background: #dcfce7; font-size: 9px; font-weight: 800; }
 .ui-feedback-image-preview { position: relative; display: flex; align-items: center; justify-content: center; min-height: 180px; overflow: hidden; border: 1px dashed var(--_border); border-radius: 8px; background: repeating-conic-gradient(var(--_bg-alt) 0 25%, var(--_bg-hover) 0 50%) 50% / 16px 16px; cursor: grab; touch-action: none; }
-.ui-feedback-image-preview:active { cursor: grabbing; }
-.ui-feedback-image-preview img { display: block; width: 100%; height: 180px; object-fit: cover; user-select: none; pointer-events: none; transform-origin: 50% 50%; transition: transform .12s ease; }
+.ui-feedback-image-preview:active,
+.ui-feedback-image-preview.is-dragging { cursor: grabbing; }
+.ui-feedback-image-preview img { display: block; width: 100%; height: 180px; object-fit: cover; user-select: none; pointer-events: none; transform-origin: 50% 50%; transition: transform .12s ease, object-position .12s ease; }
+.ui-feedback-image-preview img[style*="transform"] { will-change: transform; }
 .ui-feedback-image-preview span { padding: 20px; color: var(--_text-muted); font-size: 11px; text-align: center; }
 .ui-feedback-image-canvas-hint { position: absolute; right: 8px; bottom: 8px; border-radius: 99px; padding: 4px 7px; color: #fff; background: rgba(0,0,0,.58); font-size: 9px; pointer-events: none; }
 .ui-feedback-image-zoom { display: grid; grid-template-columns: 28px 1fr 28px auto; align-items: center; gap: 6px; }
@@ -1133,6 +1135,10 @@ button { cursor: pointer; }
 .ui-feedback-image-zoom input { width: 100%; accent-color: var(--ui-feedback-accent); }
 .ui-feedback-image-zoom output { min-width: 42px; color: var(--_text-secondary); font-size: 10px; text-align: right; }
 .ui-feedback-image-position { display: flex; justify-content: space-between; color: var(--_text-muted); font-size: 10px; }
+.ui-feedback-image-position-controls { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; }
+.ui-feedback-image-position-controls button { min-height: 28px; border: 1px solid var(--_border); border-radius: 6px; padding: 4px 5px; color: var(--_text-secondary); background: var(--_bg-panel); font-size: 10px; font-weight: 700; }
+.ui-feedback-image-position-controls button:hover,
+.ui-feedback-image-position-controls button:focus-visible { color: var(--_text); border-color: var(--ui-feedback-accent); outline: none; }
 .ui-feedback-image-url { width: 100%; border: 1px solid var(--_border); border-radius: 6px; padding: 9px 10px; color: var(--_text); background: var(--_bg-input); outline: none; font-size: 11px; }
 .ui-feedback-image-url:focus { border-color: var(--ui-feedback-accent); }
 .ui-feedback-image-paste { width: 100%; border: 1px solid var(--_border); border-radius: 6px; padding: 8px; color: var(--_text-secondary); background: var(--_bg-panel); font-size: 11px; }
@@ -1152,6 +1158,106 @@ button { cursor: pointer; }
   background: transparent;
   cursor: crosshair;
 }
+.ui-feedback-measurement-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483015;
+  pointer-events: none;
+  overflow: visible;
+}
+.ui-feedback-measurement-box,
+.ui-feedback-measurement-margin {
+  position: fixed;
+  pointer-events: none;
+}
+.ui-feedback-measurement-box {
+  border: 1px solid #fff;
+  background: rgba(255,255,255,.035);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.ui-feedback-measurement-margin {
+  border: 1px dashed rgba(255,255,255,.42);
+  background: rgba(255,255,255,.025);
+}
+.ui-feedback-measurement-edge { position: absolute; display: block; pointer-events: none; border: 1px dashed rgba(255,255,255,.28); }
+.ui-feedback-measurement-edge--padding { border-color: rgba(255,255,255,.52); }
+.ui-feedback-measurement-edge--border { border-color: rgba(255,255,255,.82); }
+.ui-feedback-measurement-label {
+  position: absolute;
+  top: -25px;
+  left: 0;
+  padding: 4px 7px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 6px;
+  color: #111;
+  background: #fff;
+  font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: nowrap;
+}
+.ui-feedback-measurement-guide { position: fixed; border-top: 1px solid #fff; border-left: 1px solid transparent; }
+.ui-feedback-measurement-guide--y { border-top: 0; border-left: 1px solid #fff; }
+.ui-feedback-measurement-guide::before,
+.ui-feedback-measurement-guide::after { content: ''; position: absolute; width: 7px; height: 7px; border: 1px solid #fff; border-radius: 50%; background: #181818; }
+.ui-feedback-measurement-guide::before { left: -4px; top: -4px; }
+.ui-feedback-measurement-guide::after { right: -4px; top: -4px; }
+.ui-feedback-measurement-guide--y::before { left: -4px; top: -4px; }
+.ui-feedback-measurement-guide--y::after { right: auto; left: -4px; bottom: -4px; top: auto; }
+.ui-feedback-measurement-guide span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); padding: 3px 6px; border-radius: 5px; color: #111; background: #fff; font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+.ui-feedback-measurement-guide--y span { top: 50%; left: 8px; transform: translateY(-50%); }
+.ui-feedback-inspector {
+  position: fixed;
+  z-index: 2147483020;
+  width: 340px;
+  max-height: min(620px, calc(100vh - 24px));
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px;
+  color: #f1f1f1;
+  background: #181818;
+  box-shadow: 0 26px 80px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.03);
+  pointer-events: auto;
+  animation: uiFeedbackFadeIn .16s ease both;
+}
+.ui-feedback-inspector__header { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 14px 11px; border-bottom: 1px solid rgba(255,255,255,.1); background: linear-gradient(180deg, #202020, #181818); }
+.ui-feedback-inspector__header .ui-feedback-window-heading { min-width: 0; }
+.ui-feedback-inspector__header strong { display: block; color: #fff; font-size: 14px; letter-spacing: -.01em; }
+.ui-feedback-inspector__header small { display: block; margin-top: 2px; color: #888; font-size: 10px; }
+.ui-feedback-inspector__header .ui-feedback-window-grip { width: 25px; height: 30px; font-size: 12px; }
+.ui-feedback-inspector__actions { display: flex; gap: 4px; }
+.ui-feedback-inspector__actions .ui-feedback-icon-button { width: 30px; height: 30px; color: #aaa; }
+.ui-feedback-inspector__body { display: grid; gap: 12px; max-height: min(560px, calc(100vh - 88px)); overflow: auto; padding: 13px; }
+.ui-feedback-inspector__crumbs { display: flex; align-items: center; gap: 4px; min-width: 0; overflow: visible; color: #999; font-size: 10px; }
+.ui-feedback-inspector__crumb { min-width: 0; max-width: 100px; overflow: hidden; border: 0; border-radius: 5px; padding: 4px 5px; color: #aaa; background: transparent; text-overflow: ellipsis; white-space: nowrap; }
+.ui-feedback-inspector__crumb:hover, .ui-feedback-inspector__crumb:focus-visible { color: #111; background: #fff; outline: none; }
+.ui-feedback-inspector__crumb-separator { color: #555; }
+.ui-feedback-inspector__overflow { position: relative; flex: 0 0 auto; }
+.ui-feedback-inspector__overflow summary { list-style: none; cursor: pointer; padding: 3px 5px; border-radius: 5px; color: #aaa; background: #252525; }
+.ui-feedback-inspector__overflow summary::-webkit-details-marker { display: none; }
+.ui-feedback-inspector__overflow-menu { position: absolute; top: 25px; left: 0; z-index: 2; display: grid; gap: 2px; min-width: 180px; padding: 5px; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; background: #222; box-shadow: 0 12px 30px rgba(0,0,0,.4); }
+.ui-feedback-inspector__overflow-menu .ui-feedback-inspector__crumb { max-width: none; text-align: left; }
+.ui-feedback-inspector__target { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 10px; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; background: #202020; }
+.ui-feedback-inspector__target strong { display: block; overflow: hidden; color: #f1f1f1; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.ui-feedback-inspector__target small { display: block; max-width: 245px; margin-top: 4px; overflow: hidden; color: #777; font: 10px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; text-overflow: ellipsis; white-space: nowrap; }
+.ui-feedback-inspector__copy { flex: 0 0 auto; border: 1px solid rgba(255,255,255,.14); border-radius: 6px; padding: 5px 7px; color: #aaa; background: #292929; font-size: 10px; }
+.ui-feedback-inspector__copy:hover { color: #111; background: #fff; }
+.ui-feedback-inspector__actions-grid, .ui-feedback-inspector__measure-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.ui-feedback-inspector__actions-grid button, .ui-feedback-inspector__measure-actions button { min-height: 36px; border: 1px solid rgba(255,255,255,.12); border-radius: 9px; color: #ddd; background: #222; font-size: 11px; }
+.ui-feedback-inspector__actions-grid button:hover, .ui-feedback-inspector__measure-actions button:hover, .ui-feedback-inspector__measure-actions button.is-active { border-color: #fff; color: #111; background: #fff; }
+.ui-feedback-inspector__measurement { display: grid; gap: 8px; padding: 10px; border: 1px solid rgba(255,255,255,.11); border-radius: 10px; background: #202020; }
+.ui-feedback-inspector__section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ui-feedback-inspector__section-head strong { color: #eee; font-size: 11px; }
+.ui-feedback-inspector__section-head button { border: 0; color: #aaa; background: transparent; font-size: 10px; }
+.ui-feedback-inspector__metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+.ui-feedback-inspector__metrics span { display: grid; gap: 2px; color: #ddd; font: 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.ui-feedback-inspector__metrics b { color: #777; font: 700 9px/1 sans-serif; }
+.ui-feedback-inspector__hint { margin: 0; color: #888; font-size: 10px; line-height: 1.45; }
+.ui-feedback-inspector__hint b { color: #fff; }
+.ui-feedback-inspector__shortcut { margin: 0; color: #666; font-size: 9px; }
+.ui-feedback-inspector__shortcut kbd { padding: 2px 4px; border: 1px solid rgba(255,255,255,.12); border-radius: 4px; color: #aaa; background: #222; font: 9px ui-monospace, monospace; }
+.ui-feedback-inspector button:focus-visible, .ui-feedback-inspector [tabindex]:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ui-feedback-picking [data-picker-inspector], .ui-feedback-picking [data-picker-inspector] * { cursor: default !important; }
+.ui-feedback-picking [data-picker-inspector] button, .ui-feedback-picking [data-picker-inspector] summary { cursor: pointer !important; }
+.ui-feedback-inspector.is-locked { border-color: rgba(255,255,255,.3); }
 
 /* \u2500\u2500 responsive \u2500\u2500 */
 @media (max-width: 640px) {
@@ -1165,6 +1271,8 @@ button { cursor: pointer; }
   .ui-feedback-panel { right: 10px; left: 10px; width: auto; width: min(340px, calc(100vw - 84px)); }
   .ui-feedback-form-row { grid-template-columns: 1fr; gap: 12px; }
   .ui-feedback-modal.is-inspector { right: 10px; top: 10px; width: calc(100vw - 20px); height: calc(100vh - 20px); }
+  .ui-feedback-inspector { left: 12px !important; right: 12px !important; bottom: 12px !important; top: auto !important; width: auto !important; max-height: min(78vh, 620px); border-radius: 18px 18px 12px 12px; }
+  .ui-feedback-inspector__body { max-height: calc(78vh - 62px); padding-bottom: max(13px, env(safe-area-inset-bottom)); }
   .ui-feedback-coachmark { right: 16px; bottom: 68px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1724,6 +1832,13 @@ function createImageEditor() {
   function isImageElement(element) {
     return element instanceof Element && (element instanceof HTMLImageElement || element.tagName.toLowerCase() === "img");
   }
+  function clampZoom(value) {
+    return Math.max(30, Math.min(300, Number(value) || 100));
+  }
+  function parseImageZoom(value) {
+    const match = String(value || "").match(/scale\(\s*([0-9.]+)\s*\)/i);
+    return match ? clampZoom(Number(match[1]) * 100) : 100;
+  }
   function captureImageState(element) {
     if (!(element instanceof Element)) return { kind: "background", src: "", srcset: "", backgroundImage: "", backgroundPosition: "", backgroundSize: "" };
     if (isImageElement(element)) {
@@ -1732,7 +1847,7 @@ function createImageEditor() {
         computed2 = getComputedStyle(element);
       } catch {
       }
-      return { kind: "src", src: element.currentSrc || element.getAttribute("src") || "", srcset: element.getAttribute("srcset") || "", backgroundImage: "", objectPosition: element.style.objectPosition || "", objectFit: element.style.objectFit || "", effectiveObjectPosition: computed2.objectPosition || "50% 50%" };
+      return { kind: "src", src: element.currentSrc || element.getAttribute("src") || "", srcset: element.getAttribute("srcset") || "", backgroundImage: "", objectPosition: element.style.objectPosition || "", objectFit: element.style.objectFit || "", transform: element.style.transform || "", effectiveObjectPosition: computed2.objectPosition || "50% 50%", effectiveTransform: computed2.transform || "none" };
     }
     const backgroundImage = element.style.backgroundImage || (() => {
       try {
@@ -1767,6 +1882,17 @@ function createImageEditor() {
       element.style.objectPosition = `${x}% ${y}%`;
     } else element.style.backgroundPosition = `${x}% ${y}%`;
   }
+  function applyImageZoom(element, zoom = 100, baseTransform = "") {
+    if (!(element instanceof Element)) return;
+    const safeZoom = clampZoom(zoom);
+    if (isImageElement(element)) {
+      const base = String(baseTransform || "").trim();
+      const preserved = base && base !== "none" && !/scale\(/i.test(base) ? `${base} ` : "";
+      element.style.transform = `${preserved}scale(${safeZoom / 100})`;
+    } else {
+      element.style.backgroundSize = safeZoom === 100 ? "cover" : `${safeZoom}% ${safeZoom}%`;
+    }
+  }
   function applyImageState(element, snapshot) {
     if (!(element instanceof Element) || !snapshot) return;
     if (snapshot.kind === "src") {
@@ -1777,6 +1903,8 @@ function createImageEditor() {
       if (snapshot.objectPosition) element.style.objectPosition = snapshot.objectPosition;
       else if (snapshot.effectiveObjectPosition) element.style.objectPosition = snapshot.effectiveObjectPosition;
       if (snapshot.objectFit) element.style.objectFit = snapshot.objectFit;
+      if (snapshot.transform) element.style.transform = snapshot.transform;
+      else element.style.removeProperty("transform");
     } else {
       element.style.backgroundImage = snapshot.backgroundImage || (snapshot.src ? `url("${snapshot.src.replace(/"/g, '\\"')}")` : "");
       if (snapshot.backgroundPosition) element.style.backgroundPosition = snapshot.backgroundPosition;
@@ -1795,6 +1923,8 @@ function createImageEditor() {
       else element.style.removeProperty("object-position");
       if (snapshot.objectFit) element.style.objectFit = snapshot.objectFit;
       else element.style.removeProperty("object-fit");
+      if (snapshot.transform) element.style.transform = snapshot.transform;
+      else element.style.removeProperty("transform");
     } else {
       element.style.backgroundImage = snapshot.backgroundImage || "";
       if (snapshot.backgroundPosition) element.style.backgroundPosition = snapshot.backgroundPosition;
@@ -1813,7 +1943,7 @@ function createImageEditor() {
       return false;
     }
   }
-  return { imageBackgroundSource, parseImagePosition, captureImageState, applyImageSource, applyImagePosition, applyImageState, restoreImageState, validateImageSource };
+  return { imageBackgroundSource, parseImagePosition, parseImageZoom, captureImageState, applyImageSource, applyImagePosition, applyImageZoom, applyImageState, restoreImageState, validateImageSource };
 }
 
 // src/features/picker.js
@@ -2463,11 +2593,12 @@ function createUIFeedback(options = {}) {
     state.modalImageSource = mode === "image" ? state.modalSnapshot?.src || "" : "";
     const initialPosition = mode === "image" ? state.modalSnapshot?.objectPosition || state.modalSnapshot?.effectiveObjectPosition || state.modalSnapshot?.backgroundPosition || state.modalSnapshot?.effectiveBackgroundPosition || "50% 50%" : "50% 50%";
     state.modalImagePosition = mode === "image" ? parseImagePosition(initialPosition) : { x: 50, y: 50 };
+    state.modalImageBaseTransform = mode === "image" ? state.modalSnapshot?.transform || "" : "";
+    state.modalImageZoom = mode === "image" ? imageEditor.parseImageZoom(state.modalSnapshot?.transform || "") : 100;
     state.modalCommitted = false;
     state.cssTab = mode === "css" ? "colors" : "advanced";
     state.cssTransformBase = mode === "css" ? element?.style?.transform || "" : "";
     state.cssPosition = mode === "css" ? parseTranslatePosition(element?.style?.translate || element?.style?.transform || (element ? getComputedStyle(element).translate : "") || (element ? getComputedStyle(element).transform : "") || "") : { x: 0, y: 0 };
-    state.modalImageZoom = 100;
     state.modalPosition = { x: 0, y: 0 };
     state.modalOpen = true;
     renderToolbar2();
@@ -2512,6 +2643,9 @@ function createUIFeedback(options = {}) {
   }
   function applyImagePosition(element, position = { x: 50, y: 50 }) {
     return imageEditor.applyImagePosition(element, position);
+  }
+  function applyImageZoom(element, zoom = 100, baseTransform = "") {
+    return imageEditor.applyImageZoom(element, zoom, baseTransform);
   }
   function applyImageState(element, snapshot) {
     return imageEditor.applyImageState(element, snapshot);
@@ -2628,9 +2762,9 @@ function createUIFeedback(options = {}) {
     const source = state.modalImageSource || snapshot.src || "";
     const position = state.modalImagePosition || { x: 50, y: 50 };
     const zoom = state.modalImageZoom || 100;
-    const positionStyle = `object-position:${position.x}% ${position.y}%;transform:scale(${zoom / 100});`;
+    const positionStyle = `object-position:${position.x}% ${position.y}%;transform:scale(${zoom / 100});transform-origin:50% 50%;`;
     const preview = source ? `<img data-image-preview src="${escapeAttribute(source)}" alt="\u1EA2nh preview" style="${positionStyle}" />` : "<span data-image-preview>Ph\u1EA7n t\u1EED n\xE0y ch\u01B0a c\xF3 \u1EA3nh URL tr\u1EF1c ti\u1EBFp. H\xE3y nh\u1EADp URL ho\u1EB7c ch\u1ECDn file.</span>";
-    return `<div class="ui-feedback-image-block"><div class="ui-feedback-image-heading"><div><strong>Block: ${escapeHtml(targetLabel(state.target))}</strong><small>\u0110\u01B0\u1EDDng d\u1EABn \u1EA3nh \xB7 ${escapeHtml(safeText(cssPath(state.target), 90))}</small></div><span class="ui-feedback-image-state">${source && source !== snapshot.src ? "\u0111\xE3 \u0111\u1ED5i" : "ch\u01B0a \u0111\u1ED5i"}</span></div><div class="ui-feedback-image-preview" data-image-canvas aria-label="K\xE9o \u1EA3nh \u0111\u1EC3 c\u0103n ch\u1EC9nh">${preview}<span class="ui-feedback-image-canvas-hint">K\xE9o \u0111\u1EC3 c\u0103n ch\u1EC9nh</span></div><div class="ui-feedback-image-zoom"><button type="button" data-image-zoom-step="-" aria-label="Thu nh\u1ECF \u1EA3nh">\u2212</button><input type="range" min="30" max="300" step="5" data-image-zoom value="${zoom}" aria-label="Zoom \u1EA3nh" /><button type="button" data-image-zoom-step="+" aria-label="Ph\xF3ng to \u1EA3nh">+</button><output data-image-zoom-output>${zoom}%</output></div><div class="ui-feedback-image-position"><span>V\u1ECB tr\xED \u1EA3nh</span><output data-image-position>${Math.round(position.x)}% \xB7 ${Math.round(position.y)}%</output></div><label class="ui-feedback-label" for="ui-feedback-image-url">URL \u1EA3nh</label><input id="ui-feedback-image-url" class="ui-feedback-image-url" data-feedback-input data-image-url value="${escapeAttribute(source)}" placeholder="https://example.com/image.jpg" type="url" /><button type="button" class="ui-feedback-image-paste" data-image-paste>D\xE1n \u1EA3nh t\u1EEB clipboard (Ctrl/Cmd + V)</button><label class="ui-feedback-label" for="ui-feedback-image-file">Ho\u1EB7c upload t\u1EEB m\xE1y</label><input id="ui-feedback-image-file" class="ui-feedback-image-upload" data-image-file type="file" accept="image/*" /><small class="ui-feedback-image-original">URL g\u1ED1c: ${escapeHtml(safeText(snapshot.src || snapshot.backgroundImage || "Kh\xF4ng c\xF3", 150))}</small><small class="ui-feedback-image-original">Upload local \u0111\u01B0\u1EE3c gi\u1EEF t\u1ED1i \u0111a 1 MB \u0111\u1EC3 tr\xE1nh l\xE0m \u0111\u1EA7y localStorage.</small></div>`;
+    return `<div class="ui-feedback-image-block"><div class="ui-feedback-image-heading"><div><strong>Block: ${escapeHtml(targetLabel(state.target))}</strong><small>\u0110\u01B0\u1EDDng d\u1EABn \u1EA3nh \xB7 ${escapeHtml(safeText(cssPath(state.target), 90))}</small></div><span class="ui-feedback-image-state">${source && source !== snapshot.src ? "\u0111\xE3 \u0111\u1ED5i" : "ch\u01B0a \u0111\u1ED5i"}</span></div><div class="ui-feedback-image-preview" data-image-canvas aria-label="K\xE9o \u1EA3nh \u0111\u1EC3 c\u0103n ch\u1EC9nh">${preview}<span class="ui-feedback-image-canvas-hint">K\xE9o \u1EA3nh \u0111\u1EC3 c\u0103n ch\u1EC9nh</span></div><div class="ui-feedback-image-zoom"><button type="button" data-image-zoom-step="-" aria-label="Thu nh\u1ECF \u1EA3nh">\u2212</button><input type="range" min="30" max="300" step="5" data-image-zoom value="${zoom}" aria-label="Zoom \u1EA3nh" /><button type="button" data-image-zoom-step="+" aria-label="Ph\xF3ng to \u1EA3nh">+</button><output data-image-zoom-output>${zoom}%</output></div><div class="ui-feedback-image-position"><span>V\u1ECB tr\xED \u1EA3nh</span><output data-image-position>${Math.round(position.x)}% \xB7 ${Math.round(position.y)}%</output></div><div class="ui-feedback-image-position-controls" role="group" aria-label="C\u0103n ch\u1EC9nh v\u1ECB tr\xED \u1EA3nh"><button type="button" data-image-position-step="left" aria-label="C\u0103n tr\xE1i">\u2190 Tr\xE1i</button><button type="button" data-image-position-step="right" aria-label="C\u0103n ph\u1EA3i">Ph\u1EA3i \u2192</button><button type="button" data-image-position-step="up" aria-label="C\u0103n l\xEAn">\u2191 L\xEAn</button><button type="button" data-image-position-step="down" aria-label="C\u0103n xu\u1ED1ng">Xu\u1ED1ng \u2193</button><button type="button" data-image-position-reset aria-label="\u0110\u1EB7t \u1EA3nh v\u1EC1 gi\u1EEFa">\u0110\u1EB7t gi\u1EEFa</button></div><label class="ui-feedback-label" for="ui-feedback-image-url">URL \u1EA3nh</label><input id="ui-feedback-image-url" class="ui-feedback-image-url" data-feedback-input data-image-url value="${escapeAttribute(source)}" placeholder="https://example.com/image.jpg" type="url" /><button type="button" class="ui-feedback-image-paste" data-image-paste>D\xE1n \u1EA3nh t\u1EEB clipboard (Ctrl/Cmd + V)</button><label class="ui-feedback-label" for="ui-feedback-image-file">Ho\u1EB7c upload t\u1EEB m\xE1y</label><input id="ui-feedback-image-file" class="ui-feedback-image-upload" data-image-file type="file" accept="image/*" /><small class="ui-feedback-image-original">URL g\u1ED1c: ${escapeHtml(safeText(snapshot.src || snapshot.backgroundImage || "Kh\xF4ng c\xF3", 150))}</small><small class="ui-feedback-image-original">Upload local \u0111\u01B0\u1EE3c gi\u1EEF t\u1ED1i \u0111a 1 MB \u0111\u1EC3 tr\xE1nh l\xE0m \u0111\u1EA7y localStorage.</small></div>`;
   }
   function renderModal(existing = null) {
     const mount = root.querySelector("[data-ui-feedback-modal]");
@@ -2657,6 +2791,7 @@ function createUIFeedback(options = {}) {
     const preview = root.querySelector("[data-image-preview]");
     const position = state.modalImagePosition || { x: 50, y: 50 };
     if (preview?.tagName?.toLowerCase() === "img") preview.style.objectPosition = `${position.x}% ${position.y}%`;
+    applyPreviewImageZoom();
     const output = root.querySelector("[data-image-position]");
     if (output) output.textContent = `${Math.round(position.x)}% \xB7 ${Math.round(position.y)}%`;
   }
@@ -2668,8 +2803,9 @@ function createUIFeedback(options = {}) {
       return;
     }
     if (preview.tagName?.toLowerCase() === "img") preview.src = source;
-    else preview.outerHTML = `<img data-image-preview src="${escapeAttribute(source)}" alt="\u1EA2nh preview" style="object-position:${state.modalImagePosition?.x || 50}% ${state.modalImagePosition?.y || 50}%;" />`;
+    else preview.outerHTML = `<img data-image-preview src="${escapeAttribute(source)}" alt="\u1EA2nh preview" style="object-position:${state.modalImagePosition?.x || 50}% ${state.modalImagePosition?.y || 50}%;transform-origin:50% 50%;" />`;
     applyPreviewImagePosition();
+    applyPreviewImageZoom();
   }
   function applyCssPreset(name) {
     if (!state.target) return;
@@ -2705,20 +2841,55 @@ function createUIFeedback(options = {}) {
     if (!imageDragState || !state.modalOpen || state.mode !== "image") return;
     const rect = imageDragState.canvas.getBoundingClientRect();
     const position = {
-      x: Math.max(0, Math.min(100, (clientX - rect.left) / rect.width * 100)),
-      y: Math.max(0, Math.min(100, (clientY - rect.top) / rect.height * 100))
+      x: Math.max(0, Math.min(100, imageDragState.x + (clientX - imageDragState.clientX) / rect.width * 100)),
+      y: Math.max(0, Math.min(100, imageDragState.y + (clientY - imageDragState.clientY) / rect.height * 100))
     };
     state.modalImagePosition = position;
     applyPreviewImagePosition();
     applyImagePosition(state.target, position);
   }
+  function handleImagePointerDown(event) {
+    if (state.mode !== "image" || !state.modalOpen || event.button !== 0) return;
+    const canvas = event.target.closest?.("[data-image-canvas]");
+    if (!canvas) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const position = state.modalImagePosition || { x: 50, y: 50 };
+    imageDragState = { canvas, clientX: event.clientX, clientY: event.clientY, x: position.x, y: position.y, pointerId: event.pointerId };
+    canvas.classList.add("is-dragging");
+    try {
+      canvas.setPointerCapture?.(event.pointerId);
+    } catch {
+    }
+    const onMove = (moveEvent) => {
+      if (!imageDragState || moveEvent.pointerId !== imageDragState.pointerId) return;
+      updateImagePositionFromPointer(moveEvent.clientX, moveEvent.clientY);
+    };
+    const onEnd = (endEvent) => {
+      if (endEvent?.pointerId != null && endEvent.pointerId !== imageDragState?.pointerId) return;
+      canvas.classList.remove("is-dragging");
+      try {
+        canvas.releasePointerCapture?.(imageDragState?.pointerId);
+      } catch {
+      }
+      imageDragState = null;
+      document.removeEventListener("pointermove", onMove, true);
+      document.removeEventListener("pointerup", onEnd, true);
+      document.removeEventListener("pointercancel", onEnd, true);
+    };
+    document.addEventListener("pointermove", onMove, true);
+    document.addEventListener("pointerup", onEnd, true);
+    document.addEventListener("pointercancel", onEnd, true);
+  }
   function handleModalPointerDown(event) {
+    handleImagePointerDown(event);
     return modalController.handlePointerDown(event);
   }
   function applyPreviewImageZoom() {
     const preview = root.querySelector("[data-image-preview]");
     const zoom = state.modalImageZoom || 100;
     if (preview?.tagName?.toLowerCase() === "img") preview.style.transform = `scale(${zoom / 100})`;
+    if (state.target && state.mode === "image") applyImageZoom(state.target, zoom, state.modalImageBaseTransform);
     const output = root.querySelector("[data-image-zoom-output]");
     if (output) output.textContent = `${zoom}%`;
   }
@@ -2770,6 +2941,28 @@ function createUIFeedback(options = {}) {
     reader.readAsDataURL(file);
   }
   function handleModalClick(event) {
+    const positionStep = event.target.closest("[data-image-position-step]");
+    if (positionStep) {
+      event.stopPropagation();
+      const position = { ...state.modalImagePosition || { x: 50, y: 50 } };
+      const step = 5;
+      if (positionStep.dataset.imagePositionStep === "left") position.x -= step;
+      if (positionStep.dataset.imagePositionStep === "right") position.x += step;
+      if (positionStep.dataset.imagePositionStep === "up") position.y -= step;
+      if (positionStep.dataset.imagePositionStep === "down") position.y += step;
+      state.modalImagePosition = { x: Math.max(0, Math.min(100, position.x)), y: Math.max(0, Math.min(100, position.y)) };
+      applyPreviewImagePosition();
+      applyImagePosition(state.target, state.modalImagePosition);
+      return;
+    }
+    const imagePositionReset = event.target.closest("[data-image-position-reset]");
+    if (imagePositionReset) {
+      event.stopPropagation();
+      state.modalImagePosition = { x: 50, y: 50 };
+      applyPreviewImagePosition();
+      applyImagePosition(state.target, state.modalImagePosition);
+      return;
+    }
     const zoomStep = event.target.closest("[data-image-zoom-step]");
     if (zoomStep) {
       event.stopPropagation();
@@ -2830,6 +3023,9 @@ function createUIFeedback(options = {}) {
       event.stopPropagation();
       restoreImageState(state.target, state.modalSnapshot);
       state.modalImageSource = state.modalSnapshot.src || "";
+      state.modalImagePosition = parseImagePosition(state.modalSnapshot.objectPosition || state.modalSnapshot.effectiveObjectPosition || state.modalSnapshot.backgroundPosition || state.modalSnapshot.effectiveBackgroundPosition || "50% 50%");
+      state.modalImageBaseTransform = state.modalSnapshot.transform || "";
+      state.modalImageZoom = imageEditor.parseImageZoom(state.modalSnapshot.transform || "");
       renderModal();
       return;
     }
@@ -2904,7 +3100,8 @@ function createUIFeedback(options = {}) {
       state.cssPosition[isX ? "x" : "y"] = Number(target.value);
       applyCssPosition();
     } else if (target.matches("[data-image-zoom]")) {
-      state.modalImageZoom = Number(target.value);
+      state.modalImageZoom = Math.max(30, Math.min(300, Number(target.value) || 100));
+      target.value = state.modalImageZoom;
       applyPreviewImageZoom();
     } else if (target.matches("[data-css-radius]")) {
       applyCssProperty("borderRadius", `${target.value}px`);
@@ -2963,6 +3160,7 @@ function createUIFeedback(options = {}) {
       const oldImageState = state.modalSnapshot || captureImageState(state.target);
       applyImageSource(state.target, source);
       applyImagePosition(state.target, state.modalImagePosition || { x: 50, y: 50 });
+      applyImageZoom(state.target, state.modalImageZoom || 100, state.modalImageBaseTransform || "");
       const item = {
         id: generateId(),
         type: "image",
@@ -3067,6 +3265,8 @@ function createUIFeedback(options = {}) {
     state.modalSnapshot = null;
     state.modalImageSource = "";
     state.modalImagePosition = { x: 50, y: 50 };
+    state.modalImageZoom = 100;
+    state.modalImageBaseTransform = "";
     state.modalCommitted = false;
     editingExisting = null;
     renderToolbar2();
