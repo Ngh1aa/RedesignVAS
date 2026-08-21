@@ -1,0 +1,27 @@
+/* Tuyển sinh — quy trình, danh sách điều kiện, form liên hệ */
+.steps { display: grid; gap: 20px; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .steps { grid-template-columns: repeat(5, 1fr); } }
+.step { display: flex; flex-direction: column; height: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: var(--paper); transition: box-shadow .3s, transform .3s; }
+.step:hover { box-shadow: 0 24px 50px -30px rgba(138,20,20,.3); transform: translateY(-3px); }
+.step .n { font-family: var(--font-display); font-size: 2.4rem; font-weight: 500; line-height: 1; color: var(--vas-red); }
+.step h4 { margin-top: 16px; font-size: 16px; font-weight: 600; }
+.step p { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); }
+
+.req-list { display: flex; flex-direction: column; gap: 14px; }
+.req-list li { position: relative; padding-left: 32px; font-size: 15.5px; color: var(--ink-soft); }
+.req-list li::before { content: "✓"; position: absolute; left: 0; top: 0; display: grid; place-items: center; height: 22px; width: 22px; border-radius: 9999px; background: var(--vas-red); color: var(--paper); font-size: 12px; font-weight: 700; }
+
+.contact-grid { display: grid; gap: 48px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 72px; } }
+.contact-info { margin-top: 32px; display: grid; gap: 20px; grid-template-columns: 1fr 1fr; }
+.contact-info p { font-size: 14.5px; color: rgba(247,241,232,.9); line-height: 1.5; }
+.contact-info b { color: var(--gold-soft); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
+
+.enquiry { background: var(--paper); border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+@media (min-width: 1024px) { .enquiry { padding: 40px; } }
+.enquiry label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.enquiry input, .enquiry select, .enquiry textarea { font-family: inherit; font-size: 15px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); font-weight: 400; }
+.enquiry input:focus, .enquiry select:focus, .enquiry textarea:focus { outline: none; border-color: var(--vas-red); }
+.enquiry textarea { resize: vertical; }
+.form-msg { margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--vas-red); }

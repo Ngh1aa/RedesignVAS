@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tin tức &amp; sự kiện — Trường Quốc tế Việt Úc (VAS)</title>
+  <meta name="description" content="Tin tức, câu chuyện và sự kiện mới nhất từ cộng đồng Trường Quốc tế Việt Úc (VAS)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../assets/base.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top" data-depth="1" data-page="Tin tức">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1900&h=1100&fit=crop&auto=format&q=80" alt="Học sinh VAS trong sự kiện" />
+      <div class="ph-overlay"></div>
+      <div class="wrap animate-rise">
+        <nav class="breadcrumb"><a href="../index.html">Trang chủ</a><span>/</span><span>Tin tức</span></nav>
+        <span class="eyebrow light" style="margin-top:20px">Tin tức &amp; sự kiện</span>
+        <h1>Những điều đang <span class="italic">diễn ra tại VAS.</span></h1>
+        <p class="lead">Câu chuyện, cột mốc và sự kiện từ cộng đồng gần 8.000 học sinh trên 6 cơ sở của chúng tôi.</p>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="section bg-paper">
+      <div class="wrap">
+        <div class="feature-article reveal" id="featured"></div>
+      </div>
+    </section>
+
+    <!-- LIST + EVENTS -->
+    <section class="section bg-paper-deep" style="padding-top:0">
+      <div class="wrap">
+        <div class="news-layout">
+          <div>
+            <div class="section-head reveal"><span class="eyebrow">Tin mới nhất</span><h2>Bảng tin cộng đồng.</h2></div>
+            <div class="pill-tabs reveal" style="margin-top:24px" id="catTabs"></div>
+            <div class="article-grid reveal" style="margin-top:40px" id="articleGrid"></div>
+          </div>
+          <aside class="events reveal">
+            <div class="ev-top"><h3>Sự kiện sắp tới</h3></div>
+            <ul id="eventsList"></ul>
+            <a href="../tuyen-sinh/" class="btn btn-red" style="margin-top:24px;width:100%;justify-content:center;padding:14px">Đặt lịch tham quan</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="site-sticky"></div>
+
+  <script src="../assets/shared.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

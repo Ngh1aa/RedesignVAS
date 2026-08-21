@@ -1,0 +1,22 @@
+/* Chương trình — bố cục bộ chọn lộ trình + panel */
+.prog-layout { display: grid; gap: 40px; grid-template-columns: 1fr; }
+@media (min-width: 1024px) { .prog-layout { grid-template-columns: .9fr 1.4fr; gap: 48px; } }
+
+.prog-tab { width: 100%; border-radius: 16px !important; padding: 18px 20px !important; border: 1px solid rgba(247,241,232,.2) !important; background: none !important; color: var(--paper) !important; }
+.prog-tab:hover { border-color: rgba(247,241,232,.5) !important; }
+.prog-tab.active { border-color: var(--gold) !important; background: var(--paper) !important; color: var(--vas-red) !important; }
+.prog-tab .code { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; }
+.prog-tab .tagname { font-size: 13px; opacity: .7; }
+.prog-tab .arrow { color: var(--gold-soft); }
+.prog-tab.active .arrow { color: var(--vas-red); }
+
+.prog-panel { border-radius: 24px; background: var(--paper); color: var(--ink); padding: 32px; }
+@media (min-width: 1024px) { .prog-panel { padding: 40px; } }
+.prog-badges { display: flex; flex-wrap: wrap; gap: 12px; }
+.badge { border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; background: var(--vas-red); color: var(--paper); }
+.badge.soft { background: var(--paper-deep); color: var(--ink-soft); font-weight: 500; text-transform: none; letter-spacing: 0; }
+.prog-panel h3 { margin-top: 20px; font-family: var(--font-display); font-size: 1.9rem; line-height: 1.15; color: var(--vas-red); }
+.prog-panel .desc { margin-top: 16px; font-size: 16px; color: var(--ink-soft); }
+.prog-for { margin-top: 24px; border-radius: 16px; background: var(--paper-deep); padding: 20px; }
+.prog-for .k { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .15em; color: var(--vas-red); }
+.prog-for .v { margin-top: 6px; font-size: 15px; }
