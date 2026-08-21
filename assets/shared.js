@@ -39,7 +39,7 @@
     "Tuyển sinh": {
       heading: "Bước tiếp theo bắt đầu từ đây",
       note: "Rõ ràng, ấm áp và không áp lực.",
-      links: ["Quy trình tuyển sinh", "Học phí", "Điều kiện nhập học", "Câu hỏi thường gặp", "Đặt lịch tham quan"],
+      links: ["Quy trình tuyển sinh", "Học phí", "Điều kiện nhập học", "Câu hỏi thường gặp", "Đăng ký tư vấn"],
     },
     "Tin tức": {
       heading: "Câu chuyện & sự kiện tại VAS",
@@ -57,7 +57,7 @@
     "Chương trình": ["Mầm non", "Tiểu học", "Trung học cơ sở", "Trung học phổ thông", "Lộ trình Cambridge"],
     "Các cơ sở": ["Ba Tháng Hai", "Riverside", "Sunrise", "Sala", "Garden Hills", "Hoàng Văn Thụ"],
     "Về VAS": ["Câu chuyện VAS", "Đội ngũ giáo viên", "Thành tích", "Lộ trình vào đại học"],
-    "Tuyển sinh": ["Quy trình tuyển sinh", "Học phí", "Đặt lịch tham quan", "Câu hỏi thường gặp", "Liên hệ"],
+    "Tuyển sinh": ["Quy trình tuyển sinh", "Học phí", "Đăng ký tư vấn", "Câu hỏi thường gặp", "Liên hệ"],
   };
 
   /* ---------- helpers (exposed globally) ---------- */
@@ -90,7 +90,7 @@
             <button class="icon-btn" aria-label="Tìm kiếm">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
             </button>
-            <a href="${admissions}" class="btn btn-red header-cta">Đặt lịch tham quan</a>
+            <a href="${admissions}" class="btn btn-red header-cta">Đăng ký tư vấn</a>
             <button class="burger" id="burger" aria-label="Menu">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
             </button>
@@ -121,7 +121,7 @@
         <div>
           <p class="mega-heading">${esc(m.heading)}</p>
           <p class="mega-note">${esc(m.note)}</p>
-          <a href="${admissions}" class="mega-cta">Đặt lịch tham quan cá nhân <span aria-hidden="true">→</span></a>
+          <a href="${admissions}" class="mega-cta">Đăng ký tư vấn <span aria-hidden="true">→</span></a>
         </div>
         <ul class="mega-links">
           ${m.links.map((l) => `<li><a href="${url(k)}">${esc(l)} <span aria-hidden="true">→</span></a></li>`).join("")}
@@ -162,7 +162,7 @@
       </details>`);
     mobileMenu.appendChild(d);
   });
-  mobileMenu.appendChild(el(`<a href="${admissions}" class="btn btn-red">Đặt lịch tham quan</a>`));
+  mobileMenu.appendChild(el(`<a href="${admissions}" class="btn btn-red">Đăng ký tư vấn</a>`));
   document.getElementById("burger").addEventListener("click", () => {
     mobileMenu.classList.toggle("open");
     header.classList.add("solid");
@@ -179,7 +179,7 @@
             <div class="footer-brand">
               <a href="${home}" class="mark"><img src="${LOGO}" alt="Trường Quốc tế Việt Úc (VAS)" /></a>
               <p>Không chỉ là một ngôi trường. Là một hành trình cho cả cuộc đời của con.</p>
-              <a href="${admissions}" class="btn btn-light">Đặt lịch tham quan →</a>
+              <a href="${admissions}" class="btn btn-light">Đăng ký tư vấn →</a>
             </div>
             <div class="footer-cols">
               ${Object.entries(FOOT).map(([h, links]) => `
@@ -204,7 +204,7 @@
     stickyHost.innerHTML = `
       <div class="sticky-bar">
         <a href="tel:${HOTLINE}" class="call">Gọi tư vấn</a>
-        <a href="${admissions}" class="visit">Đặt lịch tham quan</a>
+        <a href="${admissions}" class="visit">Đăng ký tư vấn</a>
       </div>`;
   }
 

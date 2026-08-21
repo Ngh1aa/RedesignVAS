@@ -3,7 +3,7 @@ const HUB_ITEMS = [
   { id: "hoc-phi", title: "Học phí", desc: "Tra cứu theo cấp lớp, chương trình và cơ sở cho năm học 2026–2027.", icon: "02" },
   { id: "dieu-kien", title: "Điều kiện nhập học", desc: "Đánh giá năng lực theo từng cấp học và chương trình.", icon: "03" },
   { id: "faq", title: "Câu hỏi thường gặp", desc: "Những điều phụ huynh cần biết trước khi lựa chọn VAS.", icon: "04" },
-  { id: "dang-ky", title: "Đặt lịch tham quan", desc: "Đến VAS, xem thực tế và nhận tư vấn trực tiếp.", icon: "05" },
+  { id: "dang-ky", title: "Đăng ký tư vấn", desc: "Đến VAS, xem thực tế và nhận tư vấn trực tiếp.", icon: "05" },
 ];
 
 const STEPS = [

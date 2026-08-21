@@ -22,7 +22,7 @@ const MENU = {
   "Tuyển sinh": {
     heading: "Bước tiếp theo bắt đầu từ đây",
     note: "Rõ ràng, ấm áp và không áp lực.",
-    links: ["Quy trình tuyển sinh", "Học phí", "Điều kiện nhập học", "Câu hỏi thường gặp", "Đặt lịch tham quan"],
+    links: ["Quy trình tuyển sinh", "Học phí", "Điều kiện nhập học", "Câu hỏi thường gặp", "Đăng ký tư vấn"],
   },
   "Tin tức": {
     heading: "Câu chuyện & sự kiện tại VAS",
@@ -131,7 +131,7 @@ const FOOT = {
   "Chương trình": ["Mầm non", "Tiểu học", "Trung học cơ sở", "Trung học phổ thông", "Lộ trình Cambridge"],
   "Các cơ sở": ["Ba Tháng Hai", "Riverside", "Sunrise", "Sala", "Garden Hills", "Hoàng Văn Thụ"],
   "Về VAS": ["Câu chuyện VAS", "Đội ngũ giáo viên", "Thành tích", "Lộ trình vào đại học"],
-  "Tuyển sinh": ["Quy trình tuyển sinh", "Học phí", "Đặt lịch tham quan", "Câu hỏi thường gặp", "Liên hệ"],
+  "Tuyển sinh": ["Quy trình tuyển sinh", "Học phí", "Đăng ký tư vấn", "Câu hỏi thường gặp", "Liên hệ"],
 };
 
 const PAGE = {
@@ -173,7 +173,7 @@ function renderMega(k) {
       <div>
         <p class="mega-heading">${esc(m.heading)}</p>
         <p class="mega-note">${esc(m.note)}</p>
-        <a href="#admissions" class="mega-cta">Đặt lịch tham quan cá nhân <span aria-hidden="true">→</span></a>
+        <a href="#admissions" class="mega-cta">Đăng ký tư vấn <span aria-hidden="true">→</span></a>
       </div>
       <ul class="mega-links">
         ${m.links.map((l) => `<li><a href="${PAGE[k]}">${esc(l)} <span aria-hidden="true">→</span></a></li>`).join("")}
@@ -211,7 +211,7 @@ navKeys.forEach((k) => {
     </details>`);
   mobileMenu.appendChild(d);
 });
-mobileMenu.appendChild(el(`<a href="#admissions" class="btn btn-red">Đặt lịch tham quan</a>`));
+mobileMenu.appendChild(el(`<a href="#admissions" class="btn btn-red">Đăng ký tư vấn</a>`));
 const burger = document.getElementById("burger");
 burger.addEventListener("click", () => {
   mobileMenu.classList.toggle("open");
@@ -306,7 +306,7 @@ function renderCampus(idx) {
     <div class="campus-info">
       <p>${esc(c.note)}</p>
       <div class="actions">
-        <a href="#admissions" class="btn btn-light">Đặt lịch tham quan</a>
+        <a href="#admissions" class="btn btn-light">Đăng ký tư vấn</a>
         <a href="#" class="btn btn-outline-light" style="border-color:rgba(247,241,232,.4)">Xem cơ sở</a>
       </div>
     </div>`;

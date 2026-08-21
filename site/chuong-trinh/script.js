@@ -39,7 +39,7 @@ function renderProg(idx) {
     <h3>${esc(p.name)}</h3>
     <p class="desc">${esc(p.d)}</p>
     <div class="prog-for"><p class="k">Phù hợp với</p><p class="v">${esc(p.for)}</p><p class="prog-detail">${esc(p.detail)}</p></div>
-    <a href="../tuyen-sinh/" class="btn btn-red" style="margin-top:24px;padding:12px 24px;font-size:14px">Tìm lộ trình cho con <span aria-hidden="true">→</span></a>`;
+    <a href="../tuyen-sinh/#dang-ky" class="btn btn-red" style="margin-top:24px;padding:12px 24px;font-size:14px">Tìm lộ trình cho con <span aria-hidden="true">→</span></a>`;
 }
 PROGRAMMES.forEach((p, i) => {
   const b = el(`<button class="prog-tab pill-tab" style="justify-content:space-between;display:flex;align-items:center;text-align:left"><span><span class="code">${esc(p.code)}</span> <span class="tagname">${esc(p.tag)}</span></span><span class="arrow" aria-hidden="true">→</span></button>`);

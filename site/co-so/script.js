@@ -27,7 +27,7 @@ document.getElementById("campusGrid").innerHTML = CAMPUSES.map((c, i) => `
       <h3>${esc(c.name)}</h3>
       <p class="dist">${esc(c.district)} · ${esc(c.ages)}</p>
       <p>${esc(c.note)}</p>
-      <div class="row"><span>${esc(c.ages)}</span><a href="../tuyen-sinh/">Đặt lịch tham quan →</a></div>
+      <div class="row"><span>${esc(c.ages)}</span><a href="../tuyen-sinh/#dang-ky">Đăng ký tư vấn →</a></div>
     </div>
   </article>`).join("");
 
