@@ -1,103 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vòng quanh VAS — Trường Quốc tế Việt Úc</title>
-  <meta name="description" content="Một ngày của con tại VAS: đời sống học đường, thể thao, nghệ thuật, câu lạc bộ và sự chăm sóc tận tâm." />
+  <meta name="description" content="Một ngày của con tại VAS: đời sống học đường, thể thao, nghệ thuật, câu lạc bộ, cộng đồng và sự chăm sóc tận tâm." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../assets/base.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../assets/base.css?v=20260821-around" />
+  <link rel="stylesheet" href="styles.css?v=20260821-around" />
 </head>
 <body id="top" data-depth="1" data-page="Vòng quanh VAS">
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
+    <section class="page-hero around-hero">
       <img src="https://images.unsplash.com/photo-1587616211892-f743fcca64f9?w=1900&h=1100&fit=crop&auto=format&q=80" alt="Đời sống học đường tại VAS" />
       <div class="ph-overlay"></div>
       <div class="wrap animate-rise">
         <nav class="breadcrumb"><a href="../index.html">Trang chủ</a><span>/</span><span>Vòng quanh VAS</span></nav>
         <span class="eyebrow light" style="margin-top:20px">Vòng quanh VAS</span>
         <h1>Một ngày của con <span class="italic">tại VAS.</span></h1>
-        <p class="lead">Từ lời chào đầu tiên đến cái vẫy tay tạm biệt, mỗi giờ trong ngày được thiết kế để cân bằng giữa thử thách, sự quan tâm và niềm vui được là một đứa trẻ.</p>
+        <p class="lead">Cảm nhận không gian học tập trước khi ghé thăm.</p>
       </div>
     </section>
 
-    <!-- A DAY -->
-    <section class="section bg-paper">
+    <!-- EDITORIAL HUB -->
+    <section class="section bg-paper editorial-hub" id="tong-quan">
+      <div class="wrap editorial-grid">
+        <div class="editorial-copy reveal">
+          <span class="eyebrow">Đời sống VAS</span>
+          <h2>Một ngày của con tại VAS</h2>
+          <p class="editorial-kicker">Cảm nhận không gian học tập trước khi ghé thăm.</p>
+          <p>Từ lớp học đến sân thể thao, từ nghệ thuật đến những dự án cộng đồng — mỗi ngày tại VAS là một hành trình học hỏi, khám phá và trưởng thành.</p>
+          <a href="../tuyen-sinh/#dang-ky" class="btn btn-red">Đặt lịch tham quan cá nhân <span aria-hidden="true">→</span></a>
+        </div>
+        <nav class="around-hub-list reveal" id="aroundHub" aria-label="Khám phá đời sống VAS"></nav>
+      </div>
+    </section>
+
+    <!-- SCHOOL LIFE -->
+    <section class="section bg-paper-deep" id="doi-song-hoc-duong">
       <div class="wrap">
-        <div class="day-grid">
+        <div class="section-head reveal">
+          <span class="eyebrow">Đời sống học đường</span>
+          <h2>Những trải nghiệm tạo nên một ngày học tập trọn vẹn.</h2>
+        </div>
+        <div class="day-grid around-day-grid">
           <div class="reveal">
-            <span class="eyebrow">Nhịp một ngày</span>
-            <h2 class="display" style="margin-top:20px;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.05">Cân bằng giữa học và sống.</h2>
-            <div class="media" style="margin-top:28px">
-              <img src="https://kiemtruong.vn/upload/hinhbaiviet/images/2022/Thang-09/07-09/070922_vas_1.jpg" alt="Học sinh vui chơi" />
-            </div>
+            <div class="media day-image"><img src="https://kiemtruong.vn/upload/hinhbaiviet/images/2022/Thang-09/07-09/070922_vas_1.jpg" alt="Học sinh vui chơi trong khuôn viên trường" /></div>
+            <p class="image-caption">Classroom · Projects · Break time · Library · Campus life</p>
           </div>
           <ol class="timeline reveal" id="dayList"></ol>
         </div>
       </div>
     </section>
 
-    <!-- SCHOOL LIFE -->
-    <section class="section bg-paper-deep">
-      <div class="wrap">
+    <!-- SPORTS -->
+    <section class="section bg-paper" id="the-thao">
+      <div class="wrap sport-layout">
         <div class="section-head reveal">
-          <span class="eyebrow">Đời sống học đường</span>
-          <h2>Không gian để mỗi tài năng được lớn lên.</h2>
+          <span class="eyebrow">Thể thao</span>
+          <h2>Năng lượng trên từng đường chạy.</h2>
+          <p>Thể thao là một phần quan trọng trong đời sống VAS. Học sinh có cơ hội vận động, thi đấu và lớn lên cùng tinh thần đồng đội.</p>
+          <a href="#the-thao" class="text-link">Khám phá VAS Olympics 2026 <span aria-hidden="true">→</span></a>
         </div>
-        <div class="feature-grid cols-3" style="margin-top:56px" id="lifeGrid"></div>
+        <div class="sport-story reveal" id="sportStory"></div>
       </div>
     </section>
 
-    <!-- GALLERY -->
-    <section class="section bg-paper">
+    <!-- ARTS + CLUBS -->
+    <section class="section bg-paper-deep" id="nghe-thuat">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Cơ sở vật chất</span>
-          <h2>Những không gian được tạo nên cho việc học.</h2>
+          <span class="eyebrow">Nghệ thuật</span>
+          <h2>Nơi tài năng tìm thấy tiếng nói.</h2>
+          <p>Âm nhạc, hội họa, nhảy múa, diễn kịch và những sân chơi giúp học sinh đưa năng khiếu ra khỏi lớp học.</p>
         </div>
-        <div class="gallery reveal" style="margin-top:56px" id="gallery"></div>
+        <div class="tag-grid reveal" id="artsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section bg-paper" id="cau-lac-bo">
+      <div class="wrap clubs-layout">
+        <div class="section-head reveal">
+          <span class="eyebrow">Câu lạc bộ</span>
+          <h2>Theo đuổi điều con yêu thích.</h2>
+          <p>Các câu lạc bộ được hỗ trợ bởi giáo viên và đội ngũ huấn luyện viên, giúp học sinh phát triển sở thích và năng khiếu ngoài chương trình chính khóa.</p>
+        </div>
+        <div class="club-columns reveal" id="clubsGrid"></div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="section bg-red-deep" id="cong-dong">
+      <div class="wrap community-layout">
+        <div class="reveal">
+          <span class="eyebrow light">Cộng đồng</span>
+          <h2 class="display">Học để tạo nên điều tốt đẹp.</h2>
+          <p class="light-copy">Từ lớp học đến cộng đồng, học sinh VAS học cách nhìn thấy một vấn đề, cùng nhau tìm giải pháp và tạo ra thay đổi tích cực.</p>
+          <a href="#cong-dong" class="btn btn-light">Xem các dự án cộng đồng <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="community-projects reveal" id="communityProjects"></div>
       </div>
     </section>
 
     <!-- CARE -->
-    <section class="section bg-red-deep">
-      <div class="wrap">
-        <div class="split">
-          <div class="reveal">
-            <span class="eyebrow light">Chăm sóc học sinh</span>
-            <h2 class="display" style="margin-top:20px;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.05">An toàn, được lắng nghe và được yêu thương.</h2>
-            <div class="prose"><p style="color:rgba(247,241,232,.8)">Đội ngũ y tế, tư vấn tâm lý học đường và an ninh của VAS luôn đồng hành để mỗi học sinh cảm thấy an toàn và được thấu hiểu — nền tảng cho sự tự tin và niềm vui học tập.</p></div>
-            <div class="chips" style="margin-top:24px"><span>Y tế học đường</span><span>Tư vấn tâm lý</span><span>An ninh 24/7</span><span>Dinh dưỡng</span></div>
-          </div>
-          <div class="media tall reveal">
-            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=900&h=1200&fit=crop&auto=format&q=80" alt="Chăm sóc học sinh tại VAS" />
-          </div>
+    <section class="section bg-paper" id="cham-soc-hoc-sinh">
+      <div class="wrap care-layout">
+        <div class="reveal">
+          <span class="eyebrow">Chăm sóc học sinh</span>
+          <h2>An toàn, sức khỏe và sự phát triển toàn diện.</h2>
+          <p>VAS không chỉ tập trung vào thành tích học tập mà còn chú trọng sức khỏe, an toàn và cảm xúc của mỗi học sinh. Nhà trường và gia đình cùng đồng hành để mỗi em được quan tâm và được lắng nghe.</p>
+          <div class="care-chips" id="careChips"></div>
         </div>
+        <div class="media tall reveal"><img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=900&h=1200&fit=crop&auto=format&q=80" alt="Chăm sóc học sinh tại VAS" /></div>
+      </div>
+    </section>
+
+    <!-- ALUMNI -->
+    <section class="section bg-paper-deep" id="cuu-hoc-sinh">
+      <div class="wrap alumni-layout reveal">
+        <div><span class="eyebrow">Cựu học sinh</span><h2>Một phần của VAS, dù đã rời lớp học.</h2></div>
+        <div><p>Những câu chuyện về học bổng, đại học quốc tế và hành trình sau khi tốt nghiệp cho thấy cộng đồng VAS tiếp tục đồng hành cùng học sinh trên chặng đường dài hơn.</p><a href="../ve-vas/#hanh-trinh-dai-hoc" class="text-link">Khám phá hành trình VAS <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
 
     <section class="section bg-red">
-      <div class="wrap">
-        <div class="cta-band reveal">
-          <h2>Cách tốt nhất để cảm nhận VAS là ghé thăm.</h2>
-          <p>Đặt lịch tham quan để trải nghiệm một ngày ở VAS bằng chính đôi mắt của bạn.</p>
-          <div class="row">
-            <a href="../tuyen-sinh/" class="btn btn-light">Đặt lịch tham quan</a>
-            <a href="../co-so/" class="btn btn-outline-light">Xem các cơ sở</a>
-          </div>
-        </div>
-      </div>
+      <div class="wrap"><div class="cta-band reveal"><h2>Cách tốt nhất để cảm nhận VAS là ghé thăm.</h2><p>Đặt lịch tham quan để trải nghiệm một ngày ở VAS bằng chính đôi mắt của bạn.</p><div class="row"><a href="../tuyen-sinh/#dang-ky" class="btn btn-light">Đặt lịch tham quan</a><a href="../co-so/" class="btn btn-outline-light">Xem các cơ sở</a></div></div></div>
     </section>
   </main>
 
   <div id="site-footer"></div>
   <div id="site-sticky"></div>
-
-  <script src="../assets/shared.js"></script>
-  <script src="script.js"></script>
+  <script src="../assets/shared.js?v=20260821-around"></script>
+  <script src="script.js?v=20260821-around"></script>
 </body>
 </html>
