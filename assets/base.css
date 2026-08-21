@@ -338,3 +338,21 @@ h1, h2, h3, h4, p { margin: 0; }
 .sticky-bar a { display: flex; align-items: center; justify-content: center; padding: 16px; font-size: 14px; font-weight: 600; }
 .sticky-bar .call { color: var(--vas-red); }
 .sticky-bar .visit { background: var(--vas-red); color: var(--paper); }
+
+/* ---------- transparent hero header contrast ---------- */
+.header:not(.solid) .nav-item.active {
+  color: var(--gold-soft) !important;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .28);
+  position: relative;
+}
+.header:not(.solid) .nav-item.active::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+}
+.header.solid .nav-item.active::after { display: none; }
