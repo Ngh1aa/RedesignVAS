@@ -1,15 +1,15 @@
 /* Trang Chương trình */
 const STAGES = [
-  { ic: "01", age: "2–5 tuổi", t: "Mầm non", d: "Vui chơi, tò mò và niềm vui của những khám phá đầu đời." },
-  { ic: "02", age: "6–10 tuổi", t: "Tiểu học", d: "Nền tảng vững chắc về ngôn ngữ, tư duy và nhân cách." },
-  { ic: "03", age: "11–14 tuổi", t: "Trung học cơ sở", d: "Sự tò mò được rèn thành bản lĩnh học thuật thực thụ." },
-  { ic: "04", age: "15–18 tuổi", t: "Trung học phổ thông", d: "Chứng chỉ Cambridge và con đường vào đại học." },
+  { ic: "01", age: "2–5 tuổi", t: "Mầm non", d: "Khởi đầu bằng sự tò mò và nền tảng song ngữ.", detail: "Học qua vui chơi, tương tác và trải nghiệm; làm quen với ICT và chuẩn bị nền tảng chuyển tiếp lên Cambridge." },
+  { ic: "02", age: "Lớp 1–5", t: "Tiểu học", d: "Xây nền tảng học thuật và tư duy toàn cầu.", detail: "Lựa chọn CAPI, CAP hoặc CEP; học sinh CAPI có thể dự thi Cambridge International Primary Checkpoint cuối Lớp 5." },
+  { ic: "03", age: "Lớp 6–8", t: "Trung học cơ sở", d: "Mở rộng năng lực, khám phá hướng đi.", detail: "Tiếp tục hoặc chuyển đổi giữa CAPI, CAP và CEP; CAPI tập trung vào Toán, Tiếng Anh, Khoa học, ICT và Global Perspectives." },
+  { ic: "04", age: "Lớp 9–12", t: "Trung học phổ thông", d: "Chuẩn bị cho đại học và tương lai toàn cầu.", detail: "Lộ trình CAPI đi từ IGCSE đến AS Level và A Level; các bằng cấp Cambridge được công nhận quốc tế." },
 ];
 
 const PROGRAMMES = [
-  { code: "CAPI", name: "Chương trình Cambridge Toàn phần", tag: "Quốc tế nhất", english: "Đến 70% bằng tiếng Anh", d: "Mức độ hội nhập quốc tế cao nhất tại VAS — lộ trình Cambridge dành cho các gia đình hướng đến những đại học hàng đầu ở nước ngoài, với tiếng Anh xuyên suốt mọi môn học.", for: "Học sinh hướng tới nền giáo dục toàn cầu, ưu tiên tiếng Anh." },
-  { code: "CAP", name: "Chương trình Song ngữ Cambridge", tag: "Lộ trình cân bằng", english: "~50% bằng tiếng Anh", d: "Lộ trình song ngữ cân bằng, kết hợp trọn vẹn chương trình quốc gia Việt Nam với các môn Cambridge — vừa vững gốc rễ, vừa vươn tầm quốc tế.", for: "Gia đình muốn con vừa giỏi tiếng Việt vừa hội nhập quốc tế." },
-  { code: "CEP", name: "Chương trình Tiếng Anh Cambridge", tag: "Nền tảng tiếng Anh", english: "Tiếng Anh tăng cường", d: "Chương trình quốc gia Việt Nam được làm giàu bằng chương trình Tiếng Anh Cambridge chuẩn mực — xây dựng khả năng giao tiếp tự tin ngay từ những ngày đầu.", for: "Học sinh từng bước tiến tới học tập quốc tế theo thời gian." },
+  { code: "CAPI", name: "Cambridge toàn phần", tag: "Chuyên sâu từ Tiểu học đến A Level", english: "Checkpoint → IGCSE → AS/A Level", d: "Lộ trình Cambridge chuyên sâu từ Tiểu học đến A Level.", for: "Học sinh ưu tiên môi trường quốc tế và mục tiêu đại học toàn cầu.", detail: "Cambridge Academic Programme International — học phần lớn các môn bằng tiếng Anh, xuyên suốt từ Tiểu học đến Trung học phổ thông." },
+  { code: "CAP", name: "Song ngữ Cambridge", tag: "Cân bằng Việt Nam và quốc tế", english: "Cambridge + Chương trình Quốc gia", d: "Cambridge kết hợp Chương trình Giáo dục Quốc gia.", for: "Học sinh muốn phát triển song song nền tảng Việt Nam và năng lực học thuật quốc tế.", detail: "Cambridge Academic Programme — học sinh có thể đạt Primary Checkpoint, Secondary Checkpoint và IGCSE theo từng cấp học." },
+  { code: "CEP", name: "Tiếng Anh Cambridge", tag: "Tiếng Anh học thuật", english: "Cambridge English Programme", d: "Phát triển tiếng Anh học thuật trong môi trường quốc tế.", for: "Học sinh muốn xây nền tiếng Anh vững chắc bên cạnh chương trình quốc gia.", detail: "Cambridge English Programme — kết hợp chương trình giáo dục quốc gia với tiếng Anh Cambridge và các kỳ thi tương ứng theo cấp học." },
 ];
 
 const CERTS = [
@@ -22,7 +22,7 @@ document.getElementById("stageGrid").innerHTML = STAGES.map((s) => `
   <article class="feature">
     <span class="ic">${s.ic}</span>
     <p style="font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--vas-red);font-weight:600">${esc(s.age)}</p>
-    <h3 style="margin-top:6px">${esc(s.t)}</h3><p>${esc(s.d)}</p>
+    <h3 style="margin-top:6px">${esc(s.t)}</h3><p>${esc(s.d)}</p><p class="stage-detail">${esc(s.detail)}</p>
   </article>`).join("");
 
 const progTabs = document.getElementById("progTabs");
@@ -38,7 +38,7 @@ function renderProg(idx) {
     </div>
     <h3>${esc(p.name)}</h3>
     <p class="desc">${esc(p.d)}</p>
-    <div class="prog-for"><p class="k">Phù hợp với</p><p class="v">${esc(p.for)}</p></div>
+    <div class="prog-for"><p class="k">Phù hợp với</p><p class="v">${esc(p.for)}</p><p class="prog-detail">${esc(p.detail)}</p></div>
     <a href="../tuyen-sinh/" class="btn btn-red" style="margin-top:24px;padding:12px 24px;font-size:14px">Tìm lộ trình cho con <span aria-hidden="true">→</span></a>`;
 }
 PROGRAMMES.forEach((p, i) => {

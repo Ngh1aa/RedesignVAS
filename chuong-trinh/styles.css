@@ -17,6 +17,8 @@
 .badge.soft { background: var(--paper-deep); color: var(--ink-soft); font-weight: 500; text-transform: none; letter-spacing: 0; }
 .prog-panel h3 { margin-top: 20px; font-family: var(--font-display); font-size: 1.9rem; line-height: 1.15; color: var(--vas-red); }
 .prog-panel .desc { margin-top: 16px; font-size: 16px; color: var(--ink-soft); }
+.stage-detail { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(22,22,22,.12); font-size: 13px !important; line-height: 1.6; color: var(--ink-soft); }
 .prog-for { margin-top: 24px; border-radius: 16px; background: var(--paper-deep); padding: 20px; }
 .prog-for .k { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .15em; color: var(--vas-red); }
 .prog-for .v { margin-top: 6px; font-size: 15px; }
+.prog-detail { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(22,22,22,.12); font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
