@@ -8,14 +8,14 @@ const HUB = [
   ["cham-soc-hoc-sinh", "Chăm sóc học sinh", "An toàn, sức khỏe và sự phát triển toàn diện."],
 ];
 const DAY = [
-  ["07:30", "Đến trường & lời chào buổi sáng"],
-  ["08:00", "Các tiết học chính khóa"],
-  ["10:30", "Giờ ra chơi & vui chơi tự do"],
-  ["11:00", "Học qua dự án & tìm tòi"],
-  ["12:30", "Bữa trưa cùng bạn bè"],
-  ["14:00", "Thí nghiệm, ngôn ngữ & nghệ thuật"],
-  ["15:30", "Thể thao, âm nhạc & câu lạc bộ"],
-  ["17:00", "Về nhà, háo hức kể chuyện một ngày"],
+  ["07:30", "Bắt đầu ngày mới cùng môi trường học tập chuyên nghiệp"],
+  ["08:00", "Học tập, đặt câu hỏi và khám phá điều mới"],
+  ["10:30", "Nghỉ ngơi, vui chơi và kết nối cùng bạn bè"],
+  ["11:00", "Học qua dự án, trải nghiệm và tìm tòi thực tế"],
+  ["12:30", "Dùng bữa, trò chuyện và chia sẻ cùng nhau"],
+  ["14:00", "Khám phá thế giới rộng lớn qua ngôn ngữ, thí nghiệm và nghệ thuật"],
+  ["15:30", "Theo đuổi đam mê qua thể thao, âm nhạc và câu lạc bộ"],
+  ["17:00", "Trở về nhà với những câu chuyện vui vẻ cùng một ngày học tập đáng nhớ"],
 ];
 const SPORT = {
   title: "VAS Olympics 2026",
