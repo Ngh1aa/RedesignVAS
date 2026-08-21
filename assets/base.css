@@ -356,3 +356,28 @@ h1, h2, h3, h4, p { margin: 0; }
   background: var(--gold-soft);
 }
 .header.solid .nav-item.active::after { display: none; }
+
+/* ---------- hero content alignment & page imagery ---------- */
+@media (min-width: 1024px) {
+  .page-hero .wrap {
+    padding-left: 136px;
+  }
+}
+
+.page-hero.admissions-hero > img,
+.page-hero.news-hero > img {
+  opacity: .46;
+  filter: saturate(.92) contrast(1.04);
+}
+
+.page-hero.admissions-hero .ph-overlay,
+.page-hero.news-hero .ph-overlay {
+  background: linear-gradient(90deg, rgba(138,20,20,.78) 0%, rgba(138,20,20,.70) 55%, rgba(138,20,20,.86) 100%);
+}
+
+@media (max-width: 1023px) {
+  .page-hero.admissions-hero > img,
+  .page-hero.news-hero > img {
+    opacity: .40;
+  }
+}
