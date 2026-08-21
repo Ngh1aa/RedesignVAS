@@ -1,21 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tin tức &amp; sự kiện — Trường Quốc tế Việt Úc (VAS)</title>
-  <meta name="description" content="Tin tức, câu chuyện và sự kiện mới nhất từ cộng đồng Trường Quốc tế Việt Úc (VAS)." />
+  <meta name="description" content="Câu chuyện, thành tích, sự kiện và những khoảnh khắc đời sống từ cộng đồng Trường Quốc tế Việt Úc (VAS)." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../assets/base.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="stylesheet" href="../assets/base.css?v=20260821-news" />
+  <link rel="stylesheet" href="styles.css?v=20260821-news" />
 </head>
 <body id="top" data-depth="1" data-page="Tin tức">
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1900&h=1100&fit=crop&auto=format&q=80" alt="Học sinh VAS trong sự kiện" />
+    <section class="page-hero news-hero">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1900&h=1100&fit=crop&auto=format&q=80" alt="Học sinh VAS trong một hoạt động cộng đồng" />
       <div class="ph-overlay"></div>
       <div class="wrap animate-rise">
         <nav class="breadcrumb"><a href="../index.html">Trang chủ</a><span>/</span><span>Tin tức</span></nav>
@@ -25,28 +25,86 @@
       </div>
     </section>
 
-    <!-- FEATURED -->
-    <section class="section bg-paper">
-      <div class="wrap">
-        <div class="feature-article reveal" id="featured"></div>
+    <!-- EDITORIAL HUB -->
+    <section class="section bg-paper editorial-hub" id="tong-quan">
+      <div class="wrap editorial-grid">
+        <div class="editorial-copy reveal">
+          <span class="eyebrow">Cửa sổ vào đời sống VAS</span>
+          <h2>Câu chuyện &amp; sự kiện tại VAS</h2>
+          <p class="editorial-kicker">Những điều đang diễn ra trong cộng đồng VAS.</p>
+          <p>Từ những thành tích học tập, câu chuyện của học sinh và giáo viên đến các hoạt động thể thao, nghệ thuật và sự kiện cộng đồng — mỗi ngày tại VAS đều là một câu chuyện đáng được kể.</p>
+          <a href="../tuyen-sinh/#dang-ky" class="btn btn-red">Đặt lịch tham quan cá nhân <span aria-hidden="true">→</span></a>
+        </div>
+        <nav class="news-hub-list reveal" id="newsHub" aria-label="Khám phá nội dung VAS"></nav>
       </div>
     </section>
 
-    <!-- LIST + EVENTS -->
-    <section class="section bg-paper-deep" style="padding-top:0">
+    <!-- NEWS -->
+    <section class="section bg-paper-deep" id="tin-moi-nhat">
       <div class="wrap">
-        <div class="news-layout">
-          <div>
-            <div class="section-head reveal"><span class="eyebrow">Tin mới nhất</span><h2>Bảng tin cộng đồng.</h2></div>
-            <div class="pill-tabs reveal" style="margin-top:24px" id="catTabs"></div>
-            <div class="article-grid reveal" style="margin-top:40px" id="articleGrid"></div>
-          </div>
-          <aside class="events reveal">
-            <div class="ev-top"><h3>Sự kiện sắp tới</h3></div>
-            <ul id="eventsList"></ul>
-            <a href="../tuyen-sinh/" class="btn btn-red" style="margin-top:24px;width:100%;justify-content:center;padding:14px">Đặt lịch tham quan</a>
-          </aside>
+        <div class="section-head reveal">
+          <span class="eyebrow">News</span>
+          <h2>Tin tức mới nhất</h2>
+          <p>Những câu chuyện và dấu ấn mới nhất tại VAS.</p>
         </div>
+        <div class="latest-news-grid reveal" id="latestNews"></div>
+        <a href="#tin-moi-nhat" class="text-link reveal">Xem tất cả tin tức <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- STORIES -->
+    <section class="section bg-paper" id="cau-chuyen-hoc-sinh">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Stories</span>
+          <h2>Câu chuyện học sinh</h2>
+          <p>Những hành trình rất riêng, những thành quả rất thật.</p>
+        </div>
+        <div class="stories-layout reveal">
+          <div class="story-feature" id="storyFeature"></div>
+          <div class="story-list" id="storyList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section bg-paper-deep" id="su-kien">
+      <div class="wrap events-layout">
+        <div class="section-head reveal">
+          <span class="eyebrow">Events</span>
+          <h2>Sự kiện sắp tới</h2>
+          <p>Lịch sự kiện, hoạt động và chương trình dành cho cộng đồng VAS.</p>
+          <p class="cms-note">Lịch sự kiện nên được kết nối với hệ thống Event của VAS để tự động cập nhật ngày, địa điểm và thông tin đăng ký.</p>
+        </div>
+        <div class="events reveal">
+          <div class="ev-top"><span class="eyebrow">Cập nhật liên tục</span></div>
+          <ul id="eventsList"></ul>
+          <a href="../tuyen-sinh/#dang-ky" class="btn btn-red" style="margin-top:24px;width:100%;justify-content:center;padding:14px">Đặt lịch tham quan</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXTRA-CURRICULAR -->
+    <section class="section bg-paper" id="hoat-dong-ngoai-khoa">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Life at VAS</span>
+          <h2>Hoạt động ngoại khóa</h2>
+          <p>Học tập không chỉ diễn ra trong lớp học.</p>
+        </div>
+        <div class="activity-grid reveal" id="activityGrid"></div>
+      </div>
+    </section>
+
+    <!-- PHOTO ARCHIVE -->
+    <section class="section bg-paper-deep" id="thu-vien-anh">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Visual archive</span>
+          <h2>Thư viện ảnh</h2>
+          <p>Những khoảnh khắc đáng nhớ của cộng đồng VAS.</p>
+        </div>
+        <div class="archive-grid reveal" id="archiveGrid"></div>
       </div>
     </section>
   </main>
@@ -54,7 +112,7 @@
   <div id="site-footer"></div>
   <div id="site-sticky"></div>
 
-  <script src="../assets/shared.js"></script>
-  <script src="script.js"></script>
+  <script src="../assets/shared.js?v=20260821-news"></script>
+  <script src="script.js?v=20260821-news"></script>
 </body>
 </html>
