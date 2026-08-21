@@ -86,7 +86,7 @@ h1, h2, h3, p { margin: 0; }
 
 /* ---------- header ---------- */
 .header { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background .5s, border-color .5s; border-bottom: 1px solid transparent; }
-.header.solid { background: rgba(247,241,232,.95); backdrop-filter: blur(12px); border-bottom-color: var(--line); }
+.header.solid { background: #ffffff; backdrop-filter: blur(12px); border-bottom-color: var(--line); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 20px; max-width: var(--wrap); margin: 0 auto; }
 @media (min-width: 1024px) { .header-inner { padding: 16px 40px; } }
 .logo { display: flex; align-items: center; gap: 12px; }
