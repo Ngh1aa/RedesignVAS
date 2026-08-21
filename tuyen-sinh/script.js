@@ -1,43 +1,52 @@
-/* Trang Tuyển sinh */
-const STEPS = [
-  ["01", "Chia sẻ về con của bạn", "Một cuộc trò chuyện ngắn về độ tuổi, sở thích và điểm xuất phát của con."],
-  ["02", "Khám phá lộ trình phù hợp", "Chúng tôi giúp bạn hiểu rõ CAPI, CAP và CEP — và đâu là lựa chọn hợp với gia đình."],
-  ["03", "Tham quan cơ sở", "Ghé thăm lớp học, gặp gỡ thầy cô và cảm nhận cộng đồng bằng chính trải nghiệm của bạn."],
-  ["04", "Gặp gỡ đội ngũ tuyển sinh", "Giải đáp rõ ràng về đánh giá đầu vào, học phí và các mốc thời gian quan trọng."],
-  ["05", "Bắt đầu hành trình VAS", "Chúng tôi mong được chào đón gia đình bạn."],
+const HUB_ITEMS = [
+  { id: "quy-trinh", title: "Quy trình tuyển sinh", desc: "3 bước rõ ràng từ đăng ký đến nhập học.", icon: "01" },
+  { id: "hoc-phi", title: "Học phí", desc: "Tra cứu theo cấp lớp, chương trình và cơ sở cho năm học 2026–2027.", icon: "02" },
+  { id: "dieu-kien", title: "Điều kiện nhập học", desc: "Đánh giá năng lực theo từng cấp học và chương trình.", icon: "03" },
+  { id: "faq", title: "Câu hỏi thường gặp", desc: "Những điều phụ huynh cần biết trước khi lựa chọn VAS.", icon: "04" },
+  { id: "dang-ky", title: "Đặt lịch tham quan", desc: "Đến VAS, xem thực tế và nhận tư vấn trực tiếp.", icon: "05" },
 ];
 
-const PRICING = [
-  { code: "CEP", name: "Tiếng Anh Cambridge", note: "Nền tảng tiếng Anh", amt: "Liên hệ", pts: ["Chương trình quốc gia Việt Nam", "Tiếng Anh Cambridge tăng cường", "Đầy đủ hoạt động ngoại khóa"] },
-  { code: "CAP", name: "Song ngữ Cambridge", note: "Lộ trình cân bằng", amt: "Liên hệ", feature: true, pts: ["~50% chương trình bằng tiếng Anh", "Kết hợp chương trình quốc gia & Cambridge", "Chứng chỉ Cambridge quốc tế", "Cố vấn hướng nghiệp"] },
-  { code: "CAPI", name: "Cambridge Toàn phần", note: "Quốc tế nhất", amt: "Liên hệ", pts: ["Đến 70% chương trình bằng tiếng Anh", "Định hướng đại học nước ngoài", "Cambridge IGCSE & A Level", "Luyện IELTS & hồ sơ du học"] },
+const STEPS = [
+  ["01", "Đăng ký dự tuyển", "Phụ huynh đăng ký thông tin và nhận tư vấn về cấp học, chương trình và cơ sở phù hợp."],
+  ["02", "Kiểm tra kiến thức & năng lực đầu vào", "Mầm non: khảo sát tâm lý. Tiểu học và Trung học: Tiếng Anh, Tiếng Việt, Toán."],
+  ["03", "Hoàn tất hồ sơ nhập học", "Đăng ký giữ chỗ → hoàn thành học phí → hoàn tất hồ sơ → nhận lớp và nhập học."],
+];
+
+const JOURNEY = [
+  ["01", "Khám phá", "Tìm hiểu chương trình & cơ sở"],
+  ["02", "Tham quan", "Đến trường và gặp đội ngũ tư vấn"],
+  ["03", "Đánh giá", "Kiểm tra năng lực đầu vào"],
+  ["04", "Lựa chọn", "Xác định chương trình phù hợp"],
+  ["05", "Nhập học", "Hoàn tất hồ sơ & nhận lớp"],
 ];
 
 const REQS = [
-  "Phù hợp độ tuổi từng cấp học (Mầm non 2 tuổi trở lên).",
-  "Buổi gặp gỡ / đánh giá đầu vào nhẹ nhàng để hiểu con, không tạo áp lực.",
-  "Hồ sơ cơ bản: giấy khai sinh, học bạ (nếu có), ảnh thẻ.",
-  "Với lộ trình CAPI/CAP: đánh giá năng lực tiếng Anh để xếp lớp phù hợp.",
+  "Học sinh không nhất thiết phải giỏi tiếng Anh ngay từ đầu; VAS có các hình thức hỗ trợ để con thích nghi và phát triển theo lộ trình.",
+  "Đánh giá đầu vào theo cấp học giúp xác định mức độ phù hợp với chương trình, không nhằm tạo thêm áp lực.",
+  "Gia đình có thể lựa chọn CEP, CAP hoặc CAPI theo năng lực, sở thích và định hướng học tập của học sinh.",
+  "Học sinh có thể chuyển đổi lộ trình khi năng lực hoặc định hướng thay đổi, nếu đáp ứng yêu cầu của chương trình mới.",
 ];
 
 const FAQ = [
-  ["Khi nào có thể nộp hồ sơ?", "VAS tuyển sinh quanh năm, tùy tình trạng chỗ trống của từng khối lớp và cơ sở. Bạn nên liên hệ sớm để được tư vấn thời điểm phù hợp nhất."],
-  ["Con tôi chưa giỏi tiếng Anh, có theo được không?", "Hoàn toàn được. Lộ trình CEP và CAP được thiết kế để xây dựng nền tảng tiếng Anh từng bước, phù hợp với học sinh xuất phát ở nhiều trình độ khác nhau."],
-  ["Học phí đã bao gồm những gì?", "Học phí và các khoản phí đi kèm khác nhau theo lộ trình, cấp học và cơ sở. Đội ngũ tuyển sinh sẽ cung cấp bảng chi tiết minh bạch khi bạn liên hệ."],
-  ["Tôi có thể tham quan trước khi quyết định không?", "Chắc chắn. Chúng tôi khuyến khích mọi gia đình đặt lịch tham quan cá nhân để trực tiếp cảm nhận lớp học, gặp gỡ thầy cô và cộng đồng VAS."],
+  ["Con cần giỏi tiếng Anh mới vào VAS không?", "Không nhất thiết. Nhà trường có đánh giá đầu vào và các hình thức hỗ trợ để học sinh thích nghi với chương trình."],
+  ["Con nên chọn CEP, CAP hay CAPI?", "Tùy mục tiêu học tập, năng lực và định hướng tương lai của học sinh. Ba lộ trình có mức độ tích hợp chương trình Cambridge khác nhau."],
+  ["Con có thể chuyển chương trình sau khi nhập học không?", "Có, khi định hướng thay đổi và học sinh đáp ứng yêu cầu của lộ trình mới."],
+  ["Bằng VAS có thể dùng để vào đại học Việt Nam không?", "Học sinh theo chương trình MOET vẫn có thể tham gia kỳ thi và xét tuyển đại học tại Việt Nam; các bằng Cambridge cũng mở thêm lựa chọn quốc tế."],
+  ["Có thể tham quan trường trước khi đăng ký không?", "Có. VAS khuyến khích phụ huynh tham quan thực tế và liên hệ để được tư vấn chương trình, lộ trình phù hợp."],
 ];
 
-document.getElementById("stepsGrid").innerHTML = STEPS.map(([n, t, d]) => `
-  <div class="step"><span class="n">${esc(n)}</span><h4>${esc(t)}</h4><p>${esc(d)}</p></div>`).join("");
+document.getElementById("admissionsHub").innerHTML = HUB_ITEMS.map((item) => `
+  <a class="hub-item" href="#${esc(item.id)}">
+    <span class="hub-icon">${esc(item.icon)}</span>
+    <span class="hub-copy"><strong>${esc(item.title)}</strong><small>${esc(item.desc)}</small></span>
+    <span class="hub-arrow" aria-hidden="true">→</span>
+  </a>`).join("");
 
-document.getElementById("priceGrid").innerHTML = PRICING.map((p) => `
-  <article class="price ${p.feature ? "feature-price" : ""}">
-    <span class="code">${esc(p.code)}</span>
-    <span class="tagname">${esc(p.name)} · ${esc(p.note)}</span>
-    <div class="amt">${esc(p.amt)} <span>báo giá theo cơ sở</span></div>
-    <ul class="pts">${p.pts.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-    <a href="#dang-ky" class="btn ${p.feature ? "btn-light" : "btn-outline"}">Nhận báo giá</a>
-  </article>`).join("");
+document.getElementById("stepsGrid").innerHTML = STEPS.map(([n, t, d]) => `
+  <article class="step"><span class="n">${esc(n)}</span><h4>${esc(t)}</h4><p>${esc(d)}</p></article>`).join("");
+
+document.getElementById("journeyGrid").innerHTML = JOURNEY.map(([n, t, d], index) => `
+  <div class="journey-item"><span class="journey-number">${esc(n)}</span><div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>${index < JOURNEY.length - 1 ? '<span class="journey-arrow" aria-hidden="true">↓</span>' : ''}</div>`).join("");
 
 document.getElementById("reqList").innerHTML = REQS.map((r) => `<li>${esc(r)}</li>`).join("");
 

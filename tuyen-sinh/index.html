@@ -1,79 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tuyển sinh — Trường Quốc tế Việt Úc (VAS)</title>
-  <meta name="description" content="Quy trình tuyển sinh, học phí, điều kiện nhập học và câu hỏi thường gặp tại Trường Quốc tế Việt Úc (VAS). Hotline 0911 267 755." />
+  <meta name="description" content="Từ đăng ký dự tuyển đến ngày nhập học, VAS đồng hành cùng phụ huynh qua từng bước rõ ràng, ấm áp và không áp lực." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../assets/base.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../assets/base.css?v=20260821-admissions" />
+  <link rel="stylesheet" href="styles.css?v=20260821-admissions" />
 </head>
 <body id="top" data-depth="1" data-page="Tuyển sinh">
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
+    <section class="page-hero admissions-hero">
       <img src="https://images.unsplash.com/photo-1523240794102-9ebd0b167f70?w=1900&h=1100&fit=crop&auto=format&q=80" alt="Phụ huynh và học sinh tại VAS" />
       <div class="ph-overlay"></div>
       <div class="wrap animate-rise">
         <nav class="breadcrumb"><a href="../index.html">Trang chủ</a><span>/</span><span>Tuyển sinh</span></nav>
         <span class="eyebrow light" style="margin-top:20px">Tuyển sinh</span>
         <h1>Bước tiếp theo <span class="italic">bắt đầu từ đây.</span></h1>
-        <p class="lead">Không áp lực, không rối rắm thủ tục — chỉ một lộ trình rõ ràng, ấm áp từ câu hỏi đầu tiên đến ngày đầu tiên đến trường.</p>
+        <p class="lead">Rõ ràng, ấm áp và không áp lực.</p>
+        <p class="hero-copy">Từ đăng ký dự tuyển đến ngày nhập học, VAS đồng hành cùng phụ huynh qua từng bước — tư vấn, đánh giá năng lực và lựa chọn lộ trình phù hợp cho mỗi học sinh.</p>
         <div class="hero-cta">
-          <a href="#dang-ky" class="btn btn-light">Đăng ký tham quan</a>
+          <a href="#dang-ky" class="btn btn-light">Đặt lịch tham quan cá nhân <span aria-hidden="true">→</span></a>
           <a href="tel:0911267755" class="btn btn-outline-light">Gọi 0911 267 755</a>
         </div>
       </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="section bg-paper">
-      <div class="wrap">
+    <!-- ADMISSIONS HUB -->
+    <section class="section bg-paper admissions-intro">
+      <div class="wrap admissions-intro-grid">
         <div class="section-head reveal">
-          <span class="eyebrow">Quy trình tuyển sinh</span>
-          <h2>Năm bước, luôn có người đồng hành.</h2>
+          <span class="eyebrow">Tìm hiểu trước khi quyết định</span>
+          <h2>Bắt đầu bằng điều gia đình cần biết.</h2>
+          <p>VAS chia hành trình tuyển sinh thành những bước dễ hiểu để phụ huynh luôn biết mình đang ở đâu và có thể làm gì tiếp theo.</p>
         </div>
-        <div class="steps reveal" style="margin-top:56px" id="stepsGrid"></div>
+        <div class="admissions-hub reveal" id="admissionsHub"></div>
       </div>
     </section>
 
-    <!-- TUITION -->
-    <section class="section bg-paper-deep">
+    <!-- PROCESS -->
+    <section class="section bg-paper-deep" id="quy-trinh">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Học phí</span>
-          <h2>Đầu tư cho một hành trình cả cuộc đời.</h2>
-          <p>Học phí thay đổi theo lộ trình và cấp học. Bảng dưới đây mang tính tham khảo — vui lòng liên hệ để nhận báo giá chi tiết cho cơ sở bạn quan tâm.</p>
+          <span class="eyebrow">Quy trình tuyển sinh</span>
+          <h2>Ba bước rõ ràng từ đăng ký đến nhập học.</h2>
         </div>
-        <div class="price-grid reveal" style="margin-top:56px" id="priceGrid"></div>
+        <div class="steps reveal" style="margin-top:56px" id="stepsGrid"></div>
+        <div class="process-note reveal">
+          <span class="note-mark" aria-hidden="true">+</span>
+          <p>VAS hiện công khai hotline tuyển sinh chung <a href="tel:0911267755">0911 26 77 55</a> và số điện thoại riêng cho từng cơ sở. Đội ngũ tư vấn sẽ giúp gia đình xác định cấp học, chương trình và cơ sở phù hợp.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMISSIONS JOURNEY -->
+    <section class="section bg-paper" id="hanh-trinh">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Admissions journey</span>
+          <h2>Một hành trình, từng bước có người đồng hành.</h2>
+        </div>
+        <div class="journey reveal" id="journeyGrid"></div>
+      </div>
+    </section>
+
+    <!-- TUITION PREVIEW -->
+    <section class="section bg-red tuition-preview" id="hoc-phi">
+      <div class="wrap tuition-preview-grid">
+        <div class="reveal">
+          <span class="eyebrow light">Học phí</span>
+          <h2 class="display">Thông tin rõ ràng cho mỗi lựa chọn.</h2>
+        </div>
+        <div class="reveal tuition-preview-copy">
+          <p>VAS đã công bố biểu phí năm học 2026–2027. Phụ huynh có thể tra cứu theo cấp lớp, chương trình và cơ sở; các chương trình gồm CEP, CAP và CAPI.</p>
+          <p class="muted-light">Có thể lựa chọn hình thức đóng 1 lần/năm, 2 lần/năm hoặc 4 lần/năm tùy chương trình và cấp lớp.</p>
+          <a href="#dang-ky" class="btn btn-light">Xem học phí <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </section>
 
     <!-- REQUIREMENTS -->
-    <section class="section bg-paper">
+    <section class="section bg-paper" id="dieu-kien">
       <div class="wrap">
         <div class="split">
           <div class="reveal">
             <span class="eyebrow">Điều kiện nhập học</span>
-            <h2 class="display" style="margin-top:20px;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.05">Đơn giản, minh bạch, không gây áp lực cho con.</h2>
+            <h2 class="display" style="margin-top:20px;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.05">Mỗi học sinh có một điểm xuất phát khác nhau.</h2>
+            <p class="section-intro">VAS đánh giá năng lực đầu vào theo cấp học để xác định mức độ phù hợp với chương trình và hỗ trợ phụ huynh lựa chọn lộ trình học tập phù hợp.</p>
             <ul class="req-list" id="reqList" style="margin-top:24px"></ul>
           </div>
           <div class="media tall reveal">
-            <img src="https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/phu-huynh-ke-gi-ve-hanh-trinh-hoc-tap-cua-con-tai-vas.jpg" alt="Học sinh VAS" />
+            <img src="https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/phu-huynh-ke-gi-ve-hanh-trinh-hoc-tap-cua-con-tai-vas.jpg" alt="Học sinh VAS trong hành trình học tập" />
           </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section bg-paper-deep">
+    <section class="section bg-paper-deep" id="faq">
       <div class="wrap">
         <div class="section-head reveal" style="margin:0 auto;text-align:center">
           <span class="eyebrow">Câu hỏi thường gặp</span>
-          <h2>Những điều phụ huynh thường hỏi.</h2>
+          <h2>Những điều phụ huynh cần biết trước khi lựa chọn VAS.</h2>
         </div>
         <div class="faq reveal" style="margin-top:48px" id="faqList"></div>
       </div>
@@ -84,27 +116,39 @@
       <div class="wrap">
         <div class="contact-grid">
           <div class="reveal">
-            <span class="eyebrow light">Đăng ký tham quan</span>
-            <h2 class="display" style="margin-top:20px;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.05">Hãy để chúng tôi liên hệ với bạn.</h2>
-            <p style="margin-top:20px;max-width:30rem;color:rgba(247,241,232,.85)">Điền thông tin và đội ngũ tuyển sinh sẽ gọi lại trong thời gian sớm nhất để sắp xếp buổi tham quan phù hợp với gia đình bạn.</p>
+            <span class="eyebrow light">Đặt lịch tham quan</span>
+            <h2 class="display" style="margin-top:20px;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.05">Đến và cảm nhận VAS.</h2>
+            <p style="margin-top:20px;max-width:30rem;color:rgba(247,241,232,.85)">Tham quan lớp học, không gian học tập và cơ sở vật chất thực tế. Đội ngũ VAS sẽ tư vấn chương trình và lộ trình phù hợp với nhu cầu của gia đình.</p>
+            <div class="journey-mini" aria-label="Các bước đặt lịch tham quan">
+              <span>Chọn cơ sở</span><i aria-hidden="true">→</i><span>Chọn ngày</span><i aria-hidden="true">→</i><span>Xác nhận</span>
+            </div>
             <div class="contact-info">
-              <p><b>Hotline</b><br>0911 267 755</p>
-              <p><b>Email</b><br>admissions@vas.edu.vn</p>
+              <p><b>Hotline</b><br><a href="tel:0911267755">0911 267 755</a></p>
+              <p><b>Email</b><br><a href="mailto:admissions@vas.edu.vn">admissions@vas.edu.vn</a></p>
               <p><b>Trụ sở</b><br>594 Ba Tháng Hai, P.14, Q.10, TP.HCM</p>
             </div>
           </div>
           <form class="enquiry reveal" id="enquiryForm" novalidate>
+            <div class="form-progress"><span>01</span><span>Chọn cơ sở</span><span>→</span><span>02</span><span>Chọn ngày</span><span>→</span><span>03</span><span>Xác nhận</span></div>
             <label>Họ và tên phụ huynh<input type="text" name="name" required placeholder="Nguyễn Văn A" /></label>
-            <label>Số điện thoại<input type="tel" name="phone" required placeholder="09xx xxx xxx" /></label>
-            <label>Email<input type="email" name="email" placeholder="email@vidu.com" /></label>
-            <label>Cơ sở quan tâm
-              <select name="campus">
-                <option>Ba Tháng Hai</option><option>Riverside</option><option>Sunrise</option>
-                <option>Sala</option><option>Garden Hills</option><option>Hoàng Văn Thụ</option>
-              </select>
-            </label>
-            <label>Lời nhắn (tuỳ chọn)<textarea name="note" rows="3" placeholder="Độ tuổi của con, lộ trình quan tâm…"></textarea></label>
-            <button type="submit" class="btn btn-light" style="justify-content:center;width:100%">Gửi đăng ký</button>
+            <div class="form-two">
+              <label>Số điện thoại<input type="tel" name="phone" required placeholder="09xx xxx xxx" /></label>
+              <label>Email<input type="email" name="email" placeholder="email@vidu.com" /></label>
+            </div>
+            <div class="form-two">
+              <label>Cơ sở quan tâm
+                <select name="campus"><option value="">Chọn cơ sở</option><option>Ba Tháng Hai</option><option>Riverside</option><option>Sunrise</option><option>Sala</option><option>Garden Hills</option><option>Hoàng Văn Thụ</option></select>
+              </label>
+              <label>Ngày mong muốn<input type="date" name="date" /></label>
+            </div>
+            <div class="form-two">
+              <label>Độ tuổi / lớp của con<input type="text" name="student" placeholder="Ví dụ: Lớp 3" /></label>
+              <label>Lộ trình quan tâm
+                <select name="program"><option value="">Chọn lộ trình</option><option>CEP — Tiếng Anh Cambridge</option><option>CAP — Cambridge học thuật</option><option>CAPI — Tích hợp quốc tế toàn phần Cambridge</option></select>
+              </label>
+            </div>
+            <label>Lời nhắn (tuỳ chọn)<textarea name="note" rows="3" placeholder="Điều gia đình muốn được tư vấn…"></textarea></label>
+            <button type="submit" class="btn btn-light" style="justify-content:center;width:100%">Đặt lịch tham quan <span aria-hidden="true">→</span></button>
             <p class="form-msg" id="formMsg" hidden>Cảm ơn bạn! Đội ngũ tuyển sinh VAS sẽ liên hệ lại trong thời gian sớm nhất.</p>
           </form>
         </div>
@@ -115,7 +159,7 @@
   <div id="site-footer"></div>
   <div id="site-sticky"></div>
 
-  <script src="../assets/shared.js"></script>
-  <script src="script.js"></script>
+  <script src="../assets/shared.js?v=20260821-admissions"></script>
+  <script src="script.js?v=20260821-admissions"></script>
 </body>
 </html>
