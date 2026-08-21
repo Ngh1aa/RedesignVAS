@@ -96,17 +96,22 @@
 .campus-table tbody td { color: var(--ink-soft); line-height: 1.45; }
 .table-number { display: inline-block; width: 28px; margin-right: 10px; color: var(--vas-red); font-family: var(--font-sans); font-size: 11px; font-weight: 700; vertical-align: middle; }
 
-.life-section { color: var(--paper); }
-.life-section .section-head { max-width: 52rem; }
-.life-section .section-head p { color: rgba(255,255,255,.72); }
-.life-grid { display: grid; gap: 1px; margin-top: 48px; border: 1px solid rgba(255,255,255,.2); border-radius: 22px; overflow: hidden; background: rgba(255,255,255,.2); grid-template-columns: 1fr; }
+.life-section { color: var(--paper); background: var(--vas-red); }
+.life-section .section-head { max-width: 58rem; }
+.life-section .section-head h2 { color: var(--paper); }
+.life-section .section-head p { max-width: 58rem; color: rgba(255,255,255,.82); }
+.life-grid { display: grid; gap: 1px; margin-top: 48px; border: 1px solid rgba(255,255,255,.32); border-radius: 22px; overflow: hidden; background: rgba(255,255,255,.22); grid-template-columns: 1fr; }
 @media (min-width: 720px) { .life-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1040px) { .life-grid { grid-template-columns: 1.35fr .65fr .65fr .65fr; } }
-.life-card { min-height: 220px; padding: 28px; background: rgba(255,255,255,.06); }
-.life-card-large { background: linear-gradient(145deg, rgba(138,20,20,.8), rgba(255,255,255,.08)); }
+.life-card { display: flex; min-height: 250px; flex-direction: column; align-items: stretch; padding: 28px; border: 0; color: var(--paper); background: rgba(255,255,255,.16); font: inherit; text-align: left; cursor: pointer; transition: background .25s, color .25s, transform .25s; }
+.life-card:hover, .life-card:focus-visible { background: rgba(255,255,255,.25); }
+.life-card.is-active { color: var(--ink); background: var(--paper); }
 .life-number { color: var(--gold-soft); font-size: 11px; font-weight: 700; letter-spacing: .16em; }
-.life-card h3 { margin-top: 62px; color: var(--paper); font-family: var(--font-display); font-size: 1.7rem; line-height: 1; font-weight: 500; }
-.life-card p { margin-top: 12px; color: rgba(255,255,255,.68); font-size: 13px; line-height: 1.55; }
+.life-card.is-active .life-number { color: var(--vas-red); }
+.life-card-copy { display: grid; gap: 12px; margin-top: auto; }
+.life-card-copy strong { color: inherit; font-family: var(--font-display); font-size: clamp(1.45rem, 2vw, 1.75rem); line-height: 1; font-weight: 500; }
+.life-card-copy span { color: rgba(255,255,255,.82); font-size: 13px; line-height: 1.55; }
+.life-card.is-active .life-card-copy span { color: var(--ink-soft); }
 
 .faq-layout { display: grid; gap: 48px; grid-template-columns: 1fr; }
 @media (min-width: 980px) { .faq-layout { grid-template-columns: .7fr 1.3fr; gap: 86px; align-items: start; } }
@@ -150,5 +155,6 @@
   .campus-card-kicker span:last-child { text-align: left; }
   .campus-card-gallery img { height: 118px; }
   .campus-table { min-width: 700px; }
-  .life-card h3 { margin-top: 42px; }
+  .life-card { min-height: 190px; padding: 24px; }
+  .life-card-copy { margin-top: 42px; }
 }

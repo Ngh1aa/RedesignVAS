@@ -241,6 +241,28 @@ if (markerLayer) {
 const comparisonBody = document.getElementById("comparisonBody");
 comparisonBody.innerHTML = CAMPUSES.map((campus) => `<tr><th scope="row"><span class="table-number">${safe(campus.number)}</span>${safe(campus.name)}</th><td>${safe(campus.district)}</td><td>${safe(campus.ages)}</td><td>${safe(campus.comparison)}</td></tr>`).join("");
 
+const lifeTabs = Array.from(document.querySelectorAll("[data-life-tab]"));
+function activateLifeTab(tab, moveFocus = false) {
+  lifeTabs.forEach((item) => {
+    const active = item === tab;
+    item.classList.toggle("is-active", active);
+    item.setAttribute("aria-selected", String(active));
+    item.tabIndex = active ? 0 : -1;
+  });
+  if (moveFocus) tab.focus();
+}
+lifeTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => activateLifeTab(tab));
+  tab.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? lifeTabs.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + lifeTabs.length) % lifeTabs.length;
+    activateLifeTab(lifeTabs[nextIndex], true);
+  });
+});
+
+activateLifeTab(lifeTabs[0]);
+
 document.addEventListener("click", (event) => {
   const link = event.target.closest("[data-focus-campus]");
   if (link) focusCampus(link.dataset.focusCampus);

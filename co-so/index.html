@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="../assets/base.css?v=header-white-20260821" />
-  <link rel="stylesheet" href="styles.css?v=campus-finder-20260821" />
+  <link rel="stylesheet" href="styles.css?v=campus-life-20260821" />
 </head>
 <body id="top" data-depth="1" data-page="Các cơ sở">
   <div id="site-header"></div>
@@ -129,18 +129,30 @@
       </div>
     </section>
 
-    <section class="section life-section bg-ink" id="campus-life">
+    <section class="section life-section" id="campus-life">
       <div class="wrap">
         <div class="section-head light reveal">
           <span class="eyebrow light">03 — Campus life</span>
           <h2>Mỗi ngày ở VAS có nhiều hơn một lớp học.</h2>
           <p>Từ phòng lab đến sân thể thao, từ nghệ thuật đến những khoảng xanh — không gian là một phần của cách con học và trưởng thành.</p>
         </div>
-        <div class="life-grid reveal">
-          <article class="life-card life-card-large"><div class="life-number">01</div><h3>Học tập chủ động</h3><p>Phòng học, thư viện, phòng thí nghiệm và ICT mở rộng cách con đặt câu hỏi, thử nghiệm và vận dụng.</p></article>
-          <article class="life-card"><div class="life-number">02</div><h3>Thể thao</h3><p>Những không gian để rèn sức bền, tinh thần đồng đội và sự tự tin.</p></article>
-          <article class="life-card"><div class="life-number">03</div><h3>Nghệ thuật</h3><p>Âm nhạc, mỹ thuật và sân khấu giúp mỗi học sinh tìm thấy một cách biểu đạt riêng.</p></article>
-          <article class="life-card"><div class="life-number">04</div><h3>Khoảng xanh</h3><p>Một nhịp học cân bằng hơn khi con có nơi để nghỉ ngơi, kết nối và khám phá ngoài trời.</p></article>
+        <div class="life-grid reveal" role="tablist" aria-label="Các không gian trải nghiệm tại VAS">
+          <button class="life-card is-active" type="button" role="tab" aria-selected="true" aria-controls="life-panel-01" data-life-tab="01">
+            <span class="life-number">01</span>
+            <span class="life-card-copy" id="life-panel-01"><strong>Học tập chủ động</strong><span>Phòng học, thư viện, phòng thí nghiệm và ICT mở rộng cách con đặt câu hỏi, thử nghiệm và vận dụng.</span></span>
+          </button>
+          <button class="life-card" type="button" role="tab" aria-selected="false" aria-controls="life-panel-02" data-life-tab="02">
+            <span class="life-number">02</span>
+            <span class="life-card-copy" id="life-panel-02"><strong>Thể thao</strong><span>Những không gian để rèn sức bền, tinh thần đồng đội và sự tự tin.</span></span>
+          </button>
+          <button class="life-card" type="button" role="tab" aria-selected="false" aria-controls="life-panel-03" data-life-tab="03">
+            <span class="life-number">03</span>
+            <span class="life-card-copy" id="life-panel-03"><strong>Nghệ thuật</strong><span>Âm nhạc, mỹ thuật và sân khấu giúp mỗi học sinh tìm thấy một cách biểu đạt riêng.</span></span>
+          </button>
+          <button class="life-card" type="button" role="tab" aria-selected="false" aria-controls="life-panel-04" data-life-tab="04">
+            <span class="life-number">04</span>
+            <span class="life-card-copy" id="life-panel-04"><strong>Khoảng xanh</strong><span>Một nhịp học cân bằng hơn khi con có nơi để nghỉ ngơi, kết nối và khám phá ngoài trời.</span></span>
+          </button>
         </div>
       </div>
     </section>
@@ -172,7 +184,7 @@
 
   <div id="site-footer"></div>
   <div id="site-sticky"></div>
-  <script src="../assets/shared.js?v=campus-finder-20260821"></script>
-  <script src="script.js?v=campus-finder-20260821"></script>
+  <script src="../assets/shared.js?v=campus-life-20260821"></script>
+  <script src="script.js?v=campus-life-20260821"></script>
 </body>
 </html>
