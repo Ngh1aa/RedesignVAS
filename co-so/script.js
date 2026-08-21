@@ -230,7 +230,13 @@ function focusCampus(id) {
   document.getElementById("ban-do").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-document.querySelectorAll("[data-campus]").forEach((marker) => marker.addEventListener("click", () => renderMap(marker.dataset.campus)));
+const markerLayer = document.querySelector(".map-marker-layer");
+if (markerLayer) {
+  markerLayer.addEventListener("click", (event) => {
+    const marker = event.target.closest("[data-campus]");
+    if (marker) renderMap(marker.dataset.campus);
+  });
+}
 
 const comparisonBody = document.getElementById("comparisonBody");
 comparisonBody.innerHTML = CAMPUSES.map((campus) => `<tr><th scope="row"><span class="table-number">${safe(campus.number)}</span>${safe(campus.name)}</th><td>${safe(campus.district)}</td><td>${safe(campus.ages)}</td><td>${safe(campus.comparison)}</td></tr>`).join("");

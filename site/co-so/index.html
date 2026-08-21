@@ -83,18 +83,17 @@
           <p>Chọn một điểm trên bản đồ để xem nhanh cấp học, vị trí và cá tính của từng cơ sở.</p>
         </div>
         <div class="map-layout reveal">
-          <div class="campus-map" role="img" aria-label="Bản đồ minh họa sáu cơ sở VAS tại Thành phố Hồ Chí Minh">
-            <span class="map-label map-label-north">GÒ VẤP</span>
-            <span class="map-label map-label-east">THỦ ĐỨC</span>
-            <span class="map-label map-label-centre">TRUNG TÂM</span>
-            <span class="map-label map-label-south">QUẬN 7</span>
-            <span class="map-road road-one"></span><span class="map-road road-two"></span><span class="map-road road-three"></span>
-            <button class="map-marker marker-sala" data-campus="sala" aria-label="Xem cơ sở Sala"><span>01</span></button>
-            <button class="map-marker marker-riverside" data-campus="riverside" aria-label="Xem cơ sở Riverside"><span>02</span></button>
-            <button class="map-marker marker-garden" data-campus="garden-hills" aria-label="Xem cơ sở Garden Hills"><span>03</span></button>
-            <button class="map-marker marker-sunrise" data-campus="sunrise" aria-label="Xem cơ sở Sunrise"><span>04</span></button>
-            <button class="map-marker marker-hoang" data-campus="hoang-van-thu" aria-label="Xem cơ sở Hoàng Văn Thụ"><span>05</span></button>
-            <button class="map-marker marker-bathang" data-campus="ba-thang-hai" aria-label="Xem cơ sở Ba Tháng Hai"><span>06</span></button>
+          <div class="campus-map">
+            <img class="district-map-image" src="../assets/ho-chi-minh-district-map.jpg" alt="Bản đồ các quận nội thành Thành phố Hồ Chí Minh, gồm Thủ Đức, Gò Vấp, Phú Nhuận, Quận 7 và Quận 10" />
+            <div class="map-image-overlay" aria-hidden="true"></div>
+            <div class="map-marker-layer" aria-label="Chọn cơ sở VAS trên bản đồ">
+              <button type="button" class="map-marker marker-sala" data-campus="sala" aria-label="Xem cơ sở Sala"><span>01</span></button>
+              <button type="button" class="map-marker marker-riverside" data-campus="riverside" aria-label="Xem cơ sở Riverside"><span>02</span></button>
+              <button type="button" class="map-marker marker-garden" data-campus="garden-hills" aria-label="Xem cơ sở Garden Hills"><span>03</span></button>
+              <button type="button" class="map-marker marker-sunrise" data-campus="sunrise" aria-label="Xem cơ sở Sunrise"><span>04</span></button>
+              <button type="button" class="map-marker marker-hoang" data-campus="hoang-van-thu" aria-label="Xem cơ sở Hoàng Văn Thụ"><span>05</span></button>
+              <button type="button" class="map-marker marker-bathang" data-campus="ba-thang-hai" aria-label="Xem cơ sở Ba Tháng Hai"><span>06</span></button>
+            </div>
             <div class="map-caption"><span class="eyebrow">TP. HỒ CHÍ MINH</span><strong>Gần hơn với gia đình.</strong></div>
           </div>
           <aside class="map-card" id="mapCard" aria-live="polite"></aside>
