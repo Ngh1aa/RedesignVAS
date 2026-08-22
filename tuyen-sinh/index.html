@@ -24,7 +24,7 @@
         <p class="lead">Rõ ràng, ấm áp và không áp lực.</p>
         <p class="hero-copy">Từ đăng ký dự tuyển đến ngày nhập học, VAS đồng hành cùng phụ huynh qua từng bước — tư vấn, đánh giá năng lực và lựa chọn lộ trình phù hợp cho mỗi học sinh.</p>
         <div class="hero-cta">
-          <a href="#dang-ky" class="btn btn-light">Đăng ký tư vấn <span aria-hidden="true">→</span></a>
+          <a href="?intent=inquire#dang-ky" class="btn btn-light">Nhận tư vấn <span aria-hidden="true">→</span></a>
           <a href="tel:0911267755" class="btn btn-outline-light">Gọi 0911 267 755</a>
         </div>
       </div>
@@ -76,9 +76,13 @@
           <h2 class="display">Thông tin rõ ràng cho mỗi lựa chọn.</h2>
         </div>
         <div class="reveal tuition-preview-copy">
-          <p>VAS đã công bố biểu phí năm học 2026–2027. Phụ huynh có thể tra cứu theo cấp lớp, chương trình và cơ sở; các chương trình gồm CEP, CAP và CAPI.</p>
-          <p class="muted-light">Có thể lựa chọn hình thức đóng 1 lần/năm, 2 lần/năm hoặc 4 lần/năm tùy chương trình và cấp lớp.</p>
-          <a href="#dang-ky" class="btn btn-light">Xem học phí <span aria-hidden="true">→</span></a>
+          <p>Tra cứu theo cấp lớp, lộ trình và cơ sở để hiểu cấu trúc lựa chọn trước khi nhận biểu phí chính thức.</p>
+          <p class="muted-light">Học phí thay đổi theo năm học và chính sách hiện hành. Bản xem nhanh dưới đây luôn ghi rõ năm học.</p>
+          <div class="fee-calculator" id="feeCalculator" aria-live="polite">
+            <div class="fee-fields"><label>Cấp / lớp<select id="feeGrade"><option value="mam-non">Mầm non</option><option value="1-5">Lớp 1–5</option><option value="6-8">Lớp 6–8</option><option value="9-12">Lớp 9–12</option></select></label><label>Lộ trình<select id="feeProgramme"><option value="cep">CEP</option><option value="cap" selected>CAP</option><option value="capi">CAPI</option></select></label><label>Cơ sở<select id="feeCampus"><option value="sala">Sala</option><option value="riverside">Riverside</option><option value="garden-hills">Garden Hills</option><option value="sunrise">Sunrise</option><option value="hoang-van-thu">Hoàng Văn Thụ</option><option value="ba-thang-hai">Ba Tháng Hai</option></select></label><label>Thanh toán<select id="feePlan"><option value="one">1 lần / năm</option><option value="two">2 lần / năm</option><option value="four">4 lần / năm</option></select></label></div>
+            <div class="fee-result"><span>Học phí dự kiến · 2026–2027</span><strong id="feeAmount">Chưa có bảng phí kết nối</strong><p id="feeNote">Gia đình vẫn có thể xem overview và nhận xác nhận chính thức từ admissions.</p></div>
+            <div class="fee-actions"><a class="btn btn-light" href="#dang-ky" data-fee-action="inquire">Nhận tư vấn</a><a class="btn btn-outline-light" href="#dang-ky" data-fee-action="visit">Tham quan cơ sở</a></div>
+          </div>
         </div>
       </div>
     </section>
@@ -128,28 +132,35 @@
               <p><b>Trụ sở</b><br>594 Ba Tháng Hai, P.14, Q.10, TP.HCM</p>
             </div>
           </div>
-          <form class="enquiry reveal" id="enquiryForm" novalidate>
+                      <div class="intent-switch reveal" role="tablist" aria-label="Chọn nhu cầu của gia đình"><button type="button" role="tab" aria-selected="true" data-intent="inquire">Nhận tư vấn</button><button type="button" role="tab" aria-selected="false" data-intent="visit">Tham quan VAS</button><button type="button" role="tab" aria-selected="false" data-intent="apply">Đăng ký dự tuyển</button></div>
+            <p class="intent-description reveal" id="intentDescription">Dành cho gia đình đang tìm hiểu chương trình, cấp học hoặc cơ sở phù hợp.</p>
+            <form class="enquiry reveal" id="enquiryForm" novalidate>
+
             <div class="form-progress"><span>01</span><span>Chia sẻ nhu cầu</span><span>→</span><span>02</span><span>Nhận tư vấn</span><span>→</span><span>03</span><span>Chọn bước tiếp theo</span></div>
             <label>Họ và tên phụ huynh<input type="text" name="name" required placeholder="Nguyễn Văn A" /></label>
             <div class="form-two">
-              <label>Số điện thoại<input type="tel" name="phone" required placeholder="09xx xxx xxx" /></label>
+              <label>Số điện thoại<input type="tel" name="phone" required inputmode="tel" placeholder="09xx xxx xxx" /></label>
               <label>Email<input type="email" name="email" placeholder="email@vidu.com" /></label>
             </div>
-            <div class="form-two">
-              <label>Cơ sở quan tâm
-                <select name="campus"><option value="">Chọn cơ sở</option><option>Ba Tháng Hai</option><option>Riverside</option><option>Sunrise</option><option>Sala</option><option>Garden Hills</option><option>Hoàng Văn Thụ</option></select>
-              </label>
-              <label>Ngày mong muốn<input type="date" name="date" /></label>
-            </div>
+              <div class="form-two">
+                <label>Cơ sở quan tâm
+                  <select name="campus"><option value="">Chọn cơ sở</option><option>Sala</option><option>Riverside</option><option>Sunrise</option><option>Garden Hills</option><option>Ba Tháng Hai</option><option>Hoàng Văn Thụ</option></select>
+                </label>
+                <label>Khung giờ mong muốn<input type="time" name="time" /></label>
+              </div>
+              <div class="visit-fields" id="visitFields" hidden><div class="form-two"><label>Hình thức<select name="visitType"><option value="in-person">Tham quan trực tiếp</option><option value="online">Tư vấn / tham quan online</option></select></label><label>Ngày mong muốn<input type="date" name="date" /></label></div></div>
             <div class="form-two">
               <label>Độ tuổi / lớp của con<input type="text" name="student" placeholder="Ví dụ: Lớp 3" /></label>
               <label>Lộ trình quan tâm
                 <select name="program"><option value="">Chọn lộ trình</option><option>CEP — Tiếng Anh Cambridge</option><option>CAP — Cambridge học thuật</option><option>CAPI — Tích hợp quốc tế toàn phần Cambridge</option></select>
               </label>
             </div>
-            <label>Lời nhắn (tuỳ chọn)<textarea name="note" rows="3" placeholder="Điều gia đình muốn được tư vấn…"></textarea></label>
-            <button type="submit" class="btn btn-light" style="justify-content:center;width:100%">Đăng ký tư vấn <span aria-hidden="true">→</span></button>
-            <p class="form-msg" id="formMsg" hidden>Cảm ơn bạn! Đội ngũ tuyển sinh VAS sẽ liên hệ lại trong thời gian sớm nhất.</p>
+              <label>Nhu cầu của gia đình<select name="intentReason" required><option value="">Chọn nhu cầu</option><option value="programme">Tôi muốn được tư vấn chương trình</option><option value="campus">Tôi muốn tìm cơ sở phù hợp</option><option value="fee">Tôi muốn biết học phí</option><option value="visit">Tôi muốn tham quan cơ sở</option><option value="apply">Tôi muốn đăng ký dự tuyển</option><option value="other">Khác</option></select></label>
+              <label>Lời nhắn (tuỳ chọn)<textarea name="note" rows="3" placeholder="Điều gia đình muốn được tư vấn…"></textarea></label>
+              <label class="consent"><input type="checkbox" name="consent" required /> <span>Tôi đồng ý để VAS liên hệ về nhu cầu trên và đã đọc <a href="../ve-vas/#privacy">chính sách bảo mật</a>.</span></label>
+              <p class="field-error" id="formError" role="alert" hidden></p>
+              <button type="submit" class="btn btn-light" style="justify-content:center;width:100%">Gửi nhu cầu <span aria-hidden="true">→</span></button>
+              <p class="form-msg" id="formMsg" hidden></p>
           </form>
         </div>
       </div>
@@ -159,7 +170,8 @@
   <div id="site-footer"></div>
   <div id="site-sticky"></div>
 
-  <script src="../assets/shared.js?v=ui-feedback-v0.13.0"></script>
-  <script src="script.js?v=20260821-admissions"></script>
+  <script src="../assets/shared.js?v=ux-upgrade-20260823"></script>
+  <script src="../assets/vas-decision-data.js?v=ux-upgrade-20260823"></script>
+  <script src="script.js?v=ux-upgrade-20260823"></script>
 </body>
 </html>

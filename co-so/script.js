@@ -136,15 +136,18 @@ const CAMPUSES = [
   }
 ];
 
-const FILTERS = { level: "all", district: "all", priority: "all" };
+const programmeMap = Object.fromEntries((window.VAS_DECISION_DATA?.campuses || []).map((campus) => [campus.id, campus.programmes]));
+CAMPUSES.forEach((campus) => { campus.programmes = programmeMap[campus.id] || ["cep", "cap"]; });
+const FILTERS = { level: "all", programme: "all", district: "all", priority: "all" };
 const byId = (id) => CAMPUSES.find((campus) => campus.id === id) || CAMPUSES[0];
 const safe = (value) => esc(String(value));
 
 function matches(campus) {
   const levelMatch = FILTERS.level === "all" || campus.levels.includes(FILTERS.level);
   const districtMatch = FILTERS.district === "all" || campus.districtKey === FILTERS.district;
+  const programmeMatch = FILTERS.programme === "all" || campus.programmes.includes(FILTERS.programme);
   const priorityMatch = FILTERS.priority === "all" || campus.priorities.includes(FILTERS.priority);
-  return levelMatch && districtMatch && priorityMatch;
+  return levelMatch && programmeMatch && districtMatch && priorityMatch;
 }
 
 function cardTemplate(campus) {
@@ -161,7 +164,7 @@ function cardTemplate(campus) {
         <p class="campus-tagline">“${safe(campus.tagline)}”</p>
         <p>${safe(campus.description)}</p>
         <div class="tag-list">${campus.highlights.slice(0, 4).map((item) => `<span>${safe(item)}</span>`).join("")}</div>
-        <div class="campus-card-actions"><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../tuyen-sinh/#dang-ky">Đăng ký tư vấn →</a></div>
+        <div class="campus-card-actions"><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.name)}#dang-ky">Tham quan →</a><a class="text-link" href="../tuyen-sinh/#hoc-phi">Học phí →</a></div>
       </div>
       <div class="campus-card-gallery" aria-hidden="true"><img src="${imageUrl(campus.lifeImg, 520, 360)}" alt="" loading="lazy" /><img src="${imageUrl(campus.spaceImg, 520, 360)}" alt="" loading="lazy" /></div>
     </article>`;
@@ -191,8 +194,19 @@ function updateChoices() {
   });
 }
 
+function syncUrl() {
+  const next = new URL(window.location.href);
+  Object.entries(FILTERS).forEach(([key, value]) => { const param = key === "programme" ? "program" : key; if (value === "all") next.searchParams.delete(param); else next.searchParams.set(param, value); });
+  history.replaceState({}, "", next);
+}
+function readUrlState() {
+  ["level", "district", "priority"].forEach((key) => { const value = new URLSearchParams(window.location.search).get(key); if (value) FILTERS[key] = value; });
+  const program = new URLSearchParams(window.location.search).get("program");
+  if (program) FILTERS.programme = program;
+}
 function resetFinder() {
   FILTERS.level = "all";
+  FILTERS.programme = "all";
   FILTERS.district = "all";
   FILTERS.priority = "all";
   updateChoices();
@@ -202,14 +216,17 @@ function resetFinder() {
 document.querySelectorAll("[data-filter]").forEach((button) => {
   button.addEventListener("click", () => {
     FILTERS[button.dataset.filter] = button.dataset.value;
+    syncUrl();
     updateChoices();
     renderCards();
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "campus_filter", filter: button.dataset.filter, value: button.dataset.value });
   });
 });
 document.getElementById("resetFinder").addEventListener("click", resetFinder);
 
 function mapCardTemplate(campus) {
-  return `<span class="eyebrow">Cơ sở ${safe(campus.number)} · ${safe(campus.district)}</span><h3>${safe(campus.name)}</h3><p class="map-card-tagline">${safe(campus.tagline)}</p><p>${safe(campus.address)}.</p><div class="map-card-meta"><span>${safe(campus.ages)}</span><span>${safe(campus.phone)}</span></div><div class="row"><button type="button" class="btn btn-dark" data-focus-detail="${safe(campus.id)}">Xem cơ sở →</button><a class="btn btn-outline-dark" href="../tuyen-sinh/#dang-ky">Đăng ký tư vấn</a></div>`;
+  return `<span class="eyebrow">Cơ sở ${safe(campus.number)} · ${safe(campus.district)}</span><h3>${safe(campus.name)}</h3><p class="map-card-tagline">${safe(campus.tagline)}</p><p>${safe(campus.address)}.</p><div class="map-card-meta"><span>${safe(campus.ages)}</span><span>${safe(campus.phone)}</span></div><div class="row"><button type="button" class="btn btn-dark" data-focus-detail="${safe(campus.id)}">Xem cơ sở →</button><a class="btn btn-outline-dark" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.name)}#dang-ky">Tham quan</a></div>`;
 }
 
 function setActiveMarker(id) {
@@ -268,6 +285,7 @@ document.addEventListener("click", (event) => {
   if (link) focusCampus(link.dataset.focusCampus);
 });
 
+readUrlState();
 updateChoices();
 renderCards();
 renderMap();

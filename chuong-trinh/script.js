@@ -72,7 +72,7 @@ function renderQuizResult() {
   const result = PATHWAYS.find((path) => path.code === code);
   quizProgressLabel.textContent = "Hoàn thành";
   quizProgressBar.style.width = "100%";
-  quizContent.innerHTML = `<p class="quiz-kicker">Gợi ý ban đầu</p><div class="quiz-result-code">${clean(result.code)}</div><h3>Lộ trình đề xuất: ${clean(result.code)}</h3><p class="quiz-result-text">${clean(result.note)} ${clean(result.strap)}</p><div class="quiz-result-actions"><button class="btn btn-light" type="button" id="viewSuggested">Xem lộ trình ${clean(result.code)} <span aria-hidden="true">→</span></button><a class="btn btn-outline-light" href="../tuyen-sinh/#dang-ky">Đăng ký tư vấn <span aria-hidden="true">→</span></a></div><button class="quiz-back" type="button" id="quizReset">Làm lại từ đầu</button>`;
+  quizContent.innerHTML = `<p class="quiz-kicker">Gợi ý ban đầu</p><div class="quiz-result-code">${clean(result.code)}</div><h3>Lộ trình đề xuất: ${clean(result.code)}</h3><p class="quiz-result-text">${clean(result.note)} ${clean(result.strap)}</p><div class="quiz-result-actions"><button class="btn btn-light" type="button" id="viewSuggested">Xem lộ trình ${clean(result.code)} <span aria-hidden="true">→</span></button><a class="btn btn-outline-light" href="../tuyen-sinh/?intent=inquire&program=${encodeURIComponent(result.code.toLowerCase())}#dang-ky">Nhận tư vấn <span aria-hidden="true">→</span></a></div><button class="quiz-back" type="button" id="quizReset">Làm lại từ đầu</button>`;
   document.getElementById("viewSuggested").addEventListener("click", () => {
     const index = PATHWAYS.findIndex((path) => path.code === result.code);
     renderPathway(index);
@@ -91,7 +91,7 @@ function renderPathway(index) {
     tab.classList.toggle("active", active);
     tab.setAttribute("aria-selected", String(active));
   });
-  pathwayPanel.innerHTML = `<div class="pathway-panel-head"><div><span class="pathway-code">${clean(path.code)}</span><h3>${clean(path.name)}</h3><p class="pathway-strap">${clean(path.strap)}</p></div><a href="../tuyen-sinh/#dang-ky" class="btn btn-red">Đăng ký tư vấn <span aria-hidden="true">→</span></a></div><div class="pathway-content"><div><p class="pathway-label">Tổng quan</p><p>${clean(path.description)}</p><p class="pathway-label">Hành trình</p><ul class="journey-list">${path.journey.map((item) => `<li>${clean(item)}</li>`).join("")}</ul></div><div class="pathway-fit"><p class="pathway-label">Phù hợp với gia đình</p><ul>${path.fit.map((item) => `<li>${clean(item)}</li>`).join("")}</ul><div class="pathway-outcome"><span>Đầu ra nổi bật</span><strong>${clean(path.outcome)}</strong></div></div></div><p class="pathway-note">${clean(path.note)}</p>`;
+  pathwayPanel.innerHTML = `<div class="pathway-panel-head"><div><span class="pathway-code">${clean(path.code)}</span><h3>${clean(path.name)}</h3><p class="pathway-strap">${clean(path.strap)}</p></div><a href="../tuyen-sinh/?intent=inquire&program=${encodeURIComponent(path.code.toLowerCase())}#dang-ky" class="btn btn-red">Nhận tư vấn <span aria-hidden="true">→</span></a></div><div class="pathway-content"><div><p class="pathway-label">Tổng quan</p><p>${clean(path.description)}</p><p class="pathway-label">Hành trình</p><ul class="journey-list">${path.journey.map((item) => `<li>${clean(item)}</li>`).join("")}</ul></div><div class="pathway-fit"><p class="pathway-label">Phù hợp với gia đình</p><ul>${path.fit.map((item) => `<li>${clean(item)}</li>`).join("")}</ul><div class="pathway-outcome"><span>Đầu ra nổi bật</span><strong>${clean(path.outcome)}</strong></div></div></div><p class="pathway-note">${clean(path.note)}</p>`;
 }
 PATHWAYS.forEach((path, index) => {
   const tab = document.createElement("button");
@@ -103,7 +103,10 @@ PATHWAYS.forEach((path, index) => {
   tab.addEventListener("click", () => renderPathway(index));
   pathwayTabs.appendChild(tab);
 });
-renderPathway(0);
+const requestedProgram = new URLSearchParams(window.location.search).get("program");
+const requestedIndex = requestedProgram ? PATHWAYS.findIndex((path) => path.code.toLowerCase() === requestedProgram.toLowerCase()) : 0;
+renderPathway(requestedIndex >= 0 ? requestedIndex : 0);
+if (requestedProgram && requestedIndex >= 0) document.getElementById("chi-tiet-lo-trinh")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
 /* Keep details native but ensure the plus sign reflects open/closed state in browsers without CSS support. */
 document.querySelectorAll(".faq details").forEach((detail) => detail.addEventListener("toggle", () => {

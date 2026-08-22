@@ -37,10 +37,10 @@ const MENU = {
 };
 
 const PROOF = [
-  { n: 20, suffix: " năm", label: "dẫn đầu khối song ngữ", note: "Kể từ 2004, lớn lên cùng các gia đình Việt." },
-  { n: 6, suffix: " cơ sở", label: "trên khắp TP.HCM", note: "Luôn có một cộng đồng VAS gần bạn." },
-  { n: 8000, suffix: "+", label: "học sinh mỗi năm học", note: "Một trong những cộng đồng trường học lớn nhất." },
-  { n: 16, suffix: " năm", label: "học xuyên cấp liền mạch", note: "Một lộ trình, từ Mầm non đến Lớp 12." },
+  { n: 20, suffix: " năm", label: "dẫn đầu khối song ngữ", note: "Kể từ 2004, lớn lên cùng các gia đình Việt.", href: "ve-vas/#lich-su" },
+  { n: 6, suffix: " cơ sở", label: "trên khắp TP.HCM", note: "Luôn có một cộng đồng VAS gần bạn.", href: "co-so/#tim-co-so" },
+  { n: 8000, suffix: "+", label: "học sinh mỗi năm học", note: "Một trong những cộng đồng trường học lớn nhất.", href: "ve-vas/#thanh-tich" },
+  { n: 16, suffix: " năm", label: "học xuyên cấp liền mạch", note: "Một lộ trình, từ Mầm non đến Lớp 12.", href: "chuong-trinh/#hanh-trinh-16-nam" },
 ];
 
 const DIFF = [
@@ -150,6 +150,7 @@ const el = (html) => {
   return t.content.firstElementChild;
 };
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const track = (event, detail = {}) => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event, ...detail }); };
 
 /* ================= header ================= */
 const header = document.getElementById("header");
@@ -173,7 +174,7 @@ function renderMega(k) {
       <div>
         <p class="mega-heading">${esc(m.heading)}</p>
         <p class="mega-note">${esc(m.note)}</p>
-        <a href="#admissions" class="mega-cta">Đăng ký tư vấn <span aria-hidden="true">→</span></a>
+        <div class="mega-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="mega-cta">Nhận tư vấn <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=visit#dang-ky" class="mega-cta">Tham quan VAS <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=apply#dang-ky" class="mega-cta">Đăng ký dự tuyển <span aria-hidden="true">→</span></a></div>
       </div>
       <ul class="mega-links">
         ${m.links.map((l) => `<li><a href="${PAGE[k]}">${esc(l)} <span aria-hidden="true">→</span></a></li>`).join("")}
@@ -211,7 +212,7 @@ navKeys.forEach((k) => {
     </details>`);
   mobileMenu.appendChild(d);
 });
-mobileMenu.appendChild(el(`<a href="#admissions" class="btn btn-red">Đăng ký tư vấn</a>`));
+mobileMenu.appendChild(el(`<div class="mobile-admission-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="btn btn-red">Nhận tư vấn</a><a href="tuyen-sinh/?intent=visit#dang-ky" class="btn btn-outline">Tham quan VAS</a><a href="tuyen-sinh/?intent=apply#dang-ky" class="btn btn-outline">Đăng ký dự tuyển</a></div>`));
 const burger = document.getElementById("burger");
 burger.addEventListener("click", () => {
   mobileMenu.classList.toggle("open");
@@ -224,10 +225,10 @@ mobileMenu.addEventListener("click", (e) => {
 /* ================= render sections ================= */
 // proof
 document.getElementById("proofGrid").innerHTML = PROOF.map((p, i) => `
-  <div class="proof-cell reveal" style="transition-delay:${i * 90}ms">
+  <a class="proof-cell reveal" href="${p.href}" style="transition-delay:${i * 90}ms">
     <div class="proof-num" data-count="${p.n}" data-suffix="${esc(p.suffix)}">0</div>
-    <div><p class="proof-label">${esc(p.label)}</p><p class="proof-note">${esc(p.note)}</p></div>
-  </div>`).join("");
+    <div><p class="proof-label">${esc(p.label)}</p><p class="proof-note">${esc(p.note)}</p><span class="proof-link">Xem bằng chứng →</span></div>
+  </a>`).join("");
 
 // differentiators
 document.getElementById("diffGrid").innerHTML = DIFF.map((d, i) => `
@@ -235,7 +236,7 @@ document.getElementById("diffGrid").innerHTML = DIFF.map((d, i) => `
     <div class="diff-img"><img src="${imageUrl(d.img, 640, 800)}" alt="${esc(d.t)}" loading="lazy" /></div>
     <div class="diff-body">
       <h3>${esc(d.t)}</h3><p>${esc(d.d)}</p>
-      <a href="#" class="diff-more">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
+      <a href="chuong-trinh/" class="diff-more">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
     </div>
   </article>`).join("");
 
@@ -263,7 +264,7 @@ function renderProg(idx) {
     <h3>${esc(p.name)}</h3>
     <p class="desc">${esc(p.d)}</p>
     <div class="prog-for"><p class="k">Phù hợp với</p><p class="v">${esc(p.for)}</p></div>
-    <a href="#admissions" class="btn btn-red" style="margin-top:24px;padding:12px 24px;font-size:14px">Tìm lộ trình cho con <span aria-hidden="true">→</span></a>`;
+    <div class="prog-actions"><a href="find-my-path/?program=${encodeURIComponent(p.code.toLowerCase())}" class="btn btn-red" style="margin-top:24px;padding:12px 24px;font-size:14px">Tìm lộ trình cho con <span aria-hidden="true">→</span></a><a href="chuong-trinh/#so-sanh" class="text-link light">So sánh lộ trình →</a></div>`;
 }
 PROGRAMMES.forEach((p, i) => {
   const b = el(`<button class="prog-tab"><span><span class="code">${esc(p.code)}</span><span class="tagname">${esc(p.tag)}</span></span><span class="arrow" aria-hidden="true">→</span></button>`);
@@ -306,8 +307,8 @@ function renderCampus(idx) {
     <div class="campus-info">
       <p>${esc(c.note)}</p>
       <div class="actions">
-        <a href="#admissions" class="btn btn-light">Đăng ký tư vấn</a>
-        <a href="#" class="btn btn-outline-light" style="border-color:rgba(255,255,255,.4)">Xem cơ sở</a>
+        <a href="tuyen-sinh/?intent=inquire&campus=${encodeURIComponent(c.name)}#dang-ky" class="btn btn-light">Nhận tư vấn</a>
+        <a href="co-so/#tim-co-so" class="btn btn-outline-light" style="border-color:rgba(255,255,255,.4)">Tìm cơ sở phù hợp</a>
       </div>
     </div>`;
 }
@@ -318,10 +319,12 @@ CAMPUSES.forEach((c, i) => {
       <span class="meta"><b>${esc(c.name)}</b><span>${esc(c.district)}</span></span>
       <span class="arrow" aria-hidden="true">→</span>
     </button></li>`);
-  b.querySelector("button").addEventListener("click", () => renderCampus(i));
+  b.querySelector("button").addEventListener("click", () => { renderCampus(i); track("homepage_campus_select", { campus: c.name }); });
   campusList.appendChild(b);
 });
 renderCampus(0);
+
+document.querySelectorAll("[data-track]").forEach((node) => node.addEventListener("click", () => track(node.dataset.track)));
 
 // stories
 document.getElementById("storiesGrid").innerHTML = STORIES.map((s, i) => `

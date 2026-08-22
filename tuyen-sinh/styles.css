@@ -87,3 +87,35 @@
 #quy-trinh .step .n { color: var(--vas-red); }
 #quy-trinh .step h4 { color: var(--ink); }
 #quy-trinh .step p { color: var(--ink-soft); }
+
+/* UX upgrade: intent, fee and form states */
+.intent-switch { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.intent-switch button { border: 1px solid rgba(255,255,255,.38); border-radius: 9999px; background: transparent; color: var(--paper); padding: 10px 16px; font-size: 13px; font-weight: 600; }
+.intent-switch button[aria-selected="true"] { border-color: var(--gold-soft); background: var(--paper); color: var(--vas-red); }
+.intent-description { max-width: 30rem; margin-bottom: 6px; color: rgba(255,255,255,.78); font-size: 14px; }
+.fee-calculator { margin-top: 28px; }
+.fee-fields { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .fee-fields { grid-template-columns: 1fr 1fr; } }
+.fee-fields label { display: flex; flex-direction: column; gap: 6px; color: rgba(255,255,255,.8); font-size: 12px; font-weight: 600; }
+.fee-fields select { width: 100%; padding: 11px 12px; border: 1px solid rgba(255,255,255,.3); border-radius: 10px; background: rgba(255,255,255,.1); color: var(--paper); font: inherit; }
+.fee-fields option { color: var(--ink); }
+.fee-result { margin-top: 18px; padding: 20px; border: 1px solid rgba(255,255,255,.22); border-radius: 16px; background: rgba(255,255,255,.08); }
+.fee-result span { color: var(--gold-soft); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
+.fee-result strong { display: block; margin-top: 6px; font-family: var(--font-display); font-size: 1.65rem; }
+.fee-result p { margin-top: 6px; color: rgba(255,255,255,.72); font-size: 13px; }
+.fee-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.fee-actions .btn { padding: 11px 17px; font-size: 13px; }
+.visit-fields[hidden] { display: none; }
+.consent { flex-direction: row !important; align-items: flex-start; gap: 9px !important; font-size: 12px !important; font-weight: 400 !important; color: var(--ink-soft) !important; }
+.consent input { width: 18px !important; height: 18px; flex: 0 0 18px; margin-top: 1px; }
+.consent a { color: var(--vas-red); text-decoration: underline; text-underline-offset: 3px; }
+.field-error { padding: 10px 12px; border-left: 3px solid var(--vas-red); background: #fff1f1; color: var(--vas-red); font-size: 13px; }
+.enquiry [aria-invalid="true"] { border-color: var(--vas-red); box-shadow: 0 0 0 3px rgba(181,31,31,.12); }
+.form-msg { display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 16px; background: var(--paper); color: var(--ink); }
+.form-msg strong { font-family: var(--font-display); font-size: 1.5rem; color: var(--vas-red); }
+.success-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.success-actions .btn { padding: 10px 16px; font-size: 13px; }
+.mobile-admission-actions { display: grid; gap: 8px; padding-top: 20px; }
+.mobile-admission-actions .btn { justify-content: center; }
+.mega-actions { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+.mega-actions .mega-cta { margin-top: 20px; }

@@ -218,3 +218,7 @@
 .cam-step.highlight > span { color: var(--vas-red); }
 .bar { background: #ffffff; border: 1px solid var(--line); }
 .pathway-outcome { border: 1px solid var(--line); background: #ffffff; }
+.programme-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.pathway-panel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.pathway-panel-actions .text-link { color: var(--vas-red); font-size: 14px; font-weight: 600; }
+@media (max-width: 639px) { .pathway-panel-actions { align-items: flex-start; flex-direction: column; } }
