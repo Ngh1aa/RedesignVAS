@@ -164,7 +164,7 @@ function cardTemplate(campus) {
         <p class="campus-tagline">“${safe(campus.tagline)}”</p>
         <p>${safe(campus.description)}</p>
         <div class="tag-list">${campus.highlights.slice(0, 4).map((item) => `<span>${safe(item)}</span>`).join("")}</div>
-        <div class="campus-card-actions"><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.name)}#dang-ky">Tham quan →</a><a class="text-link" href="../tuyen-sinh/#hoc-phi">Học phí →</a></div>
+        <div class="campus-card-actions"><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.id)}#dang-ky">Tham quan →</a><a class="text-link" href="../tuyen-sinh/#hoc-phi">Học phí →</a></div>
       </div>
       <div class="campus-card-gallery" aria-hidden="true"><img src="${imageUrl(campus.lifeImg, 520, 360)}" alt="" loading="lazy" /><img src="${imageUrl(campus.spaceImg, 520, 360)}" alt="" loading="lazy" /></div>
     </article>`;
@@ -226,7 +226,7 @@ document.querySelectorAll("[data-filter]").forEach((button) => {
 document.getElementById("resetFinder").addEventListener("click", resetFinder);
 
 function mapCardTemplate(campus) {
-  return `<span class="eyebrow">Cơ sở ${safe(campus.number)} · ${safe(campus.district)}</span><h3>${safe(campus.name)}</h3><p class="map-card-tagline">${safe(campus.tagline)}</p><p>${safe(campus.address)}.</p><div class="map-card-meta"><span>${safe(campus.ages)}</span><span>${safe(campus.phone)}</span></div><div class="row"><button type="button" class="btn btn-dark" data-focus-detail="${safe(campus.id)}">Xem cơ sở →</button><a class="btn btn-outline-dark" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.name)}#dang-ky">Tham quan</a></div>`;
+  return `<span class="eyebrow">Cơ sở ${safe(campus.number)} · ${safe(campus.district)}</span><h3>${safe(campus.name)}</h3><p class="map-card-tagline">${safe(campus.tagline)}</p><p>${safe(campus.address)}.</p><div class="map-card-meta"><span>${safe(campus.ages)}</span><span>${safe(campus.phone)}</span></div><div class="row"><button type="button" class="btn btn-dark" data-focus-detail="${safe(campus.id)}">Xem cơ sở →</button><a class="btn btn-outline-dark" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.id)}#dang-ky">Tham quan</a></div>`;
 }
 
 function setActiveMarker(id) {

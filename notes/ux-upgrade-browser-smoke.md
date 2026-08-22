@@ -35,3 +35,11 @@ The default `?intent=inquire#dang-ky` route shows the inquiry copy, no tour-only
 ## Admissions validation
 
 Submitting the empty inquiry form on the preview produced the inline error **Vui lòng nhập tên phụ huynh.** and returned focus to the parent-name field. This confirms the form does not rely only on a generic browser alert and blocks submission before the required contact data and consent are complete.
+
+## Live deployment
+
+The first live check immediately after push returned a temporary GitHub Pages 404 while the Pages workflow was still building. `gh api repos/Ngh1aa/RedesignVAS/pages` reported `status: building`, and the Pages deployment workflow then completed successfully. A second live check of `https://ngh1aa.github.io/RedesignVAS/find-my-path/?grade=3&direction=balanced&program=cap&campus=sala` returned the expected Find My Path title, CAP recommendation, Sala selection, 2026–2027 fee fallback, and contextual actions. The current live site is serving the upgrade.
+
+## Regression audit follow-up
+
+Static audit found two classes of remaining issues: visible placeholder `href="#"` links on the homepage and several legacy admissions CTAs on secondary pages. These have now been replaced with real internal routes. A live/preview regression check of `/co-so/` and `/tuyen-sinh/?intent=visit&campus=sala#dang-ky` confirmed both routes render and the Visit branch is selected; the campus-id mapping fix is ready for the next deployment check.

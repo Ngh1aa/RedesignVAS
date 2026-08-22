@@ -142,6 +142,12 @@ const PAGE = {
   "Tin tức": "tin-tuc/",
   "Vòng quanh VAS": "vong-quanh-vas/",
 };
+const FOOT_LINKS = {
+  "Chương trình": { "Mầm non": "chuong-trinh/#chuyen-lo-trinh", "Tiểu học": "chuong-trinh/#chuyen-lo-trinh", "Trung học cơ sở": "chuong-trinh/#chuyen-lo-trinh", "Trung học phổ thông": "chuong-trinh/#chuyen-lo-trinh", "Lộ trình Cambridge": "chuong-trinh/#cambridge-journey" },
+  "Các cơ sở": { "Ba Tháng Hai": "co-so/#tim-co-so", "Riverside": "co-so/#tim-co-so", "Sunrise": "co-so/#tim-co-so", "Sala": "co-so/#tim-co-so", "Garden Hills": "co-so/#tim-co-so", "Hoàng Văn Thụ": "co-so/#tim-co-so" },
+  "Về VAS": { "Câu chuyện VAS": "ve-vas/#top", "Đội ngũ giáo viên": "ve-vas/#peopleGrid", "Thành tích": "ve-vas/#statGrid", "Lộ trình vào đại học": "ve-vas/#journeyList" },
+  "Tuyển sinh": { "Quy trình tuyển sinh": "tuyen-sinh/#quy-trinh", "Học phí": "tuyen-sinh/#hoc-phi", "Đăng ký tư vấn": "tuyen-sinh/?intent=inquire#dang-ky", "Câu hỏi thường gặp": "tuyen-sinh/#faq", "Liên hệ": "tuyen-sinh/#dang-ky" },
+};
 
 /* ================= helpers ================= */
 const el = (html) => {
@@ -367,7 +373,7 @@ document.getElementById("stepsGrid").innerHTML = STEPS.map(([n, t, d], i) => `
 
 // news
 document.getElementById("articlesGrid").innerHTML = NEWS.map((a, i) => `
-  <a href="#" class="article reveal" style="transition-delay:${i * 90}ms">
+  <a href="tin-tuc/" class="article reveal" style="transition-delay:${i * 90}ms">
     <div class="thumb"><img src="${imageUrl(a.img, 600, 420)}" alt="${esc(a.title)}" loading="lazy" /></div>
     <p class="meta">${esc(a.tag)} <i></i> <em>${esc(a.date)}</em></p>
     <h3>${esc(a.title)}</h3>
@@ -376,7 +382,7 @@ document.getElementById("articlesGrid").innerHTML = NEWS.map((a, i) => `
 // events
 document.getElementById("eventsList").innerHTML = EVENTS.map(([title, place, date]) => {
   const [d, mth] = date.split("/");
-  return `<li><a href="#" class="event">
+  return `<li><a href="tuyen-sinh/?intent=visit&event=${encodeURIComponent(title)}#dang-ky" class="event">
     <span class="date"><b>${d}</b><span>Th${Number(mth)}</span></span>
     <span class="info"><b>${esc(title)}</b><span>${esc(place)}</span></span>
     <span class="arrow" aria-hidden="true">→</span>
@@ -385,7 +391,7 @@ document.getElementById("eventsList").innerHTML = EVENTS.map(([title, place, dat
 
 // footer
 document.getElementById("footerCols").innerHTML = Object.entries(FOOT).map(([h, links]) => `
-  <div><h4>${esc(h)}</h4><ul>${links.map((l) => `<li><a href="#">${esc(l)}</a></li>`).join("")}</ul></div>`).join("");
+  <div><h4>${esc(h)}</h4><ul>${links.map((l) => `<li><a href="${FOOT_LINKS[h]?.[l] || PAGE[h] || "tin-tuc/"}">${esc(l)}</a></li>`).join("")}</ul></div>`).join("");
 
 /* ================= reveal on scroll ================= */
 const io = new IntersectionObserver((entries) => {
