@@ -239,7 +239,7 @@
   window.addEventListener("load", initObservers);
 
   /* ---------- UI feedback tool ---------- */
-  import(new URL(`${BASE}ui-feedback.js?v=0.13.0`, document.baseURI).href)
+  import(new URL(`${BASE}ui-feedback.js?v=e6127a1`, document.baseURI).href)
     .then(({ createUIFeedback }) => {
       createUIFeedback({
         storageKey: "redesignvas-ui-feedback",
