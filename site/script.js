@@ -414,7 +414,7 @@ const countIO = new IntersectionObserver((entries) => {
 document.querySelectorAll("[data-count]").forEach((n) => countIO.observe(n));
 
 /* ================= UI feedback tool ================= */
-import(new URL("ui-feedback.js?v=e6127a1", document.baseURI).href)
+import(new URL("ui-feedback.js?v=4ef8421", document.baseURI).href)
   .then(({ createUIFeedback }) => {
     createUIFeedback({
       storageKey: "redesignvas-ui-feedback",
