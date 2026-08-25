@@ -1,0 +1,69 @@
+/* VAS motion system: friendly, purposeful and deliberately restrained. */
+:root {
+  --vas-motion-ease: cubic-bezier(.16, 1, .3, 1);
+  --vas-motion-duration: 720ms;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vas-page-out 240ms ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: vas-page-in 520ms var(--vas-motion-ease) both;
+}
+
+@keyframes vas-page-out {
+  to { opacity: .78; transform: translate3d(-6px, 0, 0); }
+}
+
+@keyframes vas-page-in {
+  from { opacity: 0; transform: translate3d(14px, 0, 0); }
+}
+
+.vas-motion-ready .vas-motion-item {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+}
+
+.vas-motion-ready .vas-motion-item.is-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity var(--vas-motion-duration) var(--vas-motion-ease) var(--vas-motion-delay, 0ms),
+    transform var(--vas-motion-duration) var(--vas-motion-ease) var(--vas-motion-delay, 0ms);
+}
+
+.vas-motion-ready .vas-motion-media {
+  overflow: hidden;
+}
+
+.vas-motion-ready .vas-motion-media img {
+  transform: scale(1.025);
+  transition: transform 900ms var(--vas-motion-ease) var(--vas-motion-delay, 0ms);
+}
+
+.vas-motion-ready .vas-motion-media.is-motion-visible img {
+  transform: scale(1);
+}
+
+@media (max-width: 767px) {
+  :root { --vas-motion-duration: 560ms; }
+  .vas-motion-ready .vas-motion-item { transform: translate3d(0, 14px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+
+  .vas-motion-ready .vas-motion-item,
+  .vas-motion-ready .vas-motion-item.is-motion-visible,
+  .vas-motion-ready .vas-motion-media img {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
