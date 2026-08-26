@@ -1,0 +1,28 @@
+/* Responsive title safety: prefer the fewest lines possible without overflow. */
+.page-hero h1 {
+  white-space: normal;
+  text-wrap: pretty;
+  max-inline-size: 100%;
+}
+
+main h1,
+main h2,
+main h3 {
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (min-width: 1180px) {
+  .program-hero h1,
+  .campus-hero h1,
+  .around-hero h1 {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1179px) {
+  .page-hero h1 {
+    white-space: normal;
+  }
+}
