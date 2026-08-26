@@ -30,6 +30,8 @@ const STORIES = [
   ["Thành tích Cambridge", "Mỗi thành tích bắt đầu từ một hành trình.", "Học sinh VAS chinh phục các kỳ thi Cambridge bằng sự bền bỉ, tò mò và niềm tin vào khả năng của chính mình.", "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F4J4A2277%201.jpg&w=3840&q=75"],
   ["English Speaking Contest", "Gần 100 học sinh từ lớp 1 đến lớp 12 tham gia vòng chung kết hệ thống tại Riverside.", "Một sân khấu để học sinh nói lên suy nghĩ, lắng nghe nhau và tự tin sử dụng tiếng Anh trong những tình huống thật.", "https://cdn2.tuoitre.vn/thesaigontimes/uploads/2024/11/VAS_1.jpg"],
   ["Dự án học sinh", "Từ câu hỏi nhỏ đến giải pháp lớn.", "Robotics, nghệ thuật, Community Programme và những dự án liên môn giúp học sinh biến ý tưởng thành hành động.", "https://timtruongquocte.com/storage/app/resources/resize/1920_880_0_0_auto/truong-mam-non-quoc-te-viet-uc-vas_b481ba2cfd8a4e69f339a4b289580ece.webp"],
+  ["Toán học Sài Gòn 2026", "VASers giành 9 giải thưởng tại cuộc thi Toán học Sài Gòn 2026.", "Các đội thi VAS ghi dấu ấn ở cả bảng Junior và Senior, thể hiện tư duy logic, khả năng tính toán và tinh thần phối hợp dưới áp lực.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/hoc%20sinh.JPG"],
+  ["Cambridge Awards 2025", "Gần 600 học sinh VAS được vinh danh với IGCSE, AS & A Level.", "Lễ trao giải ghi nhận những nỗ lực bền bỉ và thành tích Cambridge nổi bật, trong đó có các danh hiệu Top in Vietnam.", "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/cam%20award%20%285%29.jpg"],
 ];
 
 const EVENTS = [
