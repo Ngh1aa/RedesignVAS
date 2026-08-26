@@ -118,13 +118,15 @@ body:not([data-depth="1"]) #diffGrid .diff-body h3,
   #dang-ky .intent-description {
     grid-column: 2;
     grid-row: 2;
-    margin: 12px 0 0;
+    max-width: none;
+    margin: 8px 0 0;
+    white-space: nowrap;
   }
 
   #dang-ky #enquiryForm {
     grid-column: 2;
     grid-row: 3;
-    margin-top: 40px;
+    margin-top: 10px;
   }
 }
 
