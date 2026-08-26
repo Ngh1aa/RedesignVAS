@@ -96,6 +96,12 @@
     uiReviewScript.defer = true;
     uiReviewScript.dataset.vasUiReviewScript = "true";
     document.head.appendChild(uiReviewScript);
+
+    const latestUiReview = document.createElement("link");
+    latestUiReview.rel = "stylesheet";
+    latestUiReview.href = new URL("uivas-review-20260826.css?v=20260826b", motionScriptSrc).href;
+    latestUiReview.dataset.vasLatestUiReview = "true";
+    document.head.appendChild(latestUiReview);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
