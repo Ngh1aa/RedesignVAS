@@ -72,6 +72,12 @@
     upgrade.defer = true;
     upgrade.dataset.vasContentUpgrades = "true";
     document.head.appendChild(upgrade);
+
+    const heroCampusUi = document.createElement("script");
+    heroCampusUi.src = new URL("vas-hero-campus-ui.js?v=20260826", motionScriptSrc).href;
+    heroCampusUi.defer = true;
+    heroCampusUi.dataset.vasHeroCampusUi = "true";
+    document.head.appendChild(heroCampusUi);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
