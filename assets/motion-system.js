@@ -1,5 +1,6 @@
 (function initVasMotionSystem() {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const motionScriptSrc = document.currentScript?.src || "";
   const itemSelector = [
     "main > section",
     "main article",
@@ -57,6 +58,14 @@
       }));
     });
     mutations.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (motionScriptSrc) {
+    const upgrade = document.createElement("script");
+    upgrade.src = new URL("vas-content-upgrades.js?v=20260826", motionScriptSrc).href;
+    upgrade.defer = true;
+    upgrade.dataset.vasContentUpgrades = "true";
+    document.head.appendChild(upgrade);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
