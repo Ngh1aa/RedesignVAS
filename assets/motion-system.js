@@ -84,6 +84,18 @@
     heroCampusUi.defer = true;
     heroCampusUi.dataset.vasHeroCampusUi = "true";
     document.head.appendChild(heroCampusUi);
+
+    const uiReview = document.createElement("link");
+    uiReview.rel = "stylesheet";
+    uiReview.href = new URL("ui-review-20260826.css?v=20260826a", motionScriptSrc).href;
+    uiReview.dataset.vasUiReview = "true";
+    document.head.appendChild(uiReview);
+
+    const uiReviewScript = document.createElement("script");
+    uiReviewScript.src = new URL("ui-review-20260826.js?v=20260826a", motionScriptSrc).href;
+    uiReviewScript.defer = true;
+    uiReviewScript.dataset.vasUiReviewScript = "true";
+    document.head.appendChild(uiReviewScript);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
