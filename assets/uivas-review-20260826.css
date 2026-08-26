@@ -1,0 +1,224 @@
+/* UIVAS feedback review · 2026-08-26
+   Scope: equal campus cards, Vòng quanh VAS card treatments, News refinements.
+   Loaded after page styles to preserve existing layout/behavior outside requested selectors. */
+
+/* ------------------------------------------------------------------
+   CƠ SỞ · six equal vertical cards, three per row on desktop
+   ------------------------------------------------------------------ */
+#cac-co-so #campusGrid {
+  align-items: stretch !important;
+  grid-auto-rows: 1fr !important;
+}
+
+#cac-co-so #campusGrid .campus-editorial-card {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 356px !important;
+}
+
+#cac-co-so #campusGrid .campus-card-body {
+  min-height: 184px !important;
+}
+
+#cac-co-so #campusGrid .campus-card-actions {
+  margin-top: auto !important;
+}
+
+@media (max-width: 1079px) {
+  #cac-co-so #campusGrid .campus-editorial-card {
+    min-height: 344px !important;
+  }
+}
+
+@media (max-width: 719px) {
+  #cac-co-so #campusGrid .campus-editorial-card {
+    min-height: 0 !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   VÒNG QUANH VAS · sport image-card with VAS red gradient + white copy
+   ------------------------------------------------------------------ */
+#the-thao #sportStory .sport-card {
+  position: relative !important;
+  display: block !important;
+  min-height: 480px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(35,29,25,.12) !important;
+  border-radius: 18px !important;
+  background: var(--vas-red) !important;
+  isolation: isolate;
+}
+
+#the-thao #sportStory .sport-card > img {
+  position: absolute !important;
+  z-index: 0;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  opacity: 1 !important;
+}
+
+#the-thao #sportStory .sport-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(138,20,20,.98) 0%,
+    rgba(181,31,31,.9) 28%,
+    rgba(181,31,31,.64) 52%,
+    rgba(138,20,20,.22) 76%,
+    rgba(138,20,20,0) 100%
+  );
+}
+
+#the-thao #sportStory .sport-card-copy {
+  position: relative !important;
+  z-index: 2;
+  display: flex !important;
+  min-height: 480px !important;
+  max-width: 46rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(28px, 5vw, 54px) !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+}
+
+#the-thao #sportStory .sport-label,
+#the-thao #sportStory .sport-card h3,
+#the-thao #sportStory .sport-card p,
+#the-thao #sportStory .sport-stats span,
+#the-thao #sportStory .sport-list {
+  color: #fff !important;
+}
+
+#the-thao #sportStory .sport-label {
+  color: var(--gold-soft) !important;
+}
+
+#the-thao #sportStory .sport-stats div {
+  border-top-color: rgba(255,255,255,.38) !important;
+}
+
+#the-thao #sportStory .sport-stats strong {
+  color: var(--gold-soft) !important;
+}
+
+/* Arts + clubs: requested red highlights; club decorative icon removed. */
+#artsGrid .tag-index,
+#clubsGrid .club-card h3 {
+  color: var(--vas-red) !important;
+}
+
+#clubsGrid .club-mark {
+  display: none !important;
+}
+
+#clubsGrid .club-card {
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+}
+
+#clubsGrid .club-card p {
+  grid-column: 1 !important;
+  margin-top: 0 !important;
+}
+
+/* Student-care image: same rounded editorial card, soft red gradient + white label. */
+#cham-soc-hoc-sinh .care-layout .media.tall {
+  position: relative !important;
+  min-height: 460px;
+  overflow: hidden !important;
+  border: 1px solid rgba(35,29,25,.12);
+  border-radius: 18px !important;
+  background: var(--vas-red);
+  isolation: isolate;
+}
+
+#cham-soc-hoc-sinh .care-layout .media.tall img {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#cham-soc-hoc-sinh .care-layout .media.tall::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(138,20,20,.96) 0%,
+    rgba(181,31,31,.72) 34%,
+    rgba(181,31,31,.26) 65%,
+    rgba(181,31,31,0) 100%
+  );
+}
+
+#cham-soc-hoc-sinh .care-layout .media.tall::after {
+  content: "An toàn · Sức khỏe · Đồng hành";
+  position: absolute;
+  z-index: 2;
+  right: 26px;
+  bottom: 24px;
+  left: 26px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------------
+   TIN TỨC · remove square row borders + red activity headings
+   ------------------------------------------------------------------ */
+#eventsList,
+#eventsList li {
+  border: 0 !important;
+}
+
+#eventsList .event {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+#eventsList li + li .event {
+  margin-top: 4px;
+}
+
+#activityGrid .activity-card h3 {
+  color: var(--vas-red) !important;
+}
+
+/* Four supporting student stories should fill the right column naturally. */
+#cau-chuyen-hoc-sinh .story-list {
+  align-content: stretch;
+  grid-auto-rows: 1fr;
+}
+
+#cau-chuyen-hoc-sinh .story-item {
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  #the-thao #sportStory .sport-card,
+  #the-thao #sportStory .sport-card-copy {
+    min-height: 430px !important;
+  }
+
+  #cham-soc-hoc-sinh .care-layout .media.tall {
+    min-height: 380px;
+  }
+}
