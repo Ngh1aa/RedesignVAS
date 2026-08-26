@@ -61,6 +61,12 @@
   }
 
   if (motionScriptSrc) {
+    const typographySafety = document.createElement("link");
+    typographySafety.rel = "stylesheet";
+    typographySafety.href = new URL("typography-safety.css?v=20260826", motionScriptSrc).href;
+    typographySafety.dataset.vasTypographySafety = "true";
+    document.head.appendChild(typographySafety);
+
     const upgrade = document.createElement("script");
     upgrade.src = new URL("vas-content-upgrades.js?v=20260826", motionScriptSrc).href;
     upgrade.defer = true;
