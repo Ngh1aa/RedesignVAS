@@ -1,0 +1,215 @@
+/* UI Feedback review · 2026-08-26
+   Scope: title wrapping, lighter gold, requested page-level refinements.
+   Loaded after page styles so it can safely refine without restructuring templates. */
+
+:root {
+  --gold: #D8B35B;
+  --gold-soft: #F0D58A;
+}
+
+/* Headings + supporting descriptions: use available width before wrapping. */
+main h1,
+main h2,
+main h3,
+main h4 {
+  text-wrap: pretty;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+main p,
+main .lead,
+main .section-intro,
+main .editorial-kicker {
+  text-wrap: pretty;
+}
+
+main .section-head {
+  max-width: min(100%, 80rem) !important;
+}
+
+main .section-head h2 {
+  max-width: none !important;
+}
+
+main .section-head > p {
+  max-width: min(100%, 58rem) !important;
+}
+
+main .editorial-copy h2,
+main .why-head h2 {
+  max-width: 100% !important;
+}
+
+main .editorial-copy > p:not(.editorial-kicker),
+main .why-head p,
+main .hero-copy {
+  max-width: min(100%, 48rem) !important;
+}
+
+/* Về VAS · achievement descriptions should stay compact on desktop. */
+@media (min-width: 1100px) {
+  body[data-page="Về VAS"] #statGrid .stat-cell p {
+    white-space: nowrap;
+    font-size: 13px;
+    letter-spacing: -.01em;
+  }
+}
+
+/* Về VAS · remove generic card/border treatment leaking onto journey step numbers. */
+body[data-page="Về VAS"] #journeyList .step {
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Home · differentiator card headings use the same VAS red as primary buttons. */
+body:not([data-depth="1"]) #diffGrid .diff-body h3,
+#diffGrid .diff-body h3 {
+  color: var(--vas-red) !important;
+}
+
+/* Home · red gradient behind text in the secondary learning image. */
+.fig-b .fig-cap {
+  background: linear-gradient(
+    to top,
+    rgba(181,31,31,.94) 0%,
+    rgba(181,31,31,.72) 32%,
+    rgba(181,31,31,.34) 62%,
+    rgba(181,31,31,0) 100%
+  ) !important;
+}
+
+/* Admissions · heading sits 96px from the section top on desktop. */
+@media (min-width: 1024px) {
+  #hoc-phi .tuition-preview-grid > .reveal:first-child {
+    position: relative;
+    top: -32px;
+    align-self: start;
+  }
+
+  /* Keep the right-side intent filter and form grouped tightly and predictably. */
+  #dang-ky .contact-grid {
+    column-gap: 72px;
+    row-gap: 0;
+  }
+
+  #dang-ky .contact-grid > div:first-child {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+
+  #dang-ky .intent-switch {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    align-self: start;
+  }
+
+  #dang-ky .intent-description {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 12px 0 0;
+  }
+
+  #dang-ky #enquiryForm {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 40px;
+  }
+}
+
+/* News archive · same compact vertical-card language as campus overview. */
+#archiveGrid.archive-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-auto-rows: auto !important;
+  gap: 14px !important;
+}
+
+#archiveGrid .archive-card {
+  display: grid !important;
+  grid-template-rows: 156px auto !important;
+  grid-row: auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 18px !important;
+  color: var(--ink) !important;
+  background: var(--paper) !important;
+  box-shadow: none !important;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+#archiveGrid .archive-card:hover {
+  border-color: rgba(181,31,31,.28) !important;
+  box-shadow: 0 18px 36px -30px rgba(138,20,20,.55) !important;
+  transform: translateY(-2px);
+}
+
+#archiveGrid .archive-card::after {
+  display: none !important;
+}
+
+#archiveGrid .archive-card img {
+  width: 100% !important;
+  height: 156px !important;
+  opacity: 1 !important;
+  object-fit: cover !important;
+}
+
+#archiveGrid .archive-card:hover img {
+  opacity: 1 !important;
+  transform: scale(1.025) !important;
+}
+
+#archiveGrid .archive-card > span {
+  position: static !important;
+  display: grid !important;
+  gap: 6px !important;
+  padding: 15px 16px 17px !important;
+}
+
+#archiveGrid .archive-card strong {
+  color: var(--vas-red) !important;
+  font-size: 1.28rem !important;
+  line-height: 1.05 !important;
+}
+
+#archiveGrid .archive-card small {
+  color: var(--ink-soft) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+@media (min-width: 720px) {
+  #archiveGrid.archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1080px) {
+  #archiveGrid.archive-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main .section-head,
+  main .section-head > p,
+  main .editorial-copy h2,
+  main .editorial-copy > p,
+  main .why-head h2,
+  main .why-head p {
+    max-width: 100% !important;
+  }
+}
