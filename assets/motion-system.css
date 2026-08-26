@@ -50,9 +50,528 @@
   transform: scale(1);
 }
 
+/* =====================================================================
+   VAS TYPOGRAPHY + HERO COMPOSITION SYSTEM · 2026-08-26
+   - One display face for headings: Fraunces / --font-display
+   - One UI/body face for readable copy: Plus Jakarta Sans / --font-sans
+   - Different hero compositions by page, same VAS visual language
+   - Avoid forced title line-breaks; wrap only when viewport requires it
+   ===================================================================== */
+
+:root {
+  --vas-heading-font: var(--font-display, 'Fraunces', Georgia, serif);
+  --vas-body-font: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  --vas-hero-radius: 30px;
+  --vas-hero-shadow: 0 34px 80px -42px rgba(42, 26, 23, .55);
+}
+
+body,
+input,
+select,
+textarea,
+button {
+  font-family: var(--vas-body-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display {
+  font-family: var(--vas-heading-font);
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: pretty;
+}
+
+main h1,
+main h2 {
+  letter-spacing: -.025em;
+}
+
+/* Let large section titles use the available page width before wrapping. */
+.section-head {
+  max-width: min(100%, 76rem);
+}
+
+.section-head > p {
+  max-width: 42rem;
+}
+
+.section-head h2,
+.display {
+  text-wrap: pretty;
+}
+
+/* Remove manual <br> decisions from hero headlines. Browser wraps only if needed. */
+.page-hero h1 br,
+.page-hero .headline-break {
+  display: none;
+}
+
+/* Homepage: keep the original cinematic hero, only improve title line economy. */
+.hero h1 {
+  max-width: 76rem;
+  text-wrap: pretty;
+}
+
+.why-head h2 .block {
+  display: inline !important;
+}
+
+.why-head h2 .block::before {
+  content: " ";
+}
+
+/* Shared hero baseline. Each page below gets its own composition. */
+.page-hero {
+  isolation: isolate;
+  min-height: 650px;
+}
+
+.page-hero > img {
+  z-index: 0;
+}
+
+.page-hero .ph-overlay {
+  z-index: 1;
+}
+
+.page-hero .wrap {
+  z-index: 2;
+}
+
+.page-hero h1 {
+  max-width: none;
+  text-wrap: pretty;
+}
+
+@media (min-width: 1024px) {
+  .page-hero h1 {
+    white-space: nowrap;
+    font-size: clamp(2.9rem, 4.45vw, 4.6rem);
+    line-height: .98;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   VỀ VAS — editorial edge split
+   Brand-red story field on the left, photography becomes the right panel.
+   --------------------------------------------------------------------- */
+body[data-page="Về VAS"] .page-hero {
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  padding-top: 170px;
+  padding-bottom: 100px;
+  background: var(--footer-red, #8a1414);
+}
+
+body[data-page="Về VAS"] .page-hero > img {
+  left: auto;
+  right: 0;
+  width: 48%;
+  opacity: .96;
+  object-position: center;
+}
+
+body[data-page="Về VAS"] .page-hero .ph-overlay {
+  background: linear-gradient(90deg,
+    rgba(138,20,20,1) 0%,
+    rgba(138,20,20,1) 44%,
+    rgba(138,20,20,.84) 55%,
+    rgba(138,20,20,.18) 78%,
+    rgba(138,20,20,.08) 100%);
+}
+
+body[data-page="Về VAS"] .page-hero .wrap > * {
+  max-width: 58%;
+}
+
+body[data-page="Về VAS"] .page-hero .lead {
+  max-width: 44rem;
+}
+
+/* ---------------------------------------------------------------------
+   CHƯƠNG TRÌNH — centred pathway stage
+   A calm, symmetrical hero suits comparison and decision-making content.
+   --------------------------------------------------------------------- */
+.program-hero {
+  min-height: 740px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.program-hero > img {
+  opacity: .44;
+  transform: scale(1.025);
+}
+
+.program-hero .ph-overlay {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(181,31,31,.34), rgba(138,20,20,.74) 48%, rgba(90,12,12,.94) 100%),
+    linear-gradient(to bottom, rgba(138,20,20,.45), rgba(138,20,20,.92));
+}
+
+.program-hero .breadcrumb,
+.program-hero .eyebrow,
+.program-hero .hero-cta {
+  justify-content: center;
+}
+
+.program-hero h1,
+.program-hero .lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.program-hero .lead {
+  max-width: 50rem;
+}
+
+/* ---------------------------------------------------------------------
+   CƠ SỞ — photo-first hero + floating information card
+   Makes campus discovery feel physical without changing VAS components.
+   --------------------------------------------------------------------- */
+.campus-hero {
+  min-height: 780px;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 220px;
+  padding-bottom: 52px;
+}
+
+.campus-hero > img {
+  opacity: .84;
+  object-position: center 46%;
+}
+
+.campus-hero .ph-overlay {
+  background: linear-gradient(to bottom,
+    rgba(80,10,10,.22) 0%,
+    rgba(80,10,10,.14) 42%,
+    rgba(80,10,10,.56) 100%);
+}
+
+.campus-hero .wrap {
+  width: min(760px, calc(100% - 80px));
+  max-width: 760px;
+  margin-left: max(40px, calc((100vw - var(--wrap, 1440px)) / 2 + 40px));
+  margin-right: auto;
+  padding: 32px 36px 36px;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: var(--vas-hero-radius);
+  background: rgba(255,255,255,.94);
+  color: var(--ink);
+  box-shadow: var(--vas-hero-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.campus-hero .breadcrumb,
+.campus-hero .lead {
+  color: var(--ink-soft);
+}
+
+.campus-hero .breadcrumb span {
+  color: rgba(42,26,23,.36);
+}
+
+.campus-hero .eyebrow.light,
+.campus-hero h1 .italic {
+  color: var(--vas-red);
+}
+
+.campus-hero .btn-light {
+  background: var(--vas-red);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------
+   TUYỂN SINH — admissions desk / floating photo panel
+   Compact information on the left, human photography on the right.
+   --------------------------------------------------------------------- */
+.admissions-hero {
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  background: var(--vas-red);
+  padding-top: 170px;
+  padding-bottom: 90px;
+}
+
+.admissions-hero > img {
+  inset: 120px max(28px, calc((100vw - var(--wrap, 1440px)) / 2 + 40px)) 48px auto;
+  width: min(44vw, 620px);
+  height: auto;
+  border-radius: 32px;
+  opacity: 1;
+  box-shadow: 0 36px 100px -44px rgba(20,0,0,.75);
+}
+
+.admissions-hero .ph-overlay {
+  background: linear-gradient(90deg,
+    rgba(181,31,31,1) 0%,
+    rgba(181,31,31,.98) 48%,
+    rgba(181,31,31,.78) 60%,
+    rgba(181,31,31,.08) 100%);
+}
+
+.admissions-hero .wrap > * {
+  max-width: 51%;
+}
+
+.admissions-hero .lead,
+.admissions-hero .hero-copy {
+  max-width: 39rem;
+}
+
+/* ---------------------------------------------------------------------
+   TIN TỨC — magazine masthead
+   Red editorial field with a framed image and subtle journal signature.
+   --------------------------------------------------------------------- */
+.news-hero {
+  min-height: 690px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--footer-red, #8a1414);
+  padding-top: 170px;
+  padding-bottom: 90px;
+}
+
+.news-hero > img {
+  inset: 145px max(28px, calc((100vw - var(--wrap, 1440px)) / 2 + 40px)) 54px auto;
+  width: min(42vw, 590px);
+  height: auto;
+  border-radius: 28px;
+  opacity: .92;
+  box-shadow: var(--vas-hero-shadow);
+}
+
+.news-hero .ph-overlay {
+  background:
+    linear-gradient(90deg, rgba(138,20,20,1) 0%, rgba(138,20,20,.98) 49%, rgba(138,20,20,.74) 60%, rgba(138,20,20,.05) 100%);
+}
+
+.news-hero .wrap > * {
+  max-width: 52%;
+}
+
+.news-hero::after {
+  content: "VAS JOURNAL";
+  position: absolute;
+  z-index: 2;
+  right: max(32px, calc((100vw - var(--wrap, 1440px)) / 2 + 42px));
+  bottom: 24px;
+  color: rgba(255,255,255,.56);
+  font-family: var(--vas-body-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .28em;
+}
+
+/* ---------------------------------------------------------------------
+   VÒNG QUANH VAS — cinematic photo-first scene
+   The content sits at the end of the visual, like a documentary opener.
+   --------------------------------------------------------------------- */
+.around-hero {
+  min-height: 84svh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 180px;
+  padding-bottom: 82px;
+}
+
+.around-hero > img {
+  opacity: .95;
+  object-position: center 40%;
+}
+
+.around-hero .ph-overlay {
+  background:
+    linear-gradient(to top, rgba(56,6,6,.96) 0%, rgba(70,8,8,.72) 34%, rgba(96,12,12,.20) 68%, rgba(96,12,12,.28) 100%),
+    linear-gradient(90deg, rgba(138,20,20,.42), transparent 64%);
+}
+
+.around-hero .wrap {
+  width: 100%;
+}
+
+.around-hero .lead {
+  max-width: 34rem;
+}
+
+/* ---------------------------------------------------------------------
+   FIND MY PATH — asymmetric decision spotlight
+   Keeps the page lightweight while visually signalling personalisation.
+   --------------------------------------------------------------------- */
+.fit-hero {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  background: var(--vas-red);
+  padding-top: 175px;
+  padding-bottom: 90px;
+}
+
+.fit-hero > img {
+  left: auto;
+  right: 1.5%;
+  width: min(48vw, 680px);
+  height: min(48vw, 680px);
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-44%) scale(.88);
+  border-radius: 50%;
+  opacity: .82;
+}
+
+.fit-hero .ph-overlay {
+  background: radial-gradient(circle at 77% 50%, rgba(181,31,31,.08) 0 23%, rgba(181,31,31,.72) 46%, rgba(181,31,31,1) 70%);
+}
+
+.fit-hero .wrap > * {
+  max-width: 56%;
+}
+
+.fit-hero .lead {
+  max-width: 43rem;
+}
+
+/* ---------------------------------------------------------------------
+   Responsive typography & hero safety
+   Creativity stays on desktop; small screens prioritise clarity.
+   --------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .page-hero h1 {
+    white-space: normal;
+    text-wrap: pretty;
+  }
+
+  .section-head {
+    max-width: 100%;
+  }
+
+  body[data-page="Về VAS"] .page-hero .wrap > *,
+  .admissions-hero .wrap > *,
+  .news-hero .wrap > *,
+  .fit-hero .wrap > * {
+    max-width: 68%;
+  }
+}
+
 @media (max-width: 767px) {
   :root { --vas-motion-duration: 560ms; }
   .vas-motion-ready .vas-motion-item { transform: translate3d(0, 14px, 0); }
+
+  .hero h1 {
+    max-width: 100%;
+    text-wrap: pretty;
+  }
+
+  .page-hero,
+  body[data-page="Về VAS"] .page-hero,
+  .program-hero,
+  .campus-hero,
+  .admissions-hero,
+  .news-hero,
+  .around-hero,
+  .fit-hero {
+    min-height: 610px;
+    display: flex;
+    align-items: flex-end;
+    padding: 150px 0 64px;
+    text-align: left;
+    background: var(--vas-red);
+  }
+
+  .page-hero > img,
+  body[data-page="Về VAS"] .page-hero > img,
+  .program-hero > img,
+  .campus-hero > img,
+  .admissions-hero > img,
+  .news-hero > img,
+  .around-hero > img,
+  .fit-hero > img {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    transform: none;
+    opacity: .55;
+    object-fit: cover;
+  }
+
+  .page-hero .ph-overlay,
+  body[data-page="Về VAS"] .page-hero .ph-overlay,
+  .program-hero .ph-overlay,
+  .campus-hero .ph-overlay,
+  .admissions-hero .ph-overlay,
+  .news-hero .ph-overlay,
+  .around-hero .ph-overlay,
+  .fit-hero .ph-overlay {
+    background: linear-gradient(to bottom, rgba(138,20,20,.54), rgba(88,10,10,.96));
+  }
+
+  body[data-page="Về VAS"] .page-hero .wrap,
+  .program-hero .wrap,
+  .campus-hero .wrap,
+  .admissions-hero .wrap,
+  .news-hero .wrap,
+  .around-hero .wrap,
+  .fit-hero .wrap {
+    width: auto;
+    max-width: var(--wrap, 1440px);
+    margin: 0 auto;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    box-shadow: none;
+    backdrop-filter: none;
+    text-align: left;
+  }
+
+  body[data-page="Về VAS"] .page-hero .wrap > *,
+  .admissions-hero .wrap > *,
+  .news-hero .wrap > *,
+  .fit-hero .wrap > * {
+    max-width: 100%;
+  }
+
+  .program-hero .breadcrumb,
+  .program-hero .eyebrow,
+  .program-hero .hero-cta {
+    justify-content: flex-start;
+  }
+
+  .campus-hero .breadcrumb,
+  .campus-hero .lead {
+    color: rgba(255,255,255,.82);
+  }
+
+  .campus-hero .breadcrumb span {
+    color: rgba(255,255,255,.42);
+  }
+
+  .campus-hero .eyebrow.light,
+  .campus-hero h1 .italic {
+    color: var(--gold-soft);
+  }
+
+  .campus-hero .btn-light {
+    background: #fff;
+    color: var(--vas-red);
+  }
+
+  .news-hero::after {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
