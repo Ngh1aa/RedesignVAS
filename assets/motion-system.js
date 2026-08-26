@@ -67,6 +67,12 @@
     typographySafety.dataset.vasTypographySafety = "true";
     document.head.appendChild(typographySafety);
 
+    const aboutHeroSeamless = document.createElement("link");
+    aboutHeroSeamless.rel = "stylesheet";
+    aboutHeroSeamless.href = new URL("about-hero-seamless.css?v=20260826b", motionScriptSrc).href;
+    aboutHeroSeamless.dataset.vasAboutHeroSeamless = "true";
+    document.head.appendChild(aboutHeroSeamless);
+
     const upgrade = document.createElement("script");
     upgrade.src = new URL("vas-content-upgrades.js?v=20260826", motionScriptSrc).href;
     upgrade.defer = true;
