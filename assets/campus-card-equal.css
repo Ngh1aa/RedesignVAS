@@ -1,0 +1,106 @@
+/* Exact equal sizing for the six campus cards · 2026-08-26 */
+@media (min-width: 1080px) {
+  #cac-co-so #campusGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-auto-rows: 356px !important;
+    align-items: stretch !important;
+  }
+
+  #cac-co-so #campusGrid .campus-editorial-card {
+    width: 100% !important;
+    height: 356px !important;
+    min-height: 356px !important;
+    max-height: 356px !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-media,
+  #cac-co-so #campusGrid .campus-card-media img {
+    height: 172px !important;
+    min-height: 172px !important;
+    max-height: 172px !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-body {
+    flex: 0 0 184px !important;
+    height: 184px !important;
+    min-height: 184px !important;
+    max-height: 184px !important;
+    overflow: hidden !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-kicker {
+    min-height: 12px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-kicker > span {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-body h3 {
+    min-height: 28px !important;
+    max-height: 28px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  #cac-co-so #campusGrid .campus-tagline {
+    min-height: 18px !important;
+    max-height: 18px !important;
+  }
+
+  #cac-co-so #campusGrid .tag-list {
+    min-height: 18px !important;
+    max-height: 18px !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-actions {
+    flex-wrap: nowrap !important;
+    min-height: 29px !important;
+    max-height: 29px !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1079px) {
+  #cac-co-so #campusGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: 344px !important;
+    align-items: stretch !important;
+  }
+
+  #cac-co-so #campusGrid .campus-editorial-card {
+    width: 100% !important;
+    height: 344px !important;
+    min-height: 344px !important;
+    max-height: 344px !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-media,
+  #cac-co-so #campusGrid .campus-card-media img {
+    height: 162px !important;
+    min-height: 162px !important;
+    max-height: 162px !important;
+  }
+
+  #cac-co-so #campusGrid .campus-card-body {
+    flex: 0 0 182px !important;
+    height: 182px !important;
+    min-height: 182px !important;
+    max-height: 182px !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 719px) {
+  #cac-co-so #campusGrid .campus-editorial-card {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+}
