@@ -100,7 +100,7 @@
       ["vas-content-upgrades.js", "20260826", "content-upgrades"],
       ["vas-hero-campus-ui.js", "20260826", "hero-campus-ui"],
       ["ui-review-20260826.js", "20260826a", "ui-review-js"],
-      ["production-upgrade-20260827.js", "20260827b", "production-upgrade-js"],
+      ["production-upgrade-20260827.js", "20260827c", "production-upgrade-js"],
       ["phase2-ux-20260827.js", "20260827c", "phase2-ux-js"],
       ["phase3-interactions-20260827.js", "20260827a", "phase3-interactions-js"],
       ["phase3-decisions-20260827.js", "20260827a", "phase3-decisions-js"],
