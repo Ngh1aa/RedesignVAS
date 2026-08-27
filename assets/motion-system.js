@@ -120,6 +120,18 @@
     productionUpgradeJs.defer = true;
     productionUpgradeJs.dataset.vasProductionUpgradeJs = "true";
     document.head.appendChild(productionUpgradeJs);
+
+    const phase2Css = document.createElement("link");
+    phase2Css.rel = "stylesheet";
+    phase2Css.href = new URL("phase2-ux-20260827.css?v=20260827b", motionScriptSrc).href;
+    phase2Css.dataset.vasPhase2UxCss = "true";
+    document.head.appendChild(phase2Css);
+
+    const phase2Js = document.createElement("script");
+    phase2Js.src = new URL("phase2-ux-20260827.js?v=20260827b", motionScriptSrc).href;
+    phase2Js.defer = true;
+    phase2Js.dataset.vasPhase2UxJs = "true";
+    document.head.appendChild(phase2Js);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
