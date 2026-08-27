@@ -11,10 +11,10 @@
     ["Tìm lộ trình phù hợp", "Gợi ý lộ trình dựa trên nhu cầu của gia đình", "find-my-path/"],
     ["Các cơ sở", "Tìm cơ sở VAS phù hợp tại TP.HCM", "co-so/#tim-co-so"],
     ["Quy trình tuyển sinh", "Các bước đăng ký, đánh giá và nhập học", "tuyen-sinh/#quy-trinh"],
-    ["Học phí", "Xem mức học phí minh họa theo cấp học, lộ trình và cơ sở", "tuyen-sinh/#hoc-phi"],
+    ["Học phí", "Ước tính học phí theo cấp học, lộ trình và cơ sở", "tuyen-sinh/#hoc-phi"],
     ["Điều kiện nhập học", "Yêu cầu đầu vào theo cấp học", "tuyen-sinh/#dieu-kien"],
-    ["Đăng ký tư vấn", "Thử flow nhận tư vấn như website thật", "tuyen-sinh/?intent=inquire#dang-ky"],
-    ["Tham quan VAS", "Chọn cơ sở và lịch tham quan", "tuyen-sinh/?intent=visit#dang-ky"],
+    ["Đăng ký tư vấn", "Nhận tư vấn chương trình, cơ sở và bước tiếp theo", "tuyen-sinh/?intent=inquire#dang-ky"],
+    ["Tham quan VAS", "Chọn cơ sở và thời gian mong muốn", "tuyen-sinh/?intent=visit#dang-ky"],
     ["Tin tức", "Tin tức, sự kiện và câu chuyện từ cộng đồng VAS", "tin-tuc/"],
     ["Vòng quanh VAS", "Đời sống học đường, thể thao, nghệ thuật và câu lạc bộ", "vong-quanh-vas/"]
   ];
