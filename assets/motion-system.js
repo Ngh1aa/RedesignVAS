@@ -61,95 +61,49 @@
   }
 
   if (motionScriptSrc) {
-    const typographySafety = document.createElement("link");
-    typographySafety.rel = "stylesheet";
-    typographySafety.href = new URL("typography-safety.css?v=20260826", motionScriptSrc).href;
-    typographySafety.dataset.vasTypographySafety = "true";
-    document.head.appendChild(typographySafety);
+    const assetUrl = (file, version) => new URL(`${file}?v=${version}`, motionScriptSrc).href;
+    const addCss = (file, version, key) => {
+      if (document.querySelector(`link[data-vas-asset="${key}"]`)) return;
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = assetUrl(file, version);
+      link.dataset.vasAsset = key;
+      document.head.appendChild(link);
+    };
+    const addJs = (file, version, key) => {
+      if (document.querySelector(`script[data-vas-asset="${key}"]`)) return;
+      const script = document.createElement("script");
+      script.src = assetUrl(file, version);
+      script.async = false;
+      script.defer = true;
+      script.dataset.vasAsset = key;
+      document.head.appendChild(script);
+    };
 
-    const aboutHeroSeamless = document.createElement("link");
-    aboutHeroSeamless.rel = "stylesheet";
-    aboutHeroSeamless.href = new URL("about-hero-seamless.css?v=20260826b", motionScriptSrc).href;
-    aboutHeroSeamless.dataset.vasAboutHeroSeamless = "true";
-    document.head.appendChild(aboutHeroSeamless);
+    [
+      ["typography-safety.css", "20260826", "typography-safety"],
+      ["about-hero-seamless.css", "20260826b", "about-hero-seamless"],
+      ["ui-review-20260826.css", "20260826a", "ui-review"],
+      ["uivas-review-20260826.css", "20260826b", "latest-ui-review"],
+      ["campus-card-equal.css", "20260826c", "campus-card-equal"],
+      ["production-upgrade-20260827.css", "20260827b", "production-upgrade-css"],
+      ["phase2-ux-20260827.css", "20260827c", "phase2-ux-css"],
+      ["phase3-interactions-20260827.css", "20260827a", "phase3-interactions-css"],
+      ["phase3-decisions-20260827.css", "20260827a", "phase3-decisions-css"],
+      ["phase4-visual-system-20260827.css", "20260827a", "phase4-visual-system-css"],
+    ].forEach(([file, version, key]) => addCss(file, version, key));
 
-    const upgrade = document.createElement("script");
-    upgrade.src = new URL("vas-content-upgrades.js?v=20260826", motionScriptSrc).href;
-    upgrade.defer = true;
-    upgrade.dataset.vasContentUpgrades = "true";
-    document.head.appendChild(upgrade);
-
-    const heroCampusUi = document.createElement("script");
-    heroCampusUi.src = new URL("vas-hero-campus-ui.js?v=20260826", motionScriptSrc).href;
-    heroCampusUi.defer = true;
-    heroCampusUi.dataset.vasHeroCampusUi = "true";
-    document.head.appendChild(heroCampusUi);
-
-    const uiReview = document.createElement("link");
-    uiReview.rel = "stylesheet";
-    uiReview.href = new URL("ui-review-20260826.css?v=20260826a", motionScriptSrc).href;
-    uiReview.dataset.vasUiReview = "true";
-    document.head.appendChild(uiReview);
-
-    const uiReviewScript = document.createElement("script");
-    uiReviewScript.src = new URL("ui-review-20260826.js?v=20260826a", motionScriptSrc).href;
-    uiReviewScript.defer = true;
-    uiReviewScript.dataset.vasUiReviewScript = "true";
-    document.head.appendChild(uiReviewScript);
-
-    const latestUiReview = document.createElement("link");
-    latestUiReview.rel = "stylesheet";
-    latestUiReview.href = new URL("uivas-review-20260826.css?v=20260826b", motionScriptSrc).href;
-    latestUiReview.dataset.vasLatestUiReview = "true";
-    document.head.appendChild(latestUiReview);
-
-    const campusCardEqual = document.createElement("link");
-    campusCardEqual.rel = "stylesheet";
-    campusCardEqual.href = new URL("campus-card-equal.css?v=20260826c", motionScriptSrc).href;
-    campusCardEqual.dataset.vasCampusCardEqual = "true";
-    document.head.appendChild(campusCardEqual);
-
-    const productionUpgradeCss = document.createElement("link");
-    productionUpgradeCss.rel = "stylesheet";
-    productionUpgradeCss.href = new URL("production-upgrade-20260827.css?v=20260827b", motionScriptSrc).href;
-    productionUpgradeCss.dataset.vasProductionUpgradeCss = "true";
-    document.head.appendChild(productionUpgradeCss);
-
-    const productionUpgradeJs = document.createElement("script");
-    productionUpgradeJs.src = new URL("production-upgrade-20260827.js?v=20260827b", motionScriptSrc).href;
-    productionUpgradeJs.defer = true;
-    productionUpgradeJs.dataset.vasProductionUpgradeJs = "true";
-    document.head.appendChild(productionUpgradeJs);
-
-    const phase2Css = document.createElement("link");
-    phase2Css.rel = "stylesheet";
-    phase2Css.href = new URL("phase2-ux-20260827.css?v=20260827c", motionScriptSrc).href;
-    phase2Css.dataset.vasPhase2UxCss = "true";
-    document.head.appendChild(phase2Css);
-
-    const phase2Js = document.createElement("script");
-    phase2Js.src = new URL("phase2-ux-20260827.js?v=20260827c", motionScriptSrc).href;
-    phase2Js.defer = true;
-    phase2Js.dataset.vasPhase2UxJs = "true";
-    document.head.appendChild(phase2Js);
-
-    const phase3Css = document.createElement("link");
-    phase3Css.rel = "stylesheet";
-    phase3Css.href = new URL("phase3-interactions-20260827.css?v=20260827a", motionScriptSrc).href;
-    phase3Css.dataset.vasPhase3InteractionsCss = "true";
-    document.head.appendChild(phase3Css);
-
-    const phase3Js = document.createElement("script");
-    phase3Js.src = new URL("phase3-interactions-20260827.js?v=20260827a", motionScriptSrc).href;
-    phase3Js.defer = true;
-    phase3Js.dataset.vasPhase3InteractionsJs = "true";
-    document.head.appendChild(phase3Js);
-
-    const phase3Realism = document.createElement("script");
-    phase3Realism.src = new URL("phase3-realism-20260827.js?v=20260827a", motionScriptSrc).href;
-    phase3Realism.defer = true;
-    phase3Realism.dataset.vasPhase3RealismJs = "true";
-    document.head.appendChild(phase3Realism);
+    [
+      ["vas-content-upgrades.js", "20260826", "content-upgrades"],
+      ["vas-hero-campus-ui.js", "20260826", "hero-campus-ui"],
+      ["ui-review-20260826.js", "20260826a", "ui-review-js"],
+      ["production-upgrade-20260827.js", "20260827b", "production-upgrade-js"],
+      ["phase2-ux-20260827.js", "20260827c", "phase2-ux-js"],
+      ["phase3-interactions-20260827.js", "20260827a", "phase3-interactions-js"],
+      ["phase3-decisions-20260827.js", "20260827a", "phase3-decisions-js"],
+      ["phase3-realism-20260827.js", "20260827a", "phase3-realism-js"],
+      ["phase4-ux-qa-20260827.js", "20260827a", "phase4-ux-qa-js"],
+    ].forEach(([file, version, key]) => addJs(file, version, key));
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
