@@ -93,6 +93,7 @@
       ["phase4-visual-system-20260827.css", "20260827a", "phase4-visual-system-css"],
       ["phase4-page-fixes-20260827.css", "20260827a", "phase4-page-fixes-css"],
       ["phase4-flow-fixes-20260827.css", "20260827a", "phase4-flow-fixes-css"],
+      ["phase45-final-qa-20260827.css", "20260827a", "phase45-final-qa-css"],
     ].forEach(([file, version, key]) => addCss(file, version, key));
 
     [
@@ -104,8 +105,9 @@
       ["phase3-interactions-20260827.js", "20260827a", "phase3-interactions-js"],
       ["phase3-decisions-20260827.js", "20260827a", "phase3-decisions-js"],
       ["phase3-realism-20260827.js", "20260827a", "phase3-realism-js"],
-      ["phase4-brand-imagery-20260827.js", "20260827a", "phase4-brand-imagery-js"],
+      ["phase4-brand-imagery-20260827.js", "20260827b", "phase4-brand-imagery-js"],
       ["phase4-ux-qa-20260827.js", "20260827a", "phase4-ux-qa-js"],
+      ["phase45-final-qa-20260827.js", "20260827a", "phase45-final-qa-js"],
     ].forEach(([file, version, key]) => addJs(file, version, key));
   }
 
