@@ -119,6 +119,70 @@
     sync();
   }
 
+  function initNavigationReliability() {
+    const header = $('.header');
+    const mega = $('#mega');
+    if (!header || !mega) return;
+
+    const closeMega = (restoreFocus = false) => {
+      if (!mega.classList.contains('open')) return;
+      mega.classList.remove('open');
+      $$('.nav-item', header).forEach((item) => {
+        item.classList.toggle('active', item.getAttribute('aria-current') === 'page');
+      });
+      header.classList.toggle('solid', window.scrollY > 24);
+      if (restoreFocus) {
+        const current = $('.nav-item[aria-current="page"]', header) || $('.nav-item', header);
+        current?.focus();
+      }
+    };
+
+    document.addEventListener('focusin', (event) => {
+      if (mega.classList.contains('open') && !header.contains(event.target)) closeMega(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mega.classList.contains('open')) {
+        event.preventDefault();
+        closeMega(true);
+      }
+    });
+  }
+
+  function initFooterDeepLinks() {
+    const footer = $('.footer');
+    if (!footer) return;
+    const depth = Number(document.body.dataset.depth || 0);
+    const base = window.SITE_BASE ?? '../'.repeat(depth);
+    const href = (path) => /^(https?:|tel:|mailto:|#)/.test(path) ? path : `${base}${path}`;
+    const links = {
+      'Mầm non': 'chuong-trinh/#hanh-trinh-16-nam',
+      'Tiểu học': 'chuong-trinh/#hanh-trinh-16-nam',
+      'Trung học cơ sở': 'chuong-trinh/#hanh-trinh-16-nam',
+      'Trung học phổ thông': 'chuong-trinh/#hanh-trinh-16-nam',
+      'Lộ trình Cambridge': 'chuong-trinh/#chi-tiet-lo-trinh',
+      'Ba Tháng Hai': 'co-so/?campus=ba-thang-hai#cac-co-so',
+      'Riverside': 'co-so/?campus=riverside#cac-co-so',
+      'Sunrise': 'co-so/?campus=sunrise#cac-co-so',
+      'Sala': 'co-so/?campus=sala#cac-co-so',
+      'Garden Hills': 'co-so/?campus=garden-hills#cac-co-so',
+      'Hoàng Văn Thụ': 'co-so/?campus=hoang-van-thu#cac-co-so',
+      'Câu chuyện VAS': 've-vas/#cau-chuyen',
+      'Đội ngũ giáo viên': 've-vas/#doi-ngu',
+      'Thành tích': 've-vas/#thanh-tich',
+      'Lộ trình vào đại học': 've-vas/#dau-ra',
+      'Quy trình tuyển sinh': 'tuyen-sinh/#quy-trinh',
+      'Học phí': 'tuyen-sinh/#hoc-phi',
+      'Đăng ký tư vấn': 'tuyen-sinh/?intent=inquire#dang-ky',
+      'Câu hỏi thường gặp': 'tuyen-sinh/#faq',
+      'Liên hệ': 'tuyen-sinh/#dang-ky'
+    };
+    $$('.footer-cols a', footer).forEach((link) => {
+      const target = links[link.textContent.trim()];
+      if (target) link.href = href(target);
+    });
+  }
+
   function initLoadingGuard() {
     addEventListener('load', () => document.documentElement.classList.add('phase45-loaded'), { once: true });
     setTimeout(() => document.documentElement.classList.add('phase45-loaded'), 1800);
@@ -130,6 +194,8 @@
     initImageFallback();
     initHorizontalKeyboardScroll();
     initViewportClass();
+    initNavigationReliability();
+    initFooterDeepLinks();
     initLoadingGuard();
   }
 
