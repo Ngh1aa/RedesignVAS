@@ -108,6 +108,18 @@
     campusCardEqual.href = new URL("campus-card-equal.css?v=20260826c", motionScriptSrc).href;
     campusCardEqual.dataset.vasCampusCardEqual = "true";
     document.head.appendChild(campusCardEqual);
+
+    const productionUpgradeCss = document.createElement("link");
+    productionUpgradeCss.rel = "stylesheet";
+    productionUpgradeCss.href = new URL("production-upgrade-20260827.css?v=20260827a", motionScriptSrc).href;
+    productionUpgradeCss.dataset.vasProductionUpgradeCss = "true";
+    document.head.appendChild(productionUpgradeCss);
+
+    const productionUpgradeJs = document.createElement("script");
+    productionUpgradeJs.src = new URL("production-upgrade-20260827.js?v=20260827a", motionScriptSrc).href;
+    productionUpgradeJs.defer = true;
+    productionUpgradeJs.dataset.vasProductionUpgradeJs = "true";
+    document.head.appendChild(productionUpgradeJs);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
