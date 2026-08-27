@@ -1,0 +1,117 @@
+/* Phase 2: cross-page UX polish without changing the VAS art direction. */
+
+.phase2-anchor { scroll-margin-top: 96px; }
+
+.phase2-utility-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: center;
+  margin-top: 28px;
+  padding: 22px 0;
+  border-top: 1px solid rgba(255,255,255,.16);
+  border-bottom: 1px solid rgba(255,255,255,.16);
+}
+.phase2-utility-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.82);
+}
+.phase2-utility-links a:hover,
+.phase2-utility-links a:focus-visible { color: #fff; }
+.phase2-utility-links span { color: var(--gold-soft,#e3c98e); }
+
+.cms-note { display: none !important; }
+
+/* Make long editorial pages scan faster. */
+body[data-page="Tin tức"] .editorial-hub,
+body[data-page="Tin tức"] #tin-moi-nhat,
+body[data-page="Tin tức"] #cau-chuyen-hoc-sinh,
+body[data-page="Tin tức"] #su-kien,
+body[data-page="Tin tức"] #hoat-dong-ngoai-khoa,
+body[data-page="Tin tức"] #thu-vien-anh,
+body[data-page="Vòng quanh VAS"] #doi-song-hoc-duong,
+body[data-page="Vòng quanh VAS"] #the-thao,
+body[data-page="Vòng quanh VAS"] #nghe-thuat,
+body[data-page="Vòng quanh VAS"] #cau-lac-bo,
+body[data-page="Vòng quanh VAS"] #cham-soc-hoc-sinh {
+  padding-top: 92px;
+  padding-bottom: 92px;
+}
+
+body[data-page="Tin tức"] .section-head,
+body[data-page="Vòng quanh VAS"] .section-head { max-width: 48rem; }
+body[data-page="Tin tức"] .section-head > p,
+body[data-page="Vòng quanh VAS"] .section-head > p { max-width: 38rem; }
+
+/* Keep conversion emphasis where it belongs. */
+body[data-page="Tin tức"] .editorial-copy .btn,
+body[data-page="Vòng quanh VAS"] .editorial-copy .btn { margin-top: 24px; }
+
+/* Campus data correction should visually read as an intentional deep-link state. */
+.phase2-focus {
+  outline: 2px solid var(--gold,#c69a4c);
+  outline-offset: 6px;
+}
+#finderCount[aria-live="polite"] { font-weight: 600; }
+.map-card-meta a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* Better focus anchoring around fixed header/sticky UI. */
+:target { scroll-margin-top: 96px; }
+.header a:focus-visible,
+.header button:focus-visible,
+.mobile-menu a:focus-visible,
+.mobile-menu summary:focus-visible,
+.mega a:focus-visible {
+  outline: 2px solid var(--vas-red,#B51F1F);
+  outline-offset: 3px;
+}
+
+/* Tables remain usable on narrow screens instead of compressing text. */
+.comparison-table-wrap,
+.comparison-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.comparison-table,
+.campus-table { min-width: 720px; }
+
+/* Reduce repetitive oversized rhythm on content-heavy pages. */
+body[data-page="Tuyển sinh"] #hanh-trinh .journey,
+body[data-page="Tuyển sinh"] #faq .faq,
+body[data-page="Chương trình"] .comparison-table-wrap { margin-top: 40px !important; }
+
+@media (max-width: 767px) {
+  .section { padding-top: 64px; padding-bottom: 64px; }
+  .page-hero { padding-top: 142px; padding-bottom: 64px; }
+  .page-hero h1 { max-width: 12ch; }
+  .page-hero .lead { max-width: 34rem; }
+  body[data-page="Tin tức"] .editorial-hub,
+  body[data-page="Tin tức"] #tin-moi-nhat,
+  body[data-page="Tin tức"] #cau-chuyen-hoc-sinh,
+  body[data-page="Tin tức"] #su-kien,
+  body[data-page="Tin tức"] #hoat-dong-ngoai-khoa,
+  body[data-page="Tin tức"] #thu-vien-anh,
+  body[data-page="Vòng quanh VAS"] #doi-song-hoc-duong,
+  body[data-page="Vòng quanh VAS"] #the-thao,
+  body[data-page="Vòng quanh VAS"] #nghe-thuat,
+  body[data-page="Vòng quanh VAS"] #cau-lac-bo,
+  body[data-page="Vòng quanh VAS"] #cham-soc-hoc-sinh {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .phase2-utility-links { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+  .phase2-utility-links a { min-height: 48px; font-size: 12.5px; }
+  .phase2-anchor, :target { scroll-margin-top: 84px; }
+  .choice, .map-marker, .life-card, .intent-switch button { min-height: 44px; }
+}
+
+@media (max-width: 479px) {
+  .phase2-utility-links { grid-template-columns: 1fr; }
+  .page-hero h1 { font-size: clamp(2.45rem, 12vw, 3.5rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phase2-focus { scroll-behavior: auto; }
+}
