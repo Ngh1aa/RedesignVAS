@@ -73,17 +73,33 @@
   }
 
   function initSectionNavAutoPan() {
-    let previous = '';
-    const update = () => {
+    let attached = false;
+    let previous = null;
+    const attach = () => {
+      if (attached) return true;
       const nav = $('.phase3-section-nav');
-      const active = $('.phase3-section-scroll a.is-active', nav || document);
-      if (!nav || !active || active === previous) return;
-      previous = active;
-      active.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+      if (!nav) return false;
+      attached = true;
+      const update = () => {
+        const active = $('.phase3-section-scroll a.is-active', nav);
+        if (!active || active === previous) return;
+        previous = active;
+        active.scrollIntoView({
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          inline: 'center',
+          block: 'nearest'
+        });
+      };
+      new MutationObserver(update).observe(nav, { subtree: true, attributes: true, attributeFilter: ['class'] });
+      update();
+      return true;
     };
-    addEventListener('scroll', update, { passive: true });
-    new MutationObserver(update).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
-    update();
+    if (attach()) return;
+    const waitForNav = new MutationObserver(() => {
+      if (attach()) waitForNav.disconnect();
+    });
+    waitForNav.observe(document.body, { childList: true, subtree: true });
+    setTimeout(() => waitForNav.disconnect(), 5000);
   }
 
   function initHorizontalScrollHints() {
@@ -106,7 +122,9 @@
       });
     };
     setup();
-    new MutationObserver(setup).observe(document.body, { childList: true, subtree: true });
+    const dynamicTables = new MutationObserver(setup);
+    dynamicTables.observe(document.body, { childList: true, subtree: true });
+    setTimeout(() => dynamicTables.disconnect(), 5000);
   }
 
   function initDialogFocusTrap() {
