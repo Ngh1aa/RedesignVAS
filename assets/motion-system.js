@@ -103,6 +103,7 @@
       ["phase3-interactions-20260827.js", "20260827a", "phase3-interactions-js"],
       ["phase3-decisions-20260827.js", "20260827a", "phase3-decisions-js"],
       ["phase3-realism-20260827.js", "20260827a", "phase3-realism-js"],
+      ["phase4-brand-imagery-20260827.js", "20260827a", "phase4-brand-imagery-js"],
       ["phase4-ux-qa-20260827.js", "20260827a", "phase4-ux-qa-js"],
     ].forEach(([file, version, key]) => addJs(file, version, key));
   }
