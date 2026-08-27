@@ -144,6 +144,12 @@
     phase3Js.defer = true;
     phase3Js.dataset.vasPhase3InteractionsJs = "true";
     document.head.appendChild(phase3Js);
+
+    const phase3Realism = document.createElement("script");
+    phase3Realism.src = new URL("phase3-realism-20260827.js?v=20260827a", motionScriptSrc).href;
+    phase3Realism.defer = true;
+    phase3Realism.dataset.vasPhase3RealismJs = "true";
+    document.head.appendChild(phase3Realism);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
