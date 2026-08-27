@@ -1,6 +1,22 @@
 (function initVasPhase3Realism() {
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const scriptSrc = document.currentScript?.src || '';
+
+  function loadDecisionLayer() {
+    if (!scriptSrc || document.querySelector('[data-vas-phase3-decisions]')) return;
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = new URL('phase3-decisions-20260827.css?v=20260827a', scriptSrc).href;
+    css.dataset.vasPhase3Decisions = 'true';
+    document.head.appendChild(css);
+
+    const js = document.createElement('script');
+    js.src = new URL('phase3-decisions-20260827.js?v=20260827a', scriptSrc).href;
+    js.defer = true;
+    js.dataset.vasPhase3Decisions = 'true';
+    document.head.appendChild(js);
+  }
 
   function polishFeeCopy() {
     const note = $('#feeNote');
@@ -48,6 +64,7 @@
     if (storyDialog) new MutationObserver(polishStoryDialog).observe(storyDialog, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
   }
 
+  loadDecisionLayer();
   if (document.readyState === 'complete') boot();
   else window.addEventListener('load', boot, { once: true });
 })();
