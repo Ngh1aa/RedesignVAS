@@ -63,14 +63,20 @@
     $$('.mega-links a').forEach((link) => {
       const label = labelOf(link);
       const group = Object.keys(deepLinks).find((key) => deepLinks[key][label]);
-      if (group) link.href = normalizeHref(deepLinks[group][label]);
+      if (group) {
+        const href = normalizeHref(deepLinks[group][label]);
+        if (link.getAttribute('href') !== href) link.href = href;
+      }
     });
     $$('.mobile-menu details').forEach((details) => {
       const group = $('summary', details)?.textContent.replace(/→/g, '').trim();
       if (!deepLinks[group]) return;
       $$('li a', details).forEach((link) => {
         const label = link.textContent.trim();
-        if (deepLinks[group][label]) link.href = normalizeHref(deepLinks[group][label]);
+        if (deepLinks[group][label]) {
+          const href = normalizeHref(deepLinks[group][label]);
+          if (link.getAttribute('href') !== href) link.href = href;
+        }
       });
     });
     $$('.nav-item.active').forEach((link) => link.setAttribute('aria-current', 'page'));
@@ -96,8 +102,9 @@
       const label = $('span', item)?.textContent || '';
       if (/Học sinh năm 2024/i.test(label)) {
         const strong = $('strong', item);
-        if (strong) strong.textContent = '8.000+';
-        $('span', item).textContent = 'Học sinh toàn hệ thống';
+        if (strong && strong.textContent !== '8.000+') strong.textContent = '8.000+';
+        const span = $('span', item);
+        if (span) span.textContent = 'Học sinh toàn hệ thống';
       }
     });
   }
@@ -156,27 +163,30 @@
     const bth = $('[data-campus-card="ba-thang-hai"]');
     if (bth) {
       const level = $('.campus-card-level', bth);
-      if (level) level.textContent = 'Mầm non — THPT';
-      $$('.tag-list span', bth).forEach((tag) => { if (/Tiểu học → THPT/.test(tag.textContent)) tag.textContent = 'Mầm non → THPT'; });
+      if (level && level.textContent.trim() !== 'Mầm non — THPT') level.textContent = 'Mầm non — THPT';
+      $$('.tag-list span', bth).forEach((tag) => {
+        if (/Tiểu học → THPT/.test(tag.textContent)) tag.textContent = 'Mầm non → THPT';
+      });
       bthCardHtml = bth.outerHTML;
     }
     $$('#comparisonBody tr').forEach((row) => {
       if (/Ba Tháng Hai/.test(row.textContent)) {
         const cells = $$('td', row);
-        if (cells[1]) cells[1].textContent = 'Mầm non — THPT';
+        if (cells[1] && cells[1].textContent.trim() !== 'Mầm non — THPT') cells[1].textContent = 'Mầm non — THPT';
       }
     });
     const mapCard = $('#mapCard');
     if (mapCard && /Ba Tháng Hai/.test(mapCard.textContent)) {
       const meta = $$('.map-card-meta span', mapCard);
-      if (meta[0]) meta[0].textContent = 'Mầm non — THPT';
+      if (meta[0] && meta[0].textContent.trim() !== 'Mầm non — THPT') meta[0].textContent = 'Mầm non — THPT';
       if (meta[1] && !$('a', meta[1])) {
         const phone = meta[1].textContent.trim();
         meta[1].innerHTML = `<a href="tel:${phone.replace(/\D/g, '')}">${phone}</a>`;
       }
     }
     const firstFaq = $('.faq-list details:first-child p');
-    if (firstFaq) firstFaq.textContent = 'Sala, Riverside, Garden Hills, Sunrise và Ba Tháng Hai đào tạo từ Mầm non đến THPT. Hoàng Văn Thụ đào tạo từ Tiểu học đến THPT.';
+    const faqText = 'Sala, Riverside, Garden Hills, Sunrise và Ba Tháng Hai đào tạo từ Mầm non đến THPT. Hoàng Văn Thụ đào tạo từ Tiểu học đến THPT.';
+    if (firstFaq && firstFaq.textContent.trim() !== faqText) firstFaq.textContent = faqText;
     const count = $('#finderCount');
     if (count) count.setAttribute('aria-live', 'polite');
   }
@@ -205,7 +215,8 @@
     const id = new URLSearchParams(location.search).get('campus');
     if (!id) return;
     requestAnimationFrame(() => {
-      const card = $(`[data-campus-card="${CSS.escape(id)}"]`);
+      const safeId = window.CSS?.escape ? CSS.escape(id) : id.replace(/[^a-z0-9-]/gi, '');
+      const card = $(`[data-campus-card="${safeId}"]`);
       if (card) {
         card.classList.add('phase2-focus');
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -277,20 +288,22 @@
     improveAnchoringAndAccessibility();
   }
 
-  window.addEventListener('load', () => {
+  function boot() {
     applyAll();
     focusCampusFromQuery();
     setTimeout(syncBthKindergartenResult, 0);
 
     const mega = $('#mega');
     if (mega) new MutationObserver(() => fixNavigation()).observe(mega, { childList: true, subtree: true });
-    const campusGrid = $('#campusGrid');
-    if (campusGrid) new MutationObserver(() => { correctCampusRenderedData(); setTimeout(syncBthKindergartenResult, 0); }).observe(campusGrid, { childList: true, subtree: true });
-    const mapCard = $('#mapCard');
-    if (mapCard) new MutationObserver(correctCampusRenderedData).observe(mapCard, { childList: true, subtree: true });
 
     document.addEventListener('click', (event) => {
-      if (event.target.closest('[data-filter], #resetFinder')) setTimeout(syncBthKindergartenResult, 0);
+      if (event.target.closest('[data-filter], #resetFinder, #emptyReset')) {
+        setTimeout(() => { correctCampusRenderedData(); syncBthKindergartenResult(); }, 0);
+      }
+      if (event.target.closest('[data-campus]')) setTimeout(correctCampusRenderedData, 0);
     });
-  }, { once: true });
+  }
+
+  if (document.readyState === 'complete') setTimeout(boot, 0);
+  else window.addEventListener('load', boot, { once: true });
 })();
