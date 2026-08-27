@@ -1,0 +1,331 @@
+/* =====================================================================
+   VAS — PHASE 4.5 FINAL VISUAL QA
+   Final responsive/focus/crop/error-state repairs loaded after Phase 4.
+   ===================================================================== */
+
+:root {
+  --phase45-focus-top: 136px;
+  --phase45-focus-bottom: 92px;
+}
+
+html {
+  scroll-padding-top: var(--phase45-focus-top);
+  scroll-padding-bottom: var(--phase45-focus-bottom);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus {
+  scroll-margin-top: var(--phase45-focus-top);
+  scroll-margin-bottom: var(--phase45-focus-bottom);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--vas-red);
+  outline-offset: 3px;
+}
+
+/* ---------- final hero focal-point QA ---------- */
+.hero > img,
+.page-hero > img {
+  object-fit: cover;
+  transition: opacity .28s ease, filter .28s ease;
+}
+
+body:not([data-page]) .hero > img { object-position: 50% 42%; }
+body[data-page="Về VAS"] .page-hero > img { object-position: 50% 44%; }
+body[data-page="Chương trình"] .page-hero > img { object-position: 50% 42%; }
+body[data-page="Các cơ sở"] .page-hero > img { object-position: 50% 52%; }
+body[data-page="Tuyển sinh"] .page-hero > img { object-position: 50% 40%; }
+body[data-page="Tin tức"] .page-hero > img { object-position: 50% 45%; }
+body[data-page="Vòng quanh VAS"] .page-hero > img { object-position: 50% 46%; }
+
+.page-hero .wrap,
+.hero-inner { isolation: isolate; }
+
+/* ---------- card / rhythm alignment ---------- */
+.latest-card,
+.activity-card,
+.campus-editorial-card,
+.diff-card,
+.feature,
+.fit-result-card {
+  min-width: 0;
+}
+
+.latest-body h3,
+.story-item h3,
+.campus-card-body h3,
+.feature h3 {
+  text-wrap: pretty;
+}
+
+.latest-body > p:not(.meta),
+.activity-card p,
+.campus-card-body > p:not(.campus-tagline),
+.feature p {
+  text-wrap: pretty;
+}
+
+@media (min-width: 1024px) {
+  .latest-news-grid > .latest-card,
+  .activity-grid > .activity-card,
+  .feature-grid > .feature {
+    height: 100%;
+  }
+  .latest-body,
+  .activity-card > div,
+  .feature { min-height: 100%; }
+}
+
+/* ---------- Admissions error/success QA ---------- */
+.enquiry [aria-invalid="true"],
+.enquiry input[aria-invalid="true"],
+.enquiry select[aria-invalid="true"],
+.enquiry textarea[aria-invalid="true"] {
+  border-color: var(--vas-red) !important;
+  box-shadow: 0 0 0 3px rgba(181,31,31,.14) !important;
+}
+
+.field-error:not([hidden]) {
+  display: block;
+  color: #8f1717;
+  background: #fff4f3;
+  border-left-color: #b51f1f;
+}
+
+.form-msg:not([hidden]) {
+  display: flex;
+}
+
+.enquiry button[type="submit"]:disabled {
+  transform: none;
+}
+
+.fee-result strong {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- sticky/floating layer collision QA ---------- */
+.phase3-section-nav { z-index: 42; }
+.phase3-compare-tray { z-index: 125; }
+.sticky-bar { z-index: 130; }
+.phase3-dialog,
+.vas-search { z-index: 320; }
+
+.phase3-dialog-panel,
+.phase3-event-panel,
+.phase3-story-panel,
+.vas-search-panel {
+  overscroll-behavior: contain;
+}
+
+.phase3-dialog-panel,
+.phase3-event-panel {
+  scrollbar-gutter: stable;
+}
+
+/* ---------- comparison / data table QA ---------- */
+.comparison-wrap,
+.comparison-table-wrap {
+  position: relative;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+
+.comparison-wrap table th:first-child,
+.comparison-wrap table td:first-child,
+.comparison-table-wrap table th:first-child,
+.comparison-table-wrap table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--paper);
+  box-shadow: 1px 0 0 var(--line);
+}
+
+.comparison-wrap thead th:first-child,
+.comparison-table-wrap thead th:first-child {
+  background: var(--vas-red) !important;
+  color: #fff;
+  z-index: 3;
+}
+
+/* ---------- broken-image graceful state ---------- */
+.phase45-image-error {
+  opacity: 0 !important;
+}
+
+.phase45-media-error {
+  position: relative;
+  min-height: 180px;
+  background:
+    linear-gradient(135deg, rgba(181,31,31,.04), rgba(198,154,76,.09)),
+    var(--surface-soft, #fbfaf8);
+}
+
+.phase45-media-error::after {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  content: "VAS";
+  color: rgba(181,31,31,.25);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem,6vw,5rem);
+  letter-spacing: -.04em;
+  pointer-events: none;
+}
+
+/* ---------- tablet QA: 768 / 1024 ---------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --phase45-focus-top: 128px;
+    --phase45-focus-bottom: 24px;
+  }
+
+  .page-hero { min-height: 600px !important; }
+  .page-hero h1 { max-width: 90%; }
+  .page-hero .lead { max-width: 46rem; }
+
+  .hero { min-height: 84svh; }
+  .hero-inner { min-height: 84svh; }
+
+  .latest-news-grid,
+  .activity-grid { align-items: stretch; }
+
+  .phase3-story-panel > img { max-height: 44vh; }
+
+  .campus-editorial-grid,
+  .stories-layout,
+  .events-layout { min-width: 0; }
+}
+
+/* ---------- mobile QA: 390-class devices ---------- */
+@media (max-width: 767px) {
+  :root {
+    --phase45-focus-top: 118px;
+    --phase45-focus-bottom: 82px;
+  }
+
+  html { scroll-padding-bottom: calc(82px + env(safe-area-inset-bottom)); }
+
+  body:not([data-page]) .hero > img { object-position: 56% 44%; }
+  body[data-page="Về VAS"] .page-hero > img { object-position: 54% 45%; }
+  body[data-page="Chương trình"] .page-hero > img { object-position: 56% 44%; }
+  body[data-page="Các cơ sở"] .page-hero > img { object-position: 58% 52%; }
+  body[data-page="Tuyển sinh"] .page-hero > img { object-position: 58% 42%; }
+  body[data-page="Tin tức"] .page-hero > img { object-position: 54% 45%; }
+  body[data-page="Vòng quanh VAS"] .page-hero > img { object-position: 55% 46%; }
+
+  .page-hero {
+    min-height: min(610px, 78svh) !important;
+    padding-top: 118px;
+    padding-bottom: 48px;
+  }
+
+  .page-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.45rem,12vw,3.45rem);
+    line-height: .98;
+  }
+
+  .page-hero .lead {
+    max-width: 34rem;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .hero-cta,
+  .page-hero .hero-cta {
+    gap: 8px;
+  }
+
+  .hero-cta .btn,
+  .page-hero .hero-cta .btn {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .phase3-section-nav {
+    min-height: 50px;
+  }
+
+  .phase3-section-scroll {
+    scroll-padding-inline: 12px;
+    overscroll-behavior-inline: contain;
+  }
+
+  .phase3-section-scroll a {
+    min-height: 44px;
+  }
+
+  .comparison-wrap table th,
+  .comparison-wrap table td,
+  .comparison-table-wrap table th,
+  .comparison-table-wrap table td {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .phase3-compare-tray {
+    bottom: calc(70px + env(safe-area-inset-bottom));
+  }
+
+  .phase3-dialog-panel,
+  .phase3-event-panel,
+  .phase3-story-panel {
+    max-height: min(92dvh, var(--phase45-vh, 92dvh));
+  }
+
+  .vas-search-panel {
+    max-height: calc(var(--phase45-vh, 100dvh) - 12px);
+    overflow: auto;
+  }
+
+  .enquiry input,
+  .enquiry select,
+  .enquiry textarea,
+  .fee-fields select {
+    font-size: 16px;
+  }
+
+  .story-item {
+    align-items: center;
+  }
+
+  .story-item p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .archive-card strong {
+    font-size: 1.15rem;
+  }
+
+  .footer-bottom {
+    gap: 18px;
+  }
+}
+
+/* ---------- compact-height phones / landscape ---------- */
+.phase45-compact-height .mobile-menu.open {
+  overflow-y: auto;
+}
+
+@media (max-height: 700px) and (max-width: 1023px) {
+  .page-hero {
+    min-height: 520px !important;
+    padding-top: 108px;
+    padding-bottom: 34px;
+  }
+  .hero { min-height: 620px; }
+  .hero-inner { min-height: 620px; padding-bottom: 38px; }
+  .vas-search-panel { max-height: calc(100dvh - 10px); }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero > img,
+  .page-hero > img { transition: none; }
+}
