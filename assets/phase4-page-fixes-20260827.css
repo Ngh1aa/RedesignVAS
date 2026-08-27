@@ -1,0 +1,212 @@
+/* Phase 4 — page-specific visual / responsive repairs */
+
+:root {
+  --red: var(--vas-red);
+  --ink-muted: var(--ink-soft);
+  --serif: var(--font-display);
+}
+
+/* ---------- Admissions ---------- */
+.enquiry { border-radius: 12px !important; box-shadow: 0 20px 60px rgba(66,17,17,.14); }
+.step { border-radius: 10px; }
+.hub-icon,
+.note-mark { border-radius: 50%; }
+.fee-result,
+.form-msg { border-radius: 10px; }
+.field-error,
+.form-warning { border-radius: 0 7px 7px 0; }
+
+@media (min-width: 1200px) {
+  #hanh-trinh .journey { grid-template-columns: repeat(7,minmax(0,1fr)); gap: 10px; }
+  #hanh-trinh .journey-item { min-width: 0; padding-right: 10px; }
+  #hanh-trinh .journey-item h3 { font-size: 15px; }
+  #hanh-trinh .journey-item p { font-size: 12.5px; }
+  #hanh-trinh .journey-number { font-size: 1.7rem; }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  #hanh-trinh .journey {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+  #hanh-trinh .journey-item {
+    flex: 0 0 210px;
+    min-height: 168px;
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 767px) {
+  .admissions-intro-grid,
+  .contact-grid { gap: 32px; }
+  .hub-item { grid-template-columns: 40px 1fr 18px; gap: 12px; padding: 15px 0; }
+  .hub-copy small { font-size: 12.5px; }
+  .steps { gap: 10px; }
+  .step { min-height: auto; padding: 20px; }
+  .step h4 { margin-top: 16px; }
+  .contact-info { grid-template-columns: 1fr; gap: 14px; }
+  .journey-mini { line-height: 1.7; }
+  .enquiry { padding: 20px; gap: 14px; }
+  .form-progress { display: none; }
+  .fee-fields { gap: 9px; }
+  .fee-result { padding: 16px; }
+  .fee-actions .btn { width: 100%; }
+}
+
+/* ---------- News ---------- */
+.story-feature,
+.events { border-radius: 12px; }
+.event .date { border-radius: 7px; }
+.story-item img { border-radius: 7px; }
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .latest-news-grid,
+  .activity-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  .archive-grid { grid-template-columns: repeat(3,minmax(0,1fr)) !important; grid-auto-rows: 210px; }
+  .archive-1 { grid-row: span 2; }
+}
+@media (max-width: 767px) {
+  .editorial-grid,
+  .events-layout { gap: 34px; }
+  .editorial-copy h2 { font-size: clamp(2.15rem,10vw,3rem); letter-spacing: -.03em; }
+  .editorial-kicker { margin-top: 16px; font-size: 16px; }
+  .hub-link { grid-template-columns: 38px 1fr 18px; gap: 10px; padding: 16px 0; }
+  .hub-index { font-size: 1.3rem; }
+  .hub-text strong { font-size: 15px; }
+  .hub-text small { font-size: 12px; }
+  .latest-news-grid,
+  .activity-grid { margin-top: 34px; gap: 12px; }
+  .latest-body { padding: 18px; }
+  .latest-body h3 { font-size: 17px; }
+  .stories-layout { margin-top: 34px; }
+  .story-feature-copy { padding: 20px; }
+  .story-list { gap: 12px; }
+  .events { padding: 20px; }
+  .event { gap: 13px; padding: 15px 0; }
+  .event .date { width: 50px; height: 50px; }
+  .archive-grid { margin-top: 34px; gap: 8px; }
+  .archive-card { min-height: 165px; }
+  .archive-card > span { right: 12px; bottom: 12px; left: 12px; }
+  .archive-card small { display: none; }
+}
+
+/* ---------- Around VAS ---------- */
+.sport-card { border-radius: 12px; overflow: hidden; }
+.sport-card-copy { border-color: rgba(42,26,23,.1) !important; }
+.care-chips span { border-radius: 999px; }
+
+@media (min-width: 820px) and (max-width: 1199px) {
+  .sport-layout,
+  .clubs-layout,
+  .care-layout,
+  .community-layout,
+  .alumni-layout { gap: 52px; }
+  .sport-card { grid-template-columns: .9fr 1.1fr; }
+}
+@media (max-width: 767px) {
+  .around-hub-item { min-height: 62px; }
+  .day-grid,
+  .sport-layout,
+  .clubs-layout,
+  .care-layout,
+  .community-layout,
+  .alumni-layout { gap: 34px; }
+  #dayList.timeline li { grid-template-columns: 14px 70px minmax(0,1fr) !important; gap: 10px; padding: 14px 0; }
+  #dayList.timeline .yr { font-size: .98rem; }
+  #dayList.timeline h4 { font-size: .9rem; }
+  .sport-card { min-height: 0; }
+  .sport-card-copy { padding: 22px; }
+  .sport-card h3 { font-size: clamp(2rem,10vw,2.8rem); }
+  .sport-stats { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 7px; }
+  .tag-grid { margin-top: 34px; }
+  .tag-card { min-height: 0; }
+  .club-card { padding: 18px 0; }
+  .project-row { padding: 16px 0; }
+  .care-layout .media { max-height: 390px; }
+  .alumni-layout h2 { font-size: clamp(2rem,10vw,2.75rem); }
+}
+
+/* ---------- About VAS ---------- */
+.story-proof { margin-top: 48px; }
+.leadership-note { gap: 36px; }
+
+@media (min-width: 901px) and (max-width: 1199px) {
+  .story-proof { grid-template-columns: repeat(5,minmax(0,1fr)); }
+  .story-proof div { padding-left: 12px !important; padding-right: 12px !important; }
+  .story-proof div:first-child { padding-left: 0 !important; }
+}
+@media (max-width: 767px) {
+  .story-quote { margin-top: 24px; padding-left: 16px; }
+  .story-proof { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 34px; }
+  .story-proof div { min-height: 100px; padding: 18px 12px 18px 0; }
+  .story-proof div:not(:first-child) { padding-left: 12px; }
+  .story-proof div:nth-child(odd) { padding-left: 0; }
+  .story-proof strong { font-size: 1.8rem; }
+  .journey-grid { gap: 34px; }
+  .journey-list li { padding: 17px 0; }
+  .leadership-note { margin-top: 30px; padding-top: 22px; }
+  .timeline-visual { margin-top: 24px; max-height: 440px; }
+}
+
+/* ---------- Programme ---------- */
+.pathway-panel { border-radius: 12px !important; }
+.pathway-tabs { gap: 8px; }
+.comparison-table-wrap { border-radius: 12px; }
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .comparison-table { min-width: 850px; }
+  .cambridge-rail { overflow-x: auto; padding-bottom: 8px; }
+  .cam-step { min-width: 190px; }
+}
+@media (max-width: 767px) {
+  .statement-wrap blockquote { font-size: clamp(2rem,10vw,2.8rem); }
+  .comparison-table { min-width: 780px; }
+  .quiz-layout { gap: 30px; }
+  .quiz-card { padding: 20px; }
+  .pathway-tabs { display: flex; overflow-x: auto; gap: 8px; scrollbar-width: none; }
+  .pathway-tabs::-webkit-scrollbar { display: none; }
+  .pathway-tab { flex: 0 0 82vw; max-width: 330px; }
+  .pathway-panel-head { gap: 18px; }
+  .pathway-panel-head .btn { width: 100%; }
+  .pathway-content { gap: 28px; }
+  .outcome-grid { gap: 1px; }
+}
+
+/* ---------- Campus ---------- */
+@media (min-width: 800px) and (max-width: 1199px) {
+  .campus-editorial-card:nth-child(1),
+  .campus-editorial-card:nth-child(4) { grid-template-columns: 1fr 1fr; }
+  .campus-editorial-card:nth-child(1) .campus-card-body,
+  .campus-editorial-card:nth-child(4) .campus-card-body { padding: 32px; }
+}
+@media (max-width: 767px) {
+  .finder-layout { gap: 30px; }
+  .finder-panel { padding: 20px; }
+  .choice-row { gap: 6px; }
+  .choice { font-size: 12px; }
+  .map-layout { margin-top: 34px; }
+  .campus-map { min-height: 380px; }
+  .map-caption { left: 18px; bottom: 18px; max-width: calc(100% - 36px); }
+  .map-card { min-height: 0; padding: 24px; }
+  .campus-card-gallery img { height: 120px; }
+  .life-grid { margin-top: 34px; }
+  .life-card { min-height: 190px; padding: 22px; }
+}
+
+/* ---------- Home ---------- */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .people-grid,
+  .stories-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+}
+@media (max-width: 767px) {
+  .why-head { gap: 18px; }
+  .montage { margin-top: 34px; }
+  .people-grid,
+  .stories-grid { gap: 12px; }
+  .campus-head { gap: 18px; }
+  .campus-body { margin-top: 34px; }
+  .outcomes-grid { margin-top: 34px; }
+  .voices { gap: 30px; }
+}
