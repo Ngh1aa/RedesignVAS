@@ -4,31 +4,37 @@ const track = (event, detail = {}) => { window.dataLayer = window.dataLayer || [
 
 const HUB_ITEMS = [
   { id: "quy-trinh", title: "Quy trình tuyển sinh", desc: "Ba bước rõ ràng từ đăng ký đến nhập học.", icon: "01" },
-  { id: "hoc-phi", title: "Học phí", desc: "Tra cứu theo cấp lớp, chương trình và cơ sở cho năm học 2026–2027.", icon: "02" },
+  { id: "hoc-phi", title: "Học phí", desc: "Ước tính theo cấp lớp, chương trình và cơ sở.", icon: "02" },
   { id: "dieu-kien", title: "Điều kiện nhập học", desc: "Đánh giá năng lực theo từng cấp học và chương trình.", icon: "03" },
   { id: "faq", title: "Câu hỏi thường gặp", desc: "Những điều phụ huynh cần biết trước khi lựa chọn VAS.", icon: "04" },
-  { id: "dang-ky", title: "Bắt đầu với admissions", desc: "Nhận tư vấn, đặt lịch tham quan hoặc bắt đầu dự tuyển.", icon: "05" },
+  { id: "dang-ky", title: "Bắt đầu với VAS", desc: "Nhận tư vấn, đặt lịch tham quan hoặc bắt đầu dự tuyển.", icon: "05" },
 ];
 const STEPS = [
   ["01", "Đăng ký dự tuyển", "Phụ huynh đăng ký thông tin và nhận tư vấn về cấp học, chương trình và cơ sở phù hợp."],
-  ["02", "Kiểm tra kiến thức & năng lực đầu vào", "Mầm non: khảo sát phù hợp độ tuổi. Tiểu học và Trung học: đánh giá theo yêu cầu hiện hành."],
-  ["03", "Hoàn tất hồ sơ nhập học", "Đăng ký giữ chỗ → hoàn thành học phí → hoàn tất hồ sơ → nhận lớp và nhập học."],
+  ["02", "Đánh giá năng lực đầu vào", "Mầm non: khảo sát phù hợp độ tuổi. Tiểu học và Trung học: đánh giá theo yêu cầu từng chương trình."],
+  ["03", "Hoàn tất nhập học", "Giữ chỗ → hoàn thành học phí → hoàn tất hồ sơ → nhận lớp và chuẩn bị ngày đầu tiên."],
 ];
 const JOURNEY = [
-  ["01", "Inquire", "Đặt câu hỏi và nhận tư vấn"], ["02", "Visit", "Đến trường và gặp đội ngũ"], ["03", "Apply", "Bắt đầu hồ sơ dự tuyển"], ["04", "Assessment", "Kiểm tra năng lực đầu vào"], ["05", "Offer", "Nhận thông tin kết quả"], ["06", "Enrollment", "Hoàn tất hồ sơ nhập học"], ["07", "First Day", "Chuẩn bị ngày đầu đến trường"],
+  ["01", "Tìm hiểu", "Đặt câu hỏi và nhận tư vấn"],
+  ["02", "Tham quan", "Đến trường và gặp đội ngũ"],
+  ["03", "Dự tuyển", "Bắt đầu hồ sơ của học sinh"],
+  ["04", "Đánh giá", "Kiểm tra năng lực đầu vào"],
+  ["05", "Kết quả", "Nhận thông tin và bước tiếp theo"],
+  ["06", "Nhập học", "Hoàn tất hồ sơ và học phí"],
+  ["07", "Ngày đầu tiên", "Sẵn sàng bắt đầu tại VAS"],
 ];
 const REQS = [
   "Học sinh không nhất thiết phải giỏi tiếng Anh ngay từ đầu; VAS có các hình thức hỗ trợ để con thích nghi và phát triển theo lộ trình.",
   "Đánh giá đầu vào theo cấp học giúp xác định mức độ phù hợp với chương trình, không nhằm tạo thêm áp lực.",
   "Gia đình có thể lựa chọn CEP, CAP hoặc CAPI theo năng lực, sở thích và định hướng học tập của học sinh.",
-  "Yêu cầu chi tiết có thể thay đổi theo cấp học và chính sách hiện hành; đội ngũ admissions sẽ xác nhận trong từng trường hợp.",
+  "Yêu cầu chi tiết có thể thay đổi theo cấp học và chính sách từng thời điểm; đội ngũ tuyển sinh sẽ tư vấn theo từng trường hợp.",
 ];
 const FAQ = [
-  ["Con tôi nên chọn CEP, CAP hay CAPI?", "Tùy mục tiêu học tập, năng lực và định hướng tương lai của học sinh. Ba lộ trình phục vụ các định hướng khác nhau, không phải thứ hạng tốt hơn hay kém hơn."],
-  ["Cơ sở nào có cấp học và lộ trình của con?", "Gia đình có thể bắt đầu từ Find My Path hoặc Campus Finder để lọc theo cấp học và lộ trình, sau đó xác nhận chỗ học với admissions."],
-  ["Có thể tham quan trường trước khi đăng ký không?", "Có. VAS khuyến khích phụ huynh đặt lịch tham quan trực tiếp hoặc chọn hình thức tư vấn online để hiểu rõ môi trường học tập."],
-  ["Học phí bao gồm những gì?", "Học phí thay đổi theo năm học, cấp/lớp, lộ trình, cơ sở và hình thức thanh toán. Trang này hiển thị cấu trúc lựa chọn trước khi đội ngũ gửi xác nhận chính thức."],
-  ["Mất bao lâu để admissions liên hệ?", "Sau khi nhận nhu cầu, đội ngũ tuyển sinh sẽ xác nhận lại thông tin và bước tiếp theo với gia đình."],
+  ["Con tôi nên chọn CEP, CAP hay CAPI?", "Tùy mục tiêu học tập, năng lực và định hướng tương lai của học sinh. Ba lộ trình phục vụ các nhu cầu khác nhau, không phải thứ hạng tốt hơn hay kém hơn."],
+  ["Cơ sở nào có cấp học và lộ trình của con?", "Gia đình có thể dùng Tìm lộ trình hoặc Tìm cơ sở để lọc theo cấp học và chương trình trước khi đặt lịch tham quan."],
+  ["Có thể tham quan trường trước khi đăng ký không?", "Có. Phụ huynh có thể chọn cơ sở, ngày và khung giờ mong muốn ngay trong form tham quan."],
+  ["Học phí bao gồm những gì?", "Học phí phụ thuộc cấp/lớp, lộ trình, cơ sở và hình thức thanh toán. Công cụ trên trang giúp gia đình hình dung mức chi phí trước khi trao đổi chi tiết."],
+  ["Sau khi gửi form thì bước tiếp theo là gì?", "Đội ngũ tuyển sinh sẽ xác nhận nhu cầu, tư vấn lựa chọn phù hợp và hướng dẫn bước tiếp theo theo từng trường hợp."],
 ];
 
 document.getElementById("admissionsHub").innerHTML = HUB_ITEMS.map((item) => `<a class="hub-item" href="#${esc(item.id)}"><span class="hub-icon">${esc(item.icon)}</span><span class="hub-copy"><strong>${esc(item.title)}</strong><small>${esc(item.desc)}</small></span><span class="hub-arrow" aria-hidden="true">→</span></a>`).join("");
@@ -46,8 +52,8 @@ const formError = document.getElementById("formError");
 const formMsg = document.getElementById("formMsg");
 const intentCopy = {
   inquire: "Dành cho gia đình đang tìm hiểu chương trình, cấp học hoặc cơ sở phù hợp.",
-  visit: "Chọn cơ sở và thời gian mong muốn. Admissions sẽ xác nhận lịch; đây không phải slot realtime.",
-  apply: "Dành cho gia đình đã sẵn sàng bắt đầu quy trình dự tuyển. Hồ sơ chi tiết sẽ được hướng dẫn ở bước tiếp theo.",
+  visit: "Chọn cơ sở, ngày và khung giờ mong muốn để trải nghiệm flow đặt lịch tham quan.",
+  apply: "Dành cho gia đình đã sẵn sàng bắt đầu quy trình dự tuyển cho học sinh.",
 };
 const query = new URLSearchParams(window.location.search);
 const canonicalValue = (value) => String(value || "").trim().toLowerCase();
@@ -79,6 +85,7 @@ setIntent(intent);
 function showError(message, field) {
   formError.textContent = message;
   formError.hidden = false;
+  formError.setAttribute("role", "alert");
   if (field) { field.setAttribute("aria-invalid", "true"); field.focus(); }
 }
 function clearErrors() {
@@ -93,10 +100,10 @@ const buildLeadPayload = () => {
   const email = form.elements.email.value.trim();
   const phone = form.elements.phone.value.replace(/\s+/g, "");
   return {
-    schemaVersion: form.dataset.formVersion || "admissions-v1",
+    schemaVersion: form.dataset.formVersion || "admissions-v2",
     submittedAt,
-    transmission: "local-only",
-    source: query.get("source") || "static-site",
+    transmission: "prototype",
+    source: query.get("source") || "prototype-site",
     landingPage: window.location.pathname,
     intent,
     intentReason: form.elements.intentReason.value,
@@ -107,20 +114,17 @@ const buildLeadPayload = () => {
     visit: intent === "visit" ? { type: form.elements.visitType.value, preferredDate: form.elements.date.value || null, preferredTime: form.elements.time.value || null } : null,
     message: form.elements.note.value.trim() || null,
     consent: { accepted: form.elements.consent.checked, acceptedAt: submittedAt },
-    parentName: form.elements.name.value.trim(),
-    phone,
-    email: email || null,
-    childGrade: grade || null,
-    preferredProgram: programme?.id || null,
-    preferredCampus: campus?.id || null,
   };
 };
 const transmitLead = async (lead) => {
   const endpoint = form.dataset.endpoint || window.VAS_ADMISSIONS_ENDPOINT;
-  if (!endpoint) return { status: "local-only", message: "Bản preview chưa kết nối CRM hoặc email admissions." };
+  if (!endpoint) {
+    await new Promise((resolve) => setTimeout(resolve, 900));
+    return { status: "mock", message: "Thông tin đã được ghi nhận trong phiên trải nghiệm." };
+  }
   const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(lead), keepalive: true });
   if (!response.ok) throw new Error(`Admissions endpoint returned ${response.status}`);
-  return { status: "remote", message: "Thông tin đã được chuyển tới hệ thống admissions." };
+  return { status: "remote", message: "Thông tin đã được chuyển tới hệ thống tuyển sinh." };
 };
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -135,28 +139,29 @@ form.addEventListener("submit", (event) => {
   if (email.value && !email.validity.valid) return showError("Vui lòng kiểm tra lại địa chỉ email.", email);
   if (!reason.value) return showError("Vui lòng chọn nhu cầu của gia đình.", reason);
   if (intent === "visit" && !form.elements.campus.value) return showError("Vui lòng chọn cơ sở muốn tham quan.", form.elements.campus);
-  if (intent === "visit" && !form.elements.date.value) return showError("Vui lòng chọn ngày mong muốn để VAS xác nhận lịch.", form.elements.date);
-  if (intent === "visit" && !form.elements.time.value) return showError("Vui lòng chọn khung giờ mong muốn để VAS xác nhận lịch.", form.elements.time);
-  if (intent === "apply" && !form.elements.program.value) return showError("Vui lòng chọn lộ trình quan tâm trước khi bắt đầu dự tuyển.", form.elements.program);
+  if (intent === "visit" && !form.elements.date.value) return showError("Vui lòng chọn ngày mong muốn.", form.elements.date);
+  if (intent === "visit" && !form.elements.time.value) return showError("Vui lòng chọn khung giờ mong muốn.", form.elements.time);
+  if (intent === "apply" && !form.elements.program.value) return showError("Vui lòng chọn lộ trình quan tâm.", form.elements.program);
   if (!consent.checked) return showError("Vui lòng xác nhận đồng ý để VAS liên hệ.", consent);
   const submit = form.querySelector("button[type=submit]");
   submit.disabled = true;
-  submit.textContent = "Đang kiểm tra…";
+  submit.innerHTML = '<span class="prototype-spinner" aria-hidden="true"></span> Đang gửi…';
   form.setAttribute("aria-busy", "true");
   const lead = buildLeadPayload();
   transmitLead(lead).then((result) => {
     lead.transmission = result.status;
-    lead.transmittedAt = result.status === "remote" ? new Date().toISOString() : null;
+    lead.transmittedAt = new Date().toISOString();
     localStorage.setItem("redesignvas-last-lead", JSON.stringify(lead));
     window.__REDESIGNVAS_LAST_ADMISSIONS_PAYLOAD__ = lead;
     form.querySelectorAll("input, select, textarea, button, .form-progress, .intent-switch, .intent-description").forEach((control) => { control.hidden = true; });
     formMsg.hidden = false;
-    formMsg.innerHTML = `<strong>${result.status === "remote" ? (intent === "visit" ? "Đã nhận yêu cầu tham quan VAS." : intent === "apply" ? "Đã nhận yêu cầu bắt đầu dự tuyển." : "Đã nhận nhu cầu tư vấn.") : "Đã tạo bản ghi kiểm thử."}</strong><span>${result.message} Dữ liệu được chuẩn hóa theo <b>${esc(lead.schemaVersion)}</b>: <b>${esc(lead.parent.name)} · ${esc(lead.preferences.programmeCode || "chưa chọn lộ trình")} · ${esc(lead.preferences.campusName || "chưa chọn cơ sở")}</b>.</span>${result.status === "local-only" ? "<span class=\"form-warning\">Đây là bản GitHub Pages tĩnh: chưa có dữ liệu nào được gửi ra ngoài trình duyệt.</span>" : ""}<span class="success-actions"><a class="btn btn-light" href="../find-my-path/?grade=${encodeURIComponent(state.grade || "3")}&program=${encodeURIComponent(state.program || "cap")}">Tìm lại lộ trình</a><a class="btn btn-outline-light" href="../co-so/#tim-co-so">Tìm cơ sở</a><a class="btn btn-outline-light" href="#hoc-phi">Xem học phí</a></span>`;
+    const title = intent === "visit" ? "Đã nhận yêu cầu tham quan VAS." : intent === "apply" ? "Đã bắt đầu hồ sơ dự tuyển." : "Đã nhận nhu cầu tư vấn.";
+    formMsg.innerHTML = `<strong>${title}</strong><span>${esc(result.message)} Chúng tôi sẽ dùng lựa chọn <b>${esc(lead.preferences.programmeCode || "chương trình phù hợp")}</b>${lead.preferences.campusName ? ` tại <b>${esc(lead.preferences.campusName)}</b>` : ""} để chuẩn bị bước tiếp theo.</span><span class="success-actions"><a class="btn btn-light" href="../find-my-path/?grade=${encodeURIComponent(state.grade || "3")}&program=${encodeURIComponent(state.program || "cap")}">Xem lại lộ trình</a><a class="btn btn-outline-light" href="../co-so/#tim-co-so">Xem cơ sở</a><a class="btn btn-outline-light" href="#hoc-phi">Ước tính học phí</a></span>`;
     track(intent === "visit" ? "tour_submit" : intent === "apply" ? "apply_start" : "inquiry_submit", { lead });
     form.removeAttribute("aria-busy");
   }).catch((error) => {
     console.error("Admissions transmission failed", error);
-    formError.textContent = "Chưa thể gửi dữ liệu. Vui lòng thử lại hoặc gọi hotline 0911 267 755.";
+    formError.textContent = "Chưa thể hoàn tất thao tác. Vui lòng thử lại.";
     formError.hidden = false;
     submit.disabled = false;
     submit.textContent = intent === "visit" ? "Gửi yêu cầu tham quan" : intent === "apply" ? "Bắt đầu dự tuyển" : "Gửi nhu cầu";
@@ -170,13 +175,24 @@ const feeCampus = document.getElementById("feeCampus");
 const feePlan = document.getElementById("feePlan");
 const feeAmount = document.getElementById("feeAmount");
 const feeNote = document.getElementById("feeNote");
+const FEE_BASE = { "mam-non": 180000000, "1-5": 220000000, "6-8": 260000000, "9-12": 300000000 };
+const PROGRAMME_FACTOR = { cep: 1, cap: 1.16, capi: 1.35 };
+const CAMPUS_OFFSET = { sala: 20000000, riverside: 15000000, "garden-hills": 8000000, sunrise: 10000000, "hoang-van-thu": 0, "ba-thang-hai": 5000000 };
+const PLAN_FACTOR = { one: .97, two: 1, four: 1.03 };
+const formatMoney = (value) => `${Math.round(value / 1000000)} triệu đồng / năm`;
 function updateFee() {
   const level = DATA.gradeToLevel(feeGrade.value);
   const programme = DATA.programmeById(feeProgramme.value);
   const campus = DATA.campusById(feeCampus.value);
   const valid = programme && campus && programme.levels.includes(level) && campus.levels.includes(level) && campus.programmes.includes(programme.id);
-  feeAmount.textContent = valid ? "Chưa có bảng phí kết nối" : "Tổ hợp này chưa khả dụng";
-  feeNote.textContent = valid ? `Học phí ${DATA.tuition.schoolYear} cần xác nhận theo chính sách hiện hành. Bạn có thể nhận tư vấn hoặc đặt lịch tham quan với lựa chọn này.` : "Hãy chọn lại cấp/lớp, lộ trình hoặc cơ sở để xem tổ hợp phù hợp.";
+  if (valid) {
+    const estimate = ((FEE_BASE[feeGrade.value] || 220000000) * (PROGRAMME_FACTOR[feeProgramme.value] || 1) + (CAMPUS_OFFSET[feeCampus.value] || 0)) * (PLAN_FACTOR[feePlan.value] || 1);
+    feeAmount.textContent = formatMoney(estimate);
+    feeNote.textContent = `Ước tính minh họa cho prototype UI/UX · ${DATA.tuition.schoolYear}. Số liệu không phải biểu phí chính thức.`;
+  } else {
+    feeAmount.textContent = "Tổ hợp này chưa khả dụng";
+    feeNote.textContent = "Hãy chọn lại cấp/lớp, lộ trình hoặc cơ sở để xem một tổ hợp phù hợp.";
+  }
   document.querySelectorAll("[data-fee-action]").forEach((link) => { link.href = `?intent=${link.dataset.feeAction}&grade=${encodeURIComponent(feeGrade.value)}&program=${encodeURIComponent(feeProgramme.value)}&campus=${encodeURIComponent(feeCampus.value)}#dang-ky`; });
   track("fee_calculator_change", { grade: feeGrade.value, program: feeProgramme.value, campus: feeCampus.value, paymentPlan: feePlan.value });
 }
