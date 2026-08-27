@@ -91,6 +91,7 @@
       ["phase3-interactions-20260827.css", "20260827a", "phase3-interactions-css"],
       ["phase3-decisions-20260827.css", "20260827a", "phase3-decisions-css"],
       ["phase4-visual-system-20260827.css", "20260827a", "phase4-visual-system-css"],
+      ["phase4-page-fixes-20260827.css", "20260827a", "phase4-page-fixes-css"],
     ].forEach(([file, version, key]) => addCss(file, version, key));
 
     [
