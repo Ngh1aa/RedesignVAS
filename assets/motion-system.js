@@ -1,5 +1,13 @@
 (function initVasMotionSystem() {
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const query = new URLSearchParams(window.location.search);
+  const userAgent = navigator.userAgent || "";
+  const captureMode =
+    query.get("figma") === "1" ||
+    navigator.webdriver === true ||
+    /HeadlessChrome|Playwright|Puppeteer/i.test(userAgent);
+
+  const reducedMotion =
+    captureMode || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const motionScriptSrc = document.currentScript?.src || "";
   const itemSelector = [
     "main > section",
@@ -13,19 +21,123 @@
     "main [class*='-media ']",
   ].join(",");
   const mediaSelector = "main figure, main [class$='-media'], main [class*='-media ']";
+  const preloadCache = new Set();
+  const preloadImages = [];
   let observer;
 
+  window.__vasFigmaPreloads = preloadImages;
   document.documentElement.classList.add("vas-motion-ready");
+
+  function collect(scope, selector) {
+    const nodes = [];
+    if (scope instanceof Element && scope.matches(selector)) nodes.push(scope);
+    scope.querySelectorAll?.(selector).forEach((node) => nodes.push(node));
+    return nodes;
+  }
+
+  function preload(source) {
+    if (!source || preloadCache.has(source) || source.startsWith("data:")) return;
+    preloadCache.add(source);
+    const image = new Image();
+    image.decoding = "sync";
+    image.src = source;
+    preloadImages.push(image);
+  }
+
+  function backgroundUrls(value) {
+    if (!value || value === "none") return [];
+    return [...value.matchAll(/url\((['\"]?)(.*?)\1\)/g)]
+      .map((match) => match[2])
+      .filter(Boolean);
+  }
+
+  function hydrateImages(scope) {
+    if (!captureMode) return;
+    const images = [];
+    if (scope instanceof HTMLImageElement) images.push(scope);
+    scope.querySelectorAll?.("img").forEach((image) => images.push(image));
+
+    images.forEach((image) => {
+      image.loading = "eager";
+      image.setAttribute("loading", "eager");
+      image.decoding = "sync";
+      preload(image.currentSrc || image.src);
+    });
+  }
+
+  function warmComputedBackgrounds(scope) {
+    if (!captureMode) return;
+    const selector = [
+      "[role='img']",
+      "[class*='image']",
+      "[class*='img']",
+      "[class*='thumb']",
+      "[class*='visual']",
+      "[class*='media']",
+      "[class*='hero']",
+      "[class*='story']",
+      "[class*='campus']",
+    ].join(",");
+
+    collect(scope, selector).forEach((node) => {
+      backgroundUrls(window.getComputedStyle(node).backgroundImage).forEach(preload);
+    });
+  }
+
+  function revealForCapture(scope) {
+    if (!captureMode) return;
+    collect(scope, ".reveal, .vas-motion-item, .motion-reveal").forEach((node) => {
+      node.classList.add("in", "is-motion-visible", "is-visible", "visible", "revealed");
+      node.style.setProperty("opacity", "1", "important");
+      node.style.setProperty("transform", "none", "important");
+      node.style.setProperty("visibility", "visible", "important");
+      node.style.setProperty("animation", "none", "important");
+      node.style.setProperty("transition", "none", "important");
+    });
+  }
+
+  if (captureMode) {
+    document.documentElement.dataset.figmaCapture = "true";
+    const style = document.createElement("style");
+    style.setAttribute("data-vas-figma-capture-style", "true");
+    style.textContent = `
+      html[data-figma-capture="true"] .reveal,
+      html[data-figma-capture="true"] .vas-motion-item,
+      html[data-figma-capture="true"] .motion-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        animation: none !important;
+        transition: none !important;
+      }
+
+      html[data-figma-capture="true"] .vas-motion-media img,
+      html[data-figma-capture="true"] figure img {
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
   function prepare(scope) {
     const queryRoot = scope || document;
+
+    hydrateImages(queryRoot);
+    warmComputedBackgrounds(queryRoot);
+    revealForCapture(queryRoot);
+
     const nodes = [
       ...(queryRoot instanceof Element && queryRoot.matches(itemSelector) ? [queryRoot] : []),
       ...queryRoot.querySelectorAll(itemSelector),
     ];
 
     nodes.forEach((node) => {
-      if (node.dataset.vasMotionReady === "true" || node.closest("[data-no-motion]")) return;
+      if (node.dataset.vasMotionReady === "true" || node.closest("[data-no-motion]")) {
+        if (captureMode) revealForCapture(node);
+        return;
+      }
       node.dataset.vasMotionReady = "true";
       node.classList.add("vas-motion-item");
       if (node.matches(mediaSelector)) node.classList.add("vas-motion-media");
@@ -38,6 +150,8 @@
       if (firstSection || reducedMotion || !observer) node.classList.add("is-motion-visible");
       else observer.observe(node);
     });
+
+    revealForCapture(queryRoot);
   }
 
   if (!reducedMotion && "IntersectionObserver" in window) {
@@ -53,11 +167,18 @@
   function start() {
     prepare(document);
     const mutations = new MutationObserver((records) => {
+      const roots = new Set();
       records.forEach((record) => record.addedNodes.forEach((node) => {
-        if (node instanceof Element) prepare(node);
+        if (node instanceof Element) roots.add(node);
       }));
+      if (!roots.size) return;
+      requestAnimationFrame(() => roots.forEach((node) => prepare(node)));
     });
     mutations.observe(document.body, { childList: true, subtree: true });
+
+    if (captureMode) {
+      requestAnimationFrame(() => requestAnimationFrame(() => prepare(document)));
+    }
   }
 
   if (motionScriptSrc) {
@@ -113,4 +234,12 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
   else start();
+
+  window.addEventListener("load", () => {
+    if (!captureMode) return;
+    prepare(document);
+    requestAnimationFrame(() => requestAnimationFrame(() => prepare(document)));
+  }, { once: true });
+
+  window.VASFigmaCompat = { captureMode, prepare };
 })();
