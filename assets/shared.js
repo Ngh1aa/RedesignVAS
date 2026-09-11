@@ -20,16 +20,29 @@
     "Vòng quanh VAS": "vong-quanh-vas/",
   };
 
+  /* Distinct detail/utility routes. Labels not listed here fall back to the
+     owning primary page so the top-level information architecture stays calm. */
+  const EXTRA = {
+    "Học bổng": "hoc-bong/",
+    "Cựu học sinh": "cuu-hoc-sinh/",
+    "Lộ trình vào đại học": "tu-van-huong-nghiep/",
+    "Tuyển dụng": "tuyen-dung/",
+    "Chăm sóc học sinh": "ho-tro-hoc-sinh/",
+    "Liên hệ": "lien-he/",
+    "Tham quan VAS": "dat-lich-tham-quan/",
+    "Riverside": "co-so-riverside/",
+  };
+
   const MENU = {
     "Về VAS": {
       heading: "20 năm dẫn đầu khối song ngữ",
       note: "Bằng chứng, không phải lời nói.",
-      links: ["Câu chuyện VAS", "Ban lãnh đạo", "Đội ngũ giáo viên", "Thành tích học sinh", "Lộ trình vào đại học", "Giá trị cốt lõi"],
+      links: ["Câu chuyện VAS", "Ban lãnh đạo", "Đội ngũ giáo viên", "Học bổng", "Cựu học sinh", "Lộ trình vào đại học", "Giá trị cốt lõi"],
     },
     "Chương trình": {
       heading: "Hành trình xuyên cấp 16 năm",
       note: "Một lộ trình liền mạch, từ Mầm non đến Lớp 12.",
-      links: ["Mầm non", "Tiểu học", "Trung học cơ sở", "Trung học phổ thông", "Cambridge toàn phần (CAPI)", "Song ngữ Cambridge (CAP)", "Tiếng Anh Cambridge (CEP)"],
+      links: ["Mầm non", "Tiểu học", "Trung học cơ sở", "Trung học phổ thông", "Cambridge toàn phần (CAPI)", "Song ngữ Cambridge (CAP)", "Tiếng Anh Cambridge (CEP)", "Lộ trình vào đại học"],
     },
     "Các cơ sở": {
       heading: "6 cơ sở trên khắp TP.HCM",
@@ -39,7 +52,7 @@
     "Tuyển sinh": {
       heading: "Bước tiếp theo bắt đầu từ đây",
       note: "Rõ ràng, ấm áp và không áp lực.",
-      links: ["Quy trình tuyển sinh", "Học phí", "Điều kiện nhập học", "Câu hỏi thường gặp", "Đăng ký tư vấn"],
+      links: ["Quy trình tuyển sinh", "Học phí", "Điều kiện nhập học", "Câu hỏi thường gặp", "Tham quan VAS", "Liên hệ"],
     },
     "Tin tức": {
       heading: "Câu chuyện & sự kiện tại VAS",
@@ -54,10 +67,10 @@
   };
 
   const FOOT = {
-    "Chương trình": ["Mầm non", "Tiểu học", "Trung học cơ sở", "Trung học phổ thông", "Lộ trình Cambridge"],
+    "Chương trình": ["Mầm non", "Tiểu học", "Trung học cơ sở", "Trung học phổ thông", "Lộ trình vào đại học"],
     "Các cơ sở": ["Ba Tháng Hai", "Riverside", "Sunrise", "Sala", "Garden Hills", "Hoàng Văn Thụ"],
-    "Về VAS": ["Câu chuyện VAS", "Đội ngũ giáo viên", "Thành tích", "Lộ trình vào đại học"],
-    "Tuyển sinh": ["Quy trình tuyển sinh", "Học phí", "Đăng ký tư vấn", "Câu hỏi thường gặp", "Liên hệ"],
+    "Về VAS": ["Câu chuyện VAS", "Đội ngũ giáo viên", "Học bổng", "Cựu học sinh", "Tuyển dụng"],
+    "Tuyển sinh": ["Quy trình tuyển sinh", "Học phí", "Tham quan VAS", "Liên hệ"],
   };
 
   /* ---------- helpers (exposed globally) ---------- */
@@ -71,7 +84,9 @@
   const current = document.body.dataset.page || "";
   const home = BASE + "index.html";
   const url = (k) => BASE + PAGE[k];
+  const routeFor = (label, group) => BASE + (EXTRA[label] || PAGE[group]);
   const admissions = BASE + PAGE["Tuyển sinh"];
+  const visit = BASE + EXTRA["Tham quan VAS"];
   window.SITE_BASE = BASE;
 
   const navKeys = Object.keys(MENU);
@@ -121,10 +136,10 @@
         <div>
           <p class="mega-heading">${esc(m.heading)}</p>
           <p class="mega-note">${esc(m.note)}</p>
-          <div class="mega-actions"><a href="${admissions}?intent=inquire#dang-ky" class="mega-cta">Nhận tư vấn <span aria-hidden="true">→</span></a><a href="${admissions}?intent=visit#dang-ky" class="mega-cta">Tham quan VAS <span aria-hidden="true">→</span></a><a href="${admissions}?intent=apply#dang-ky" class="mega-cta">Đăng ký dự tuyển <span aria-hidden="true">→</span></a></div>
+          <div class="mega-actions"><a href="${admissions}?intent=inquire#dang-ky" class="mega-cta">Nhận tư vấn <span aria-hidden="true">→</span></a><a href="${visit}" class="mega-cta">Tham quan VAS <span aria-hidden="true">→</span></a><a href="${admissions}?intent=apply#dang-ky" class="mega-cta">Đăng ký dự tuyển <span aria-hidden="true">→</span></a></div>
         </div>
         <ul class="mega-links">
-          ${m.links.map((l) => `<li><a href="${url(k)}">${esc(l)} <span aria-hidden="true">→</span></a></li>`).join("")}
+          ${m.links.map((l) => `<li><a href="${routeFor(l, k)}">${esc(l)} <span aria-hidden="true">→</span></a></li>`).join("")}
         </ul>
       </div>`;
   }
@@ -157,12 +172,12 @@
         <summary>${esc(k)} <span aria-hidden="true" style="color:var(--vas-red)">→</span></summary>
         <ul>
           <li><a href="${url(k)}" style="font-weight:600;color:var(--vas-red)">Xem trang ${esc(k)}</a></li>
-          ${MENU[k].links.map((l) => `<li><a href="${url(k)}">${esc(l)}</a></li>`).join("")}
+          ${MENU[k].links.map((l) => `<li><a href="${routeFor(l, k)}">${esc(l)}</a></li>`).join("")}
         </ul>
       </details>`);
     mobileMenu.appendChild(d);
   });
-  mobileMenu.appendChild(el(`<div class="mobile-admission-actions"><a href="${admissions}?intent=inquire#dang-ky" class="btn btn-red">Nhận tư vấn</a><a href="${admissions}?intent=visit#dang-ky" class="btn btn-outline">Tham quan VAS</a><a href="${admissions}?intent=apply#dang-ky" class="btn btn-outline">Đăng ký dự tuyển</a></div>`));
+  mobileMenu.appendChild(el(`<div class="mobile-admission-actions"><a href="${admissions}?intent=inquire#dang-ky" class="btn btn-red">Nhận tư vấn</a><a href="${visit}" class="btn btn-outline">Tham quan VAS</a><a href="${admissions}?intent=apply#dang-ky" class="btn btn-outline">Đăng ký dự tuyển</a></div>`));
   document.getElementById("burger").addEventListener("click", () => {
     mobileMenu.classList.toggle("open");
     header.classList.add("solid");
@@ -183,7 +198,7 @@
             </div>
             <div class="footer-cols">
               ${Object.entries(FOOT).map(([h, links]) => `
-                <div><h4>${esc(h)}</h4><ul>${links.map((l) => `<li><a href="${url(h)}">${esc(l)}</a></li>`).join("")}</ul></div>`).join("")}
+                <div><h4>${esc(h)}</h4><ul>${links.map((l) => `<li><a href="${routeFor(l, h)}">${esc(l)}</a></li>`).join("")}</ul></div>`).join("")}
             </div>
           </div>
           <div class="footer-bottom">
@@ -204,7 +219,7 @@
     stickyHost.innerHTML = `
       <div class="sticky-bar">
         <a href="tel:${HOTLINE}" class="call">Gọi tư vấn</a>
-        <a href="${admissions}?intent=visit#dang-ky" class="visit">Tham quan VAS</a>
+        <a href="${visit}" class="visit">Tham quan VAS</a>
       </div>`;
   }
 
