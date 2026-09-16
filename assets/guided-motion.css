@@ -1,159 +1,65 @@
-/* VAS — Guided Learning Motion
-   Direction: academic / guided / reassuring
-   Signature: learning-path progression + warm image reveal. */
-
+/* VAS — Visible Guided Learning Motion
+   Academic / guided / reassuring with clear progression and image movement. */
 :root{
-  --vas-guide-fast:180ms;
-  --vas-guide-base:300ms;
-  --vas-guide-section:520ms;
-  --vas-guide-image:760ms;
+  --vas-guide-fast:190ms;
+  --vas-guide-base:380ms;
+  --vas-guide-section:640ms;
+  --vas-guide-image:980ms;
   --vas-guide-ease:cubic-bezier(.16,1,.3,1);
 }
 
-/* Keep the existing observer but vary spatial logic by content type. */
-.vas-motion-ready :is(.section-head,.why-head,.campus-head,.stories-head,.life-copy>.reveal).vas-motion-item:not(.is-motion-visible){
-  transform:translate3d(0,14px,0);
-}
-
-.vas-motion-ready :is(.fig,.life-img,.campus-feature,.outcomes).vas-motion-item{
-  overflow:hidden;
-}
-.vas-motion-ready :is(.fig,.life-img,.campus-feature).vas-motion-item img{
-  transition:transform var(--vas-guide-image) var(--vas-guide-ease),filter var(--vas-guide-section) ease;
-  transform-origin:center;
-}
-.vas-motion-ready :is(.fig,.life-img,.campus-feature).vas-motion-item:not(.is-motion-visible) img{
-  transform:scale(1.035);
-}
-
-/* Learning journey modules read as a guided sequence, not a generic grid. */
-.stage-grid > *,
-.proof-grid > *,
-.card-grid > *,
-.people-grid > *,
-.stories-grid > *,
-.outcomes-grid > *{
-  transition:transform var(--vas-guide-base) var(--vas-guide-ease),box-shadow var(--vas-guide-base) ease,border-color var(--vas-guide-fast) ease;
-}
-
-.vas-motion-ready .stage-grid > *,
-.vas-motion-ready .proof-grid > *,
-.vas-motion-ready .card-grid > *,
-.vas-motion-ready .people-grid > *,
-.vas-motion-ready .stories-grid > *,
-.vas-motion-ready .outcomes-grid > *{
-  animation:vas-guide-card-in var(--vas-guide-section) var(--vas-guide-ease) both;
-}
-
-.vas-motion-ready :is(.stage-grid,.proof-grid,.card-grid,.people-grid,.stories-grid,.outcomes-grid) > :nth-child(2){animation-delay:55ms}
-.vas-motion-ready :is(.stage-grid,.proof-grid,.card-grid,.people-grid,.stories-grid,.outcomes-grid) > :nth-child(3){animation-delay:105ms}
-.vas-motion-ready :is(.stage-grid,.proof-grid,.card-grid,.people-grid,.stories-grid,.outcomes-grid) > :nth-child(n+4){animation-delay:140ms}
-
-@keyframes vas-guide-card-in{
-  from{opacity:.5;transform:translate3d(0,10px,0)}
-  to{opacity:1;transform:none}
-}
-
-/* Timeline gets a clear reading order. */
-.timeline > *{
-  position:relative;
-  animation:vas-guide-step-in var(--vas-guide-base) var(--vas-guide-ease) both;
-}
-.timeline > :nth-child(2){animation-delay:55ms}
-.timeline > :nth-child(3){animation-delay:100ms}
-.timeline > :nth-child(4){animation-delay:145ms}
-.timeline > :nth-child(n+5){animation-delay:180ms}
-@keyframes vas-guide-step-in{
-  from{opacity:.5;transform:translate3d(8px,0,0)}
-  to{opacity:1;transform:none}
-}
-
-/* Program tabs feel like guided choice rather than dashboard controls. */
-.prog-tabs button,
-.voice-tabs button,
-.btn,
-.text-link,
-.header a,
-.header button{
-  transition:transform var(--vas-guide-fast) var(--vas-guide-ease),background-color var(--vas-guide-fast) ease,color var(--vas-guide-fast) ease,border-color var(--vas-guide-fast) ease,box-shadow var(--vas-guide-fast) ease;
-}
-
-@media (hover:hover) and (pointer:fine){
-  .prog-tabs button:hover,
-  .voice-tabs button:hover,
-  .btn:hover{transform:translate3d(0,-2px,0)}
-
-  .text-link:hover{transform:translate3d(3px,0,0)}
-
-  :is(.stage-grid,.proof-grid,.card-grid,.people-grid,.stories-grid) > *:hover{
-    transform:translate3d(0,-3px,0);
-  }
-}
-
-.prog-tabs button:active,
-.voice-tabs button:active,
-.btn:active{
-  transform:translate3d(0,1px,0);
-  transition-duration:110ms;
-}
-
-/* Campus list selection gets an intentional orientation cue. */
-.campus-list li,
-.campus-list button,
-.campus-list a{
-  transition:transform var(--vas-guide-fast) var(--vas-guide-ease),background-color var(--vas-guide-fast) ease,color var(--vas-guide-fast) ease,border-color var(--vas-guide-fast) ease;
-}
-@media (hover:hover) and (pointer:fine){
-  .campus-list li:hover,
-  .campus-list button:hover,
-  .campus-list a:hover{transform:translate3d(4px,0,0)}
-}
-
-/* Admissions/form feedback is immediate and calm. */
-:is(input,select,textarea){
-  transition:border-color var(--vas-guide-fast) ease,box-shadow var(--vas-guide-fast) ease,background-color var(--vas-guide-fast) ease;
-}
-
-/* Hero remains image-led but text arrives in a short educational hierarchy. */
 @media (prefers-reduced-motion:no-preference){
-  .hero-inner .eyebrow,
-  .hero-inner h1,
-  .hero-inner>p,
-  .hero-cta,
-  .hero-tag{
-    animation:vas-hero-guide-in var(--vas-guide-section) var(--vas-guide-ease) both;
-  }
-  .hero-inner h1{animation-delay:70ms}
-  .hero-inner>p{animation-delay:125ms}
-  .hero-cta{animation-delay:180ms}
-  .hero-tag{animation-delay:220ms}
+  .hero>img{animation:vas-hero-image 1500ms var(--vas-guide-ease) both}
+  .hero-inner{animation:vas-hero-copy 820ms var(--vas-guide-ease) 120ms both}
+  .hero-cta>*{animation:vas-hero-action 620ms var(--vas-guide-ease) both}
+  .hero-cta>*:nth-child(2){animation-delay:120ms}
+  .hero-tag{animation:vas-hero-action 620ms var(--vas-guide-ease) 260ms both}
 }
-@keyframes vas-hero-guide-in{
-  from{opacity:0;transform:translate3d(0,12px,0)}
-  to{opacity:1;transform:none}
+@keyframes vas-hero-image{from{opacity:.45;transform:scale(1.075)}to{opacity:1;transform:scale(1)}}
+@keyframes vas-hero-copy{from{opacity:0;transform:translate3d(0,32px,0)}to{opacity:1;transform:none}}
+@keyframes vas-hero-action{from{opacity:0;transform:translate3d(0,20px,0)}to{opacity:1;transform:none}}
+
+.vas-motion-ready .vas-motion-item{transition:opacity var(--vas-guide-section) var(--vas-guide-ease) var(--vas-motion-delay,0ms),transform var(--vas-guide-section) var(--vas-guide-ease) var(--vas-motion-delay,0ms),clip-path var(--vas-guide-section) var(--vas-guide-ease) var(--vas-motion-delay,0ms)}
+.vas-motion-ready :is(.section-head,.why-head,.campus-head,.stories-head,.life-copy>.reveal).vas-motion-item:not(.is-motion-visible){opacity:0;transform:translate3d(0,30px,0)}
+.vas-motion-ready :is(.fig,.life-img,.campus-feature,.outcomes).vas-motion-item{overflow:hidden}
+.vas-motion-ready :is(.fig,.life-img,.campus-feature).vas-motion-item:not(.is-motion-visible){clip-path:inset(0 0 14% 0)}
+.vas-motion-ready :is(.fig,.life-img,.campus-feature).vas-motion-item img{transition:transform var(--vas-guide-image) var(--vas-guide-ease),filter var(--vas-guide-section) ease;transform-origin:center}
+.vas-motion-ready :is(.fig,.life-img,.campus-feature).vas-motion-item:not(.is-motion-visible) img{transform:scale(1.065);filter:saturate(.82)}
+
+.stage-grid>*,.proof-grid>*,.card-grid>*,.people-grid>*,.stories-grid>*,.outcomes-grid>*{
+  transition:transform var(--vas-guide-base) var(--vas-guide-ease),box-shadow var(--vas-guide-base) ease,border-color var(--vas-guide-fast) ease,opacity var(--vas-guide-section) var(--vas-guide-ease);
 }
+@media (prefers-reduced-motion:no-preference){
+  .vas-motion-ready .stage-grid>*{animation:vas-guided-card 620ms var(--vas-guide-ease) both}
+  .vas-motion-ready .stage-grid>*:nth-child(2),.vas-motion-ready .proof-grid>*:nth-child(2),.vas-motion-ready .card-grid>*:nth-child(2){animation-delay:90ms}
+  .vas-motion-ready .stage-grid>*:nth-child(3),.vas-motion-ready .proof-grid>*:nth-child(3),.vas-motion-ready .card-grid>*:nth-child(3){animation-delay:180ms}
+  .vas-motion-ready .stage-grid>*:nth-child(n+4),.vas-motion-ready .proof-grid>*:nth-child(n+4),.vas-motion-ready .card-grid>*:nth-child(n+4){animation-delay:250ms}
+}
+@keyframes vas-guided-card{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
+
+.timeline{position:relative}
+.timeline::before{transform-origin:top center;animation:vas-timeline-draw 1200ms var(--vas-guide-ease) both}
+@keyframes vas-timeline-draw{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.timeline>li{transition:transform var(--vas-guide-base) var(--vas-guide-ease),opacity var(--vas-guide-base) ease}
+@media (hover:hover) and (pointer:fine){
+  .timeline>li:hover{transform:translate3d(8px,0,0)}
+  .stage-grid>*:hover,.proof-grid>*:hover,.card-grid>*:hover,.people-grid>*:hover,.stories-grid>*:hover{transform:translate3d(0,-6px,0);box-shadow:0 18px 42px rgba(73,39,31,.12)}
+  .btn:hover,.text-link:hover{transform:translate3d(0,-4px,0)}
+}
+
+.btn,.text-link,.prog-tabs button,.voice-tabs button,.campus-list button,.campus-list a{
+  transition:transform var(--vas-guide-fast) var(--vas-guide-ease),background-color var(--vas-guide-fast) ease,color var(--vas-guide-fast) ease,border-color var(--vas-guide-fast) ease,box-shadow var(--vas-guide-base) ease;
+}
+.btn:active,.prog-tabs button:active,.voice-tabs button:active{transform:translate3d(0,1px,0) scale(.98)}
+.prog-panel{animation:vas-panel-change 520ms var(--vas-guide-ease) both}
+@keyframes vas-panel-change{from{opacity:.2;transform:translate3d(18px,0,0)}to{opacity:1;transform:none}}
 
 @media (max-width:768px){
-  :root{--vas-guide-section:380ms;--vas-guide-image:560ms}
-  .vas-motion-ready .vas-motion-item:not(.is-motion-visible){transform:translate3d(0,10px,0)}
+  .vas-motion-ready .vas-motion-item:not(.is-motion-visible){transform:translate3d(0,18px,0)}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .hero-inner *,
-  .timeline > *,
-  .stage-grid > *,
-  .proof-grid > *,
-  .card-grid > *,
-  .people-grid > *,
-  .stories-grid > *,
-  .outcomes-grid > *,
-  .prog-tabs button,
-  .voice-tabs button,
-  .btn,
-  .text-link,
-  .campus-list *{
-    animation:none!important;
-    transition-duration:.01ms!important;
-    transform:none!important;
+  .hero>img,.hero-inner,.hero-cta>*,.hero-tag,.vas-motion-item,.vas-motion-item *,.stage-grid>*,.proof-grid>*,.card-grid>*,.people-grid>*,.stories-grid>*,.outcomes-grid>*,.timeline::before,.timeline>li,.btn,.text-link,.prog-panel{
+    animation:none!important;transition-duration:.01ms!important;transform:none!important;opacity:1!important;filter:none!important;clip-path:none!important;
   }
 }
