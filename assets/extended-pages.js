@@ -60,9 +60,29 @@
     if (contactLines) contactLines.innerHTML = data.lines;
   }));
 
+  const visitParams = new URLSearchParams(window.location.search);
+  const slugify = (value) => String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  const programmeLabels = { cep: "CEP", cap: "CAP", capi: "CAPI" };
+  const levelLabels = { "mam-non": "Mầm non", "tieu-hoc": "Tiểu học", thcs: "THCS", thpt: "THPT" };
+
   const campusChoices = $all('[data-campus-choice]');
   const visitCampusInput = document.querySelector('[name="visitCampus"]');
+  const visitProgramInput = document.querySelector('[name="visitProgram"]');
+  const visitLevelInput = document.querySelector('[name="visitLevel"]');
   const visitSummaryCampus = document.querySelector('[data-summary-campus]');
+  const visitSummaryProgram = document.querySelector('[data-summary-program]');
+  const visitSummaryLevel = document.querySelector('[data-summary-level]');
+  const visitContext = document.querySelector('[data-visit-context]');
+  const contextProgram = document.querySelector('[data-context-program]');
+  const contextLevel = document.querySelector('[data-context-level]');
+  const contextSeparator = document.querySelector('[data-context-separator]');
   const visitSummaryDate = document.querySelector('[data-summary-date]');
   const visitSummaryTime = document.querySelector('[data-summary-time]');
   const visitSummaryFamily = document.querySelector('[data-summary-family]');
@@ -71,6 +91,29 @@
     if (visitCampusInput) visitCampusInput.value = btn.dataset.campusChoice;
     if (visitSummaryCampus) visitSummaryCampus.textContent = btn.dataset.campusChoice;
   }));
+
+  const requestedCampus = visitParams.get('campus');
+  const requestedProgram = visitParams.get('program');
+  const requestedLevel = visitParams.get('level');
+  if (requestedCampus && campusChoices.length) {
+    const requestedChoice = campusChoices.find((btn) => slugify(btn.dataset.campusChoice) === slugify(requestedCampus));
+    if (requestedChoice) {
+      campusChoices.forEach((btn) => btn.classList.toggle('active', btn === requestedChoice));
+      if (visitCampusInput) visitCampusInput.value = requestedChoice.dataset.campusChoice;
+      if (visitSummaryCampus) visitSummaryCampus.textContent = requestedChoice.dataset.campusChoice;
+    }
+  }
+  if (visitProgramInput) visitProgramInput.value = requestedProgram || '';
+  if (visitLevelInput) visitLevelInput.value = requestedLevel || '';
+  if (visitSummaryProgram) visitSummaryProgram.textContent = programmeLabels[requestedProgram] || 'Chưa chọn';
+  if (visitSummaryLevel) visitSummaryLevel.textContent = levelLabels[requestedLevel] || 'Chưa chọn';
+  if (visitContext && (requestedProgram || requestedLevel)) {
+    visitContext.hidden = false;
+    if (contextProgram) contextProgram.textContent = requestedProgram ? `lộ trình ${programmeLabels[requestedProgram] || requestedProgram.toUpperCase()}` : 'lộ trình chưa xác định';
+    if (contextLevel) contextLevel.textContent = requestedLevel ? `cấp ${levelLabels[requestedLevel] || requestedLevel}` : 'cấp học chưa xác định';
+    if (contextSeparator) contextSeparator.hidden = !(requestedProgram && requestedLevel);
+  }
+
   const dateInput = document.querySelector('[name="visitDate"]');
   const timeInput = document.querySelector('[name="visitTime"]');
   const familyInput = document.querySelector('[name="familyName"]');
