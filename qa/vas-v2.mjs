@@ -31,7 +31,10 @@ async function axe(page, label) {
   const results = await new AxeBuilder({ page }).analyze();
   const serious = results.violations.filter(v => ["serious","critical"].includes(v.impact));
   if (serious.length) {
-    blockers.push(`${label}: axe blockers — ${serious.map(v => v.id).join(", ")}`);
+    for (const violation of serious) {
+      const targets = violation.nodes.slice(0, 4).map(node => Array.isArray(node.target) ? node.target.join(" ") : String(node.target)).join(" | ");
+      blockers.push(`${label}: ${violation.id} @ ${targets}`);
+    }
   }
 }
 
@@ -97,7 +100,7 @@ const mobile = { width: 390, height: 844 };
   const page = await open("/co-so-riverside/", mobile);
   const body = await page.locator("body").innerText();
   if (body.includes("Trang detail tập trung")) blockers.push("Riverside: internal design-documentation copy leaked into UI");
-  const visitHref = await page.locator('a[href*="dat-lich-tham-quan"]').first().getAttribute("href");
+  const visitHref = await page.locator('.xp-hero-actions a[href*="dat-lich-tham-quan"]').first().getAttribute("href");
   if (!visitHref?.includes("campus=riverside")) blockers.push("Riverside: visit CTA loses campus context");
   await noOverflow(page, "Riverside mobile");
   await page.screenshot({ path: "qa/evidence/riverside-mobile.png", fullPage: true });
