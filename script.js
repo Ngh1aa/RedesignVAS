@@ -180,7 +180,7 @@ function renderMega(k) {
       <div>
         <p class="mega-heading">${esc(m.heading)}</p>
         <p class="mega-note">${esc(m.note)}</p>
-        <div class="mega-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="mega-cta">Nhận tư vấn <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=visit#dang-ky" class="mega-cta">Tham quan VAS <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=apply#dang-ky" class="mega-cta">Đăng ký dự tuyển <span aria-hidden="true">→</span></a></div>
+        <div class="mega-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="mega-cta">Nhận tư vấn <span aria-hidden="true">→</span></a><a href="dat-lich-tham-quan/" class="mega-cta">Tham quan VAS <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=apply#dang-ky" class="mega-cta">Đăng ký dự tuyển <span aria-hidden="true">→</span></a></div>
       </div>
       <ul class="mega-links">
         ${m.links.map((l) => `<li><a href="${PAGE[k]}">${esc(l)} <span aria-hidden="true">→</span></a></li>`).join("")}
@@ -218,7 +218,7 @@ navKeys.forEach((k) => {
     </details>`);
   mobileMenu.appendChild(d);
 });
-mobileMenu.appendChild(el(`<div class="mobile-admission-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="btn btn-red">Nhận tư vấn</a><a href="tuyen-sinh/?intent=visit#dang-ky" class="btn btn-outline">Tham quan VAS</a><a href="tuyen-sinh/?intent=apply#dang-ky" class="btn btn-outline">Đăng ký dự tuyển</a></div>`));
+mobileMenu.appendChild(el(`<div class="mobile-admission-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="btn btn-red">Nhận tư vấn</a><a href="dat-lich-tham-quan/" class="btn btn-outline">Tham quan VAS</a><a href="tuyen-sinh/?intent=apply#dang-ky" class="btn btn-outline">Đăng ký dự tuyển</a></div>`));
 const burger = document.getElementById("burger");
 burger.addEventListener("click", () => {
   mobileMenu.classList.toggle("open");

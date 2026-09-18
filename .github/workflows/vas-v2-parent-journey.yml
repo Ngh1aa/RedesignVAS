@@ -1,0 +1,48 @@
+name: VAS V2 Parent Journey QA
+
+on:
+  push:
+    branches:
+      - feat/vas-evidence-driven-redesign-v2
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  parent-journey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install browser QA tooling
+        run: |
+          npm install --no-save playwright @axe-core/playwright
+          npx playwright install --with-deps chromium
+
+      - name: Start static preview
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/vas-preview.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/vas-preview.log
+          exit 1
+
+      - name: Parent journey, responsive and accessibility gate
+        run: node qa/vas-v2.mjs
+
+      - name: Upload rendered evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vas-v2-rendered-evidence
+          path: qa/evidence/
+          if-no-files-found: warn

@@ -2409,7 +2409,7 @@ function createUIFeedback(options = {}) {
   host.id = "ui-feedback-host";
   host.dataset.uiFeedbackIgnore = "true";
   const shadow = host.attachShadow({ mode: "open" });
-  shadow.innerHTML = `<style>${STYLESHEET}</style><div class="ui-feedback-root${state.theme === "dark" ? " is-dark" : ""}"></div><div class="ui-feedback-marker-layer${state.theme === "dark" ? " is-dark" : ""}" aria-label="C\xE1c v\u1ECB tr\xED feedback"></div>`;
+  shadow.innerHTML = `<style>${STYLESHEET}</style><div class="ui-feedback-root${state.theme === "dark" ? " is-dark" : ""}"></div><div class="ui-feedback-marker-layer${state.theme === "dark" ? " is-dark" : ""}" role="region" aria-label="C\xE1c v\u1ECB tr\xED feedback"></div>`;
   const root = shadow.querySelector(".ui-feedback-root");
   const markerLayer = shadow.querySelector(".ui-feedback-marker-layer");
   root.style.setProperty("--ui-feedback-accent", config.accent);
