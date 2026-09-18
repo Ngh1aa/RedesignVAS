@@ -444,3 +444,127 @@ h1, h2, h3, p { margin: 0; }
 .campus-finder-entry .text-link { color: var(--gold-soft); }
 .prog-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
 .prog-actions .text-link { color: var(--vas-red); font-size: 14px; font-weight: 600; }
+
+
+/* =====================================================================
+   VAS Evidence-driven redesign V2 — parent decision path
+   Keeps the existing VAS visual language while moving decision support
+   ahead of high-commitment conversion.
+   ===================================================================== */
+.decision-path {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.decision-path-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: end;
+}
+.decision-path-head h2 {
+  margin-top: 18px;
+  max-width: 920px;
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.025em;
+}
+.decision-path-head > p {
+  max-width: 580px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.decision-path-grid {
+  margin-top: clamp(46px, 6vw, 78px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--line);
+}
+.decision-path-card {
+  min-width: 0;
+  min-height: 360px;
+  padding: 24px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 46px;
+  background: #fff;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.decision-path-card--action {
+  background: var(--vas-red);
+  color: #fff;
+  border-color: var(--vas-red);
+}
+.decision-path-no {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--vas-red);
+}
+.decision-path-card--action .decision-path-no { color: var(--gold-soft); }
+.decision-path-card > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.decision-path-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--vas-red);
+}
+.decision-path-card--action .decision-path-label { color: var(--gold-soft); }
+.decision-path-card h3 {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-weight: 500;
+  line-height: 1.08;
+}
+.decision-path-card p {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.decision-path-card--action p { color: rgba(255,255,255,.76); }
+.decision-path-card a {
+  margin-top: auto;
+  padding-top: 28px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--vas-red);
+  text-decoration: underline;
+  text-decoration-color: rgba(181,31,31,.28);
+  text-underline-offset: 5px;
+}
+.decision-path-card--action a {
+  color: #fff;
+  text-decoration-color: rgba(255,255,255,.34);
+}
+.decision-path-help {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0 0;
+  font-size: 12px;
+}
+.decision-path-help span { color: var(--ink-soft); }
+.decision-path-help a { color: var(--vas-red); font-weight: 700; }
+
+@media (max-width: 1100px) {
+  .decision-path-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .decision-path-card { min-height: 300px; }
+}
+@media (max-width: 760px) {
+  .decision-path-head { grid-template-columns: 1fr; gap: 18px; }
+  .decision-path-grid { grid-template-columns: 1fr; }
+  .decision-path-card { min-height: 0; gap: 28px; }
+  .decision-path-help { flex-direction: column; }
+}
