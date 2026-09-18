@@ -10,7 +10,8 @@ const blockers = [];
 const notes = [];
 
 async function open(path, viewport) {
-  const page = await browser.newPage({ viewport });
+  const context = await browser.newContext({ viewport });
+  const page = await context.newPage();
   await page.goto(base + path, { waitUntil: "domcontentloaded", timeout: 45000 });
   await page.waitForTimeout(900);
   return page;
@@ -49,7 +50,7 @@ const mobile = { width: 390, height: 844 };
   await noOverflow(page, "Home desktop");
   await axe(page, "Home desktop");
   await page.screenshot({ path: "qa/evidence/home-decision-desktop.png", fullPage: true });
-  await page.close();
+  await page.context().close();
 }
 
 // Mobile: cards must recompose rather than overflow.
@@ -58,7 +59,7 @@ const mobile = { width: 390, height: 844 };
   await noOverflow(page, "Home mobile");
   if (!(await page.locator("#bat-dau").isVisible())) blockers.push("Home mobile: decision path missing");
   await page.screenshot({ path: "qa/evidence/home-decision-mobile.png", fullPage: true });
-  await page.close();
+  await page.context().close();
 }
 
 // Campus finder should carry chosen programme/level into the dedicated visit route.
@@ -70,7 +71,7 @@ const mobile = { width: 390, height: 844 };
   if (!visitHref?.includes("level=tieu-hoc")) blockers.push("Campus finder: level context not carried");
   await noOverflow(page, "Campus finder desktop");
   await page.screenshot({ path: "qa/evidence/campus-finder-context.png", fullPage: true });
-  await page.close();
+  await page.context().close();
 }
 
 // Visit planner must hydrate the selected decision context truthfully.
@@ -88,7 +89,7 @@ const mobile = { width: 390, height: 844 };
   await noOverflow(page, "Visit planner desktop");
   await axe(page, "Visit planner desktop");
   await page.screenshot({ path: "qa/evidence/visit-context-desktop.png", fullPage: true });
-  await page.close();
+  await page.context().close();
 }
 
 // Campus detail must read as a parent-facing product surface.
@@ -100,7 +101,7 @@ const mobile = { width: 390, height: 844 };
   if (!visitHref?.includes("campus=riverside")) blockers.push("Riverside: visit CTA loses campus context");
   await noOverflow(page, "Riverside mobile");
   await page.screenshot({ path: "qa/evidence/riverside-mobile.png", fullPage: true });
-  await page.close();
+  await page.context().close();
 }
 
 await browser.close();
