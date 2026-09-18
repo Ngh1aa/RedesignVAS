@@ -207,13 +207,13 @@ h1, h2, h3, p { margin: 0; }
 
 .prog-wrap { margin-top: 64px; display: grid; gap: 40px; grid-template-columns: 1fr; }
 @media (min-width: 1024px) { .prog-wrap { grid-template-columns: .9fr 1.4fr; } }
-.prog-intro { font-size: 15px; color: rgba(255,255,255,.7); }
+.prog-intro { font-size: 15px; color: #fff; }
 .prog-tabs { margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
 .prog-tab { display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,.2); border-radius: 16px; padding: 16px 20px; text-align: left; background: none; color: var(--paper); transition: border-color .3s, background .3s, color .3s; }
 .prog-tab:hover { border-color: rgba(255,255,255,.5); }
 .prog-tab.active { border-color: var(--gold); background: var(--paper); color: var(--vas-red); }
 .prog-tab .code { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
-.prog-tab .tagname { font-size: 13px; opacity: .7; margin-left: 12px; }
+.prog-tab .tagname { font-size: 13px; opacity: 1; margin-left: 12px; }
 .prog-tab .arrow { color: var(--gold-soft); }
 .prog-tab.active .arrow { color: var(--vas-red); }
 .prog-panel { border-radius: 24px; background: var(--paper); color: var(--ink); padding: 32px; }
