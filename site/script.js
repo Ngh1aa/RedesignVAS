@@ -235,7 +235,7 @@ document.getElementById("diffGrid").innerHTML = DIFF.map((d, i) => `
     <div class="diff-img"><img src="${imageUrl(d.img, 640, 800)}" alt="${esc(d.t)}" loading="lazy" /></div>
     <div class="diff-body">
       <h3>${esc(d.t)}</h3><p>${esc(d.d)}</p>
-      <a href="#" class="diff-more">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
+      <a href="chuong-trinh/" class="diff-more">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
     </div>
   </article>`).join("");
 
@@ -307,7 +307,7 @@ function renderCampus(idx) {
       <p>${esc(c.note)}</p>
       <div class="actions">
         <a href="#admissions" class="btn btn-light">Đăng ký tư vấn</a>
-        <a href="#" class="btn btn-outline-light" style="border-color:rgba(255,255,255,.4)">Xem cơ sở</a>
+        <a href="co-so/" class="btn btn-outline-light" style="border-color:rgba(255,255,255,.4)">Xem cơ sở</a>
       </div>
     </div>`;
 }
@@ -364,7 +364,7 @@ document.getElementById("stepsGrid").innerHTML = STEPS.map(([n, t, d], i) => `
 
 // news
 document.getElementById("articlesGrid").innerHTML = NEWS.map((a, i) => `
-  <a href="#" class="article reveal" style="transition-delay:${i * 90}ms">
+  <a href="tin-tuc/#tin-moi-nhat" class="article reveal" style="transition-delay:${i * 90}ms">
     <div class="thumb"><img src="${imageUrl(a.img, 600, 420)}" alt="${esc(a.title)}" loading="lazy" /></div>
     <p class="meta">${esc(a.tag)} <i></i> <em>${esc(a.date)}</em></p>
     <h3>${esc(a.title)}</h3>
@@ -373,7 +373,7 @@ document.getElementById("articlesGrid").innerHTML = NEWS.map((a, i) => `
 // events
 document.getElementById("eventsList").innerHTML = EVENTS.map(([title, place, date]) => {
   const [d, mth] = date.split("/");
-  return `<li><a href="#" class="event">
+  return `<li><a href="tin-tuc/#su-kien" class="event">
     <span class="date"><b>${d}</b><span>Th${Number(mth)}</span></span>
     <span class="info"><b>${esc(title)}</b><span>${esc(place)}</span></span>
     <span class="arrow" aria-hidden="true">→</span>
@@ -381,8 +381,9 @@ document.getElementById("eventsList").innerHTML = EVENTS.map(([title, place, dat
 }).join("");
 
 // footer
+const FOOT_ROUTE = { "Chương trình": "chuong-trinh/", "Các cơ sở": "co-so/", "Về VAS": "ve-vas/", "Tuyển sinh": "tuyen-sinh/" };
 document.getElementById("footerCols").innerHTML = Object.entries(FOOT).map(([h, links]) => `
-  <div><h4>${esc(h)}</h4><ul>${links.map((l) => `<li><a href="#">${esc(l)}</a></li>`).join("")}</ul></div>`).join("");
+  <div><h4>${esc(h)}</h4><ul>${links.map((l) => `<li><a href="${FOOT_ROUTE[h] || "index.html"}">${esc(l)}</a></li>`).join("")}</ul></div>`).join("");
 
 /* ================= reveal on scroll ================= */
 const io = new IntersectionObserver((entries) => {

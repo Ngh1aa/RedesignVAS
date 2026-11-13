@@ -21,7 +21,7 @@ const SPORT = {
   title: "VAS Olympics 2026",
   body: "Một ngày hội để học sinh và phụ huynh cùng vận động, cổ vũ và kết nối qua thể thao.",
   stats: [["2.000+", "học sinh & phụ huynh"], ["6", "bộ môn"], ["900", "huy chương gần nhất"]],
-  sports: "Bóng đá · Bóng rổ · Cờ vua · Điền kinh · Bơi lội · Nhảy",
+  sports: "Bóng đá, Bóng rổ, Cờ vua, Điền kinh, Bơi lội, Nhảy",
   image: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/KAjhkSiP1JY9ZXkM4bmjujxG1dyclT1caoOqLMvZ.jpeg",
 };
 const ARTS = [
@@ -33,9 +33,9 @@ const ARTS = [
   ["Talent Shows", "VAS Painting Contest và VAS's Got Talent."],
 ];
 const CLUBS = [
-  ["Thể thao", "Bóng đá · Bóng rổ · Cầu lông · Bơi"],
-  ["Sáng tạo", "Nghệ thuật · Thủ công · Âm nhạc · Phim ảnh"],
-  ["Tư duy", "Cờ vua · Khoa học · Các trò chơi trí tuệ"],
+  ["Thể thao", "Bóng đá, Bóng rổ, Cầu lông, Bơi"],
+  ["Sáng tạo", "Nghệ thuật, Thủ công, Âm nhạc, Phim ảnh"],
+  ["Tư duy", "Cờ vua, Khoa học, Các trò chơi trí tuệ"],
 ];
 const PROJECTS = [
   ["GẤP Project", "Tái sinh đồng phục cũ và biến vật liệu quen thuộc thành điều có ích."],
@@ -56,7 +56,7 @@ $("aroundHub").innerHTML = HUB.map(([id, title, desc], index) => `
 $("dayList").innerHTML = DAY.map(([time, label]) => `
   <li><span class="dot"><i></i></span><span class="yr">${safe(time)}</span><h4>${safe(label)}</h4></li>`).join("");
 
-$("sportStory").innerHTML = `<div class="sport-card"><div class="sport-card-copy"><span class="sport-label">CASE STUDY · 2026</span><h3>${safe(SPORT.title)}</h3><p>${safe(SPORT.body)}</p><div class="sport-stats">${SPORT.stats.map(([value, label]) => `<div><strong>${safe(value)}</strong><span>${safe(label)}</span></div>`).join("")}</div><p class="sport-list">${safe(SPORT.sports)}</p></div><img src="${SPORT.image}" alt="Học sinh và phụ huynh tham gia hoạt động thể thao tại VAS" loading="lazy" /></div>`;
+$("sportStory").innerHTML = `<div class="sport-card"><div class="sport-card-copy"><span class="sport-label">CASE STUDY, 2026</span><h3>${safe(SPORT.title)}</h3><p>${safe(SPORT.body)}</p><div class="sport-stats">${SPORT.stats.map(([value, label]) => `<div><strong>${safe(value)}</strong><span>${safe(label)}</span></div>`).join("")}</div><p class="sport-list">${safe(SPORT.sports)}</p></div><img src="${SPORT.image}" alt="Học sinh và phụ huynh tham gia hoạt động thể thao tại VAS" loading="lazy" /></div>`;
 
 $("artsGrid").innerHTML = ARTS.map(([title, desc]) => `<article class="tag-card"><span class="tag-index">${safe(title)}</span><p>${safe(desc)}</p></article>`).join("");
 $("clubsGrid").innerHTML = CLUBS.map(([title, desc]) => `<article class="club-card"><span class="club-mark">✦</span><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join("");

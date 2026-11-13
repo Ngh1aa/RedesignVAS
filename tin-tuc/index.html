@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles.css?v=theme-white-20260821" />
 <link rel="stylesheet" href="../assets/motion-system.css?v=20260825" />
 <script defer src="../assets/motion-system.js?v=20260825"></script>
-</head>
+<link rel="stylesheet" href="../assets/vas-prototype.css?v=20261113" /><link rel="stylesheet" href="../assets/contrast-aa-20261113.css?v=20261113b" /></head>
 <body id="top" data-depth="1" data-page="Tin tức">
   <div id="site-header"></div>
 
@@ -45,12 +45,11 @@
     <section class="section bg-paper-deep" id="tin-moi-nhat">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">News</span>
+          <span class="eyebrow">Tin tức</span>
           <h2>Tin tức mới nhất</h2>
-          <p>Những câu chuyện và dấu ấn mới nhất tại VAS.</p>
+          <p>Lọc theo chủ đề hoặc tìm theo từ khóa để đọc những câu chuyện và dấu ấn mới nhất tại VAS.</p>
         </div>
-        <div class="latest-news-grid reveal" id="latestNews"></div>
-        <a href="#tin-moi-nhat" class="text-link reveal">Xem tất cả tin tức <span aria-hidden="true">→</span></a>
+        <div class="vp-news" id="newsApp" aria-live="polite"><noscript>Vui lòng bật JavaScript để lọc và đọc tin tức.</noscript></div>
       </div>
     </section>
 
@@ -76,8 +75,7 @@
           <span class="eyebrow">Events</span>
           <h2>Sự kiện sắp tới</h2>
           <p>Lịch sự kiện, hoạt động và chương trình dành cho cộng đồng VAS.</p>
-          <p class="cms-note">Lịch sự kiện nên được kết nối với hệ thống Event của VAS để tự động cập nhật ngày, địa điểm và thông tin đăng ký.</p>
-        </div>
+                  </div>
         <div class="events reveal">
           <div class="ev-top"><span class="eyebrow">Cập nhật liên tục</span></div>
           <ul id="eventsList"></ul>
@@ -116,5 +114,6 @@
 
   <script src="../assets/shared.js?v=ui-feedback-v0.13.0"></script>
   <script src="script.js?v=vas-feedback-20260821"></script>
+<script defer src="../assets/vas-prototype-data.js?v=20261113"></script><script defer src="../assets/vas-prototype.js?v=20261113"></script><script defer src="../assets/vas-prototype-flows.js?v=20261113"></script>
 </body>
 </html>

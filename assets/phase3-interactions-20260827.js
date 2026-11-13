@@ -105,7 +105,10 @@
         const active = selected.has(button.dataset.compareCampus);
         button.classList.toggle('is-selected', active);
         button.setAttribute('aria-pressed', String(active));
-        button.textContent = active ? 'Đã chọn ✓' : 'So sánh +';
+        // Chỉ ghi khi đổi: gán textContent tạo mutation childList, kích hoạt lại
+        // MutationObserver của lưới và có thể treo trang trong vòng lặp vô hạn.
+        const label = active ? 'Đã chọn ✓' : 'So sánh +';
+        if (button.textContent !== label) button.textContent = label;
       });
     }
 
@@ -146,36 +149,7 @@
 
   function initNewsInteractions() {
     if (document.body.dataset.page !== 'Tin tức') return;
-    const latest = $('#latestNews');
-    if (!latest) return;
-    const filter = document.createElement('div');
-    filter.className = 'phase3-news-filter';
-    filter.setAttribute('aria-label', 'Lọc tin tức');
-    filter.innerHTML = `<button type="button" class="is-active" data-news-filter="all">Tất cả</button>${[...new Set($$('.latest-card .meta b', latest).map((node) => node.textContent.trim()))].map((cat) => `<button type="button" data-news-filter="${esc(cat)}">${esc(cat)}</button>`).join('')}`;
-    latest.before(filter);
-    filter.addEventListener('click', (event) => {
-      const button = event.target.closest('[data-news-filter]');
-      if (!button) return;
-      $$('[data-news-filter]', filter).forEach((item) => item.classList.toggle('is-active', item === button));
-      const value = button.dataset.newsFilter;
-      $$('.latest-card', latest).forEach((card) => {
-        const cat = $('.meta b', card)?.textContent.trim();
-        card.hidden = value !== 'all' && cat !== value;
-      });
-    });
-
-    const storyDialog = createDialog('phase3StoryDialog', 'phase3-dialog phase3-story-dialog');
-    latest.addEventListener('click', (event) => {
-      const link = event.target.closest('a.text-link');
-      if (!link) return;
-      event.preventDefault();
-      const card = link.closest('.latest-card');
-      const title = $('h3', card)?.textContent.trim() || '';
-      const excerpt = $('.latest-body > p:not(.meta)', card)?.textContent.trim() || '';
-      const image = $('.latest-thumb img', card)?.src || '';
-      const meta = $('.meta', card)?.textContent.replace(/\s+/g, ' ').trim() || '';
-      openDialog(storyDialog, `<div class="phase3-dialog-backdrop" data-dialog-close></div><article class="phase3-story-panel" role="dialog" aria-modal="true" aria-labelledby="storyTitle"><button type="button" class="phase3-story-close" data-dialog-close aria-label="Đóng">×</button><img src="${esc(image)}" alt="${esc(title)}" /><div><span class="eyebrow">${esc(meta)}</span><h2 id="storyTitle">${esc(title)}</h2><p>${esc(excerpt)}</p><p>Trong prototype, đây là màn hình đọc nhanh để kiểm thử flow từ danh sách tin sang nội dung chi tiết mà không cần dựng backend bài viết.</p><a href="#cau-chuyen-hoc-sinh" class="btn btn-red" data-dialog-close>Khám phá thêm câu chuyện</a></div></article>`);
-    });
+    // Danh sách tin, bộ lọc và trang chi tiết bài viết: assets/vas-prototype-flows.js
 
     const eventDialog = createDialog('phase3EventDialog', 'phase3-dialog phase3-event-dialog');
     $('#eventsList')?.addEventListener('click', (event) => {
@@ -186,7 +160,7 @@
       const title = $('.info b', link)?.textContent.trim() || '';
       const place = $('.info span', link)?.textContent.trim() || '';
       const close = openDialog(eventDialog, `<div class="phase3-dialog-backdrop" data-dialog-close></div><section class="phase3-event-panel" role="dialog" aria-modal="true" aria-labelledby="eventTitle"><header><span class="phase3-event-date">${esc(date)}</span><button type="button" data-dialog-close aria-label="Đóng">×</button></header><span class="eyebrow">Sự kiện VAS</span><h2 id="eventTitle">${esc(title)}</h2><p>${esc(place)}</p><div class="phase3-event-detail"><span>09:00 – 11:00</span><span>Dành cho phụ huynh & học sinh</span><span>Xác nhận sau khi đăng ký</span></div><button type="button" class="btn btn-red" data-event-register>Đăng ký tham gia</button></section>`);
-      $('[data-event-register]', eventDialog)?.addEventListener('click', () => { close(); toast('Đã ghi nhận đăng ký sự kiện.'); });
+      $('[data-event-register]', eventDialog)?.addEventListener('click', () => { close(); toast('Đã ghi nhận đăng ký sự kiện trong bản prototype. Chưa có thông tin nào được gửi tới VAS.'); });
     });
 
     const lightbox = createDialog('phase3Lightbox', 'phase3-dialog phase3-lightbox');

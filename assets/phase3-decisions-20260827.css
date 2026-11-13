@@ -43,12 +43,12 @@
 .phase3-home-actions-grid a > span {
   grid-row: 1 / 3;
   align-self: start;
-  font-size: 10px;
+  font-size:12px;
   font-weight: 700;
   color: var(--vas-red,#B51F1F);
 }
 .phase3-home-actions-grid strong { font-size: 14px; font-weight: 700; }
-.phase3-home-actions-grid small { color: var(--ink-soft,#6b5a52); font-size: 11px; }
+.phase3-home-actions-grid small { color: var(--ink-soft,#6b5a52); font-size:12px; }
 .phase3-home-actions-grid i {
   grid-column: 3;
   grid-row: 1 / 3;

@@ -1,4 +1,5 @@
 /* Trang Về VAS — nội dung động */
+const imageUrl = (source, w, h) => String(source).startsWith("http") ? source : img(source, w, h);
 const VALUES = [
   { ic: "01", t: "Tự tin", d: "Đương đầu thử thách và mạnh dạn thể hiện quan điểm." },
   { ic: "02", t: "Xuất sắc", d: "Đặt ra và theo đuổi những tiêu chuẩn cao." },
@@ -32,9 +33,9 @@ const JOURNEY = [
 ];
 
 const PEOPLE = [
-  { name: "Hơn 1.000 giáo viên", role: "Trong và ngoài nước", exp: "Chuyên môn quốc tế · Am hiểu giáo dục Việt Nam", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fsecondary.jpg&w=1200&q=40" },
+  { name: "Hơn 1.000 giáo viên", role: "Trong và ngoài nước", exp: "Chuyên môn quốc tế, Am hiểu giáo dục Việt Nam", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fsecondary.jpg&w=1200&q=40" },
   { name: "Trung tâm đào tạo giáo viên quốc tế", role: "Đối tác Cambridge được ủy quyền", exp: "Phát triển năng lực giáo viên tại Việt Nam", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/1FJQ6zCfORcNAigcDjpT19zw1hQKFxQxkbA6apYq.jpeg" },
-  { name: "XCL Education", role: "Hệ thống giáo dục tại Đông Nam Á", exp: "Nuôi dưỡng học thuật · kỹ năng · sự đồng cảm", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/eosVsm3gMQGuJJ3HqOfRhOFiPfZLAgm8GZZRGyzm.jpeg" },
+  { name: "XCL Education", role: "Hệ thống giáo dục tại Đông Nam Á", exp: "Nuôi dưỡng học thuật, kỹ năng, sự đồng cảm", img: "https://mgs-storage.sgp1.digitaloceanspaces.com/vas/media/eosVsm3gMQGuJJ3HqOfRhOFiPfZLAgm8GZZRGyzm.jpeg" },
 ];
 
 document.getElementById("valueGrid").innerHTML = VALUES.map((v) => `

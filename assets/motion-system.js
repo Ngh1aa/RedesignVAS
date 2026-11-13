@@ -215,17 +215,18 @@
       ["phase4-page-fixes-20260827.css", "20260827a", "phase4-page-fixes-css"],
       ["phase4-flow-fixes-20260827.css", "20260827a", "phase4-flow-fixes-css"],
       ["phase45-final-qa-20260827.css", "20260827a", "phase45-final-qa-css"],
+      ["contrast-aa-20261113.css", "20261113b", "contrast-aa-css"],
     ].forEach(([file, version, key]) => addCss(file, version, key));
 
     [
-      ["vas-content-upgrades.js", "20260826", "content-upgrades"],
+      ["vas-content-upgrades.js", "20261113", "content-upgrades"],
       ["vas-hero-campus-ui.js", "20260826", "hero-campus-ui"],
       ["ui-review-20260826.js", "20260826a", "ui-review-js"],
-      ["production-upgrade-20260827.js", "20260827c", "production-upgrade-js"],
+      ["production-upgrade-20260827.js", "20261113", "production-upgrade-js"],
       ["phase2-ux-20260827.js", "20260827c", "phase2-ux-js"],
-      ["phase3-interactions-20260827.js", "20260827a", "phase3-interactions-js"],
-      ["phase3-decisions-20260827.js", "20260827a", "phase3-decisions-js"],
-      ["phase3-realism-20260827.js", "20260827a", "phase3-realism-js"],
+      ["phase3-interactions-20260827.js", "20261113b", "phase3-interactions-js"],
+      ["phase3-decisions-20260827.js", "20261113", "phase3-decisions-js"],
+      ["phase3-realism-20260827.js", "20261113", "phase3-realism-js"],
       ["phase4-brand-imagery-20260827.js", "20260827b", "phase4-brand-imagery-js"],
       ["phase4-ux-qa-20260827.js", "20260827a", "phase4-ux-qa-js"],
       ["phase45-final-qa-20260827.js", "20260827b", "phase45-final-qa-js"],

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles.css?v=theme-white-20260821" />
 <link rel="stylesheet" href="../assets/motion-system.css?v=20260825" />
 <script defer src="../assets/motion-system.js?v=20260825"></script>
-</head>
+<link rel="stylesheet" href="../assets/vas-prototype.css?v=20261113" /><link rel="stylesheet" href="../assets/contrast-aa-20261113.css?v=20261113b" /></head>
 <body id="top" data-depth="1" data-page="Các cơ sở">
   <div id="site-header"></div>
 
@@ -41,7 +41,7 @@
             <strong id="finderTitle">Cơ sở nào phù hợp với bạn?</strong>
           </div>
           <fieldset>
-            <legend>01 · Con đang học cấp nào?</legend>
+            <legend>01. Con đang học cấp nào?</legend>
             <div class="choice-row" data-filter-group="level">
               <button type="button" class="choice" data-filter="level" data-value="all" aria-pressed="true">Tất cả</button>
               <button type="button" class="choice" data-filter="level" data-value="mam-non" aria-pressed="false">Mầm non</button>
@@ -51,7 +51,7 @@
             </div>
           </fieldset>
           <fieldset>
-            <legend>02 · Lộ trình gia đình quan tâm?</legend>
+            <legend>02. Lộ trình gia đình quan tâm?</legend>
             <div class="choice-row" data-filter-group="programme">
               <button type="button" class="choice" data-filter="programme" data-value="all" aria-pressed="true">Tất cả</button>
               <button type="button" class="choice" data-filter="programme" data-value="cep" aria-pressed="false">CEP</button>
@@ -60,7 +60,7 @@
             </div>
           </fieldset>
           <fieldset>
-            <legend>03 · Khu vực gia đình?</legend>
+            <legend>03. Khu vực gia đình?</legend>
             <div class="choice-row" data-filter-group="district">
               <button type="button" class="choice" data-filter="district" data-value="all" aria-pressed="true">Tất cả</button>
               <button type="button" class="choice" data-filter="district" data-value="thu-duc" aria-pressed="false">Thủ Đức</button>
@@ -71,7 +71,7 @@
             </div>
           </fieldset>
           <fieldset>
-            <legend>04 · Điều gì quan trọng nhất?</legend>
+            <legend>04. Điều gì quan trọng nhất?</legend>
             <div class="choice-row" data-filter-group="priority">
               <button type="button" class="choice" data-filter="priority" data-value="all" aria-pressed="true">Tất cả</button>
               <button type="button" class="choice" data-filter="priority" data-value="gan-nha" aria-pressed="false">Gần nhà</button>
@@ -97,13 +97,13 @@
           <div class="campus-map">
             <img class="district-map-image" src="../assets/ho-chi-minh-district-map.jpg" alt="Bản đồ các quận nội thành Thành phố Hồ Chí Minh, gồm Thủ Đức, Gò Vấp, Phú Nhuận, Quận 7 và Quận 10" />
             <div class="map-image-overlay" aria-hidden="true"></div>
-            <div class="map-marker-layer" aria-label="Chọn cơ sở VAS trên bản đồ">
-              <button type="button" class="map-marker marker-sala" data-campus="sala" aria-label="Xem cơ sở Sala"><span>01</span></button>
-              <button type="button" class="map-marker marker-riverside" data-campus="riverside" aria-label="Xem cơ sở Riverside"><span>02</span></button>
-              <button type="button" class="map-marker marker-garden" data-campus="garden-hills" aria-label="Xem cơ sở Garden Hills"><span>03</span></button>
-              <button type="button" class="map-marker marker-sunrise" data-campus="sunrise" aria-label="Xem cơ sở Sunrise"><span>04</span></button>
-              <button type="button" class="map-marker marker-hoang" data-campus="hoang-van-thu" aria-label="Xem cơ sở Hoàng Văn Thụ"><span>05</span></button>
-              <button type="button" class="map-marker marker-bathang" data-campus="ba-thang-hai" aria-label="Xem cơ sở Ba Tháng Hai"><span>06</span></button>
+            <div role="group" class="map-marker-layer" aria-label="Chọn cơ sở VAS trên bản đồ">
+              <button type="button" class="map-marker marker-sala" data-campus="sala" aria-label="01 cơ sở Sala"><span>01</span></button>
+              <button type="button" class="map-marker marker-riverside" data-campus="riverside" aria-label="02 cơ sở Riverside"><span>02</span></button>
+              <button type="button" class="map-marker marker-garden" data-campus="garden-hills" aria-label="03 cơ sở Garden Hills"><span>03</span></button>
+              <button type="button" class="map-marker marker-sunrise" data-campus="sunrise" aria-label="04 cơ sở Sunrise"><span>04</span></button>
+              <button type="button" class="map-marker marker-hoang" data-campus="hoang-van-thu" aria-label="05 cơ sở Hoàng Văn Thụ"><span>05</span></button>
+              <button type="button" class="map-marker marker-bathang" data-campus="ba-thang-hai" aria-label="06 cơ sở Ba Tháng Hai"><span>06</span></button>
             </div>
             <div class="map-caption"><span class="eyebrow">TP. HỒ CHÍ MINH</span><strong>Gần hơn với gia đình.</strong></div>
           </div>
@@ -172,10 +172,10 @@
       <div class="wrap faq-layout">
         <div class="section-head reveal"><span class="eyebrow">04 — FAQ phụ huynh</span><h2>Những điều cần biết trước khi chọn.</h2></div>
         <div class="faq-list reveal">
-          <details open><summary>Cơ sở nào có cấp học của con?</summary><p>Sala, Riverside, Garden Hills và Sunrise đào tạo từ Mầm non đến THPT. Hoàng Văn Thụ và Ba Tháng Hai hiện tập trung từ Tiểu học đến THPT theo dữ liệu cơ sở được dùng trong redesign này.</p></details>
+          <details open><summary>Cơ sở nào có cấp học của con?</summary><p>Sala, Riverside, Garden Hills và Sunrise đào tạo từ Mầm non đến THPT. Hoàng Văn Thụ và Ba Tháng Hai hiện tập trung từ Tiểu học đến THPT theo thông tin tuyển sinh năm học 2026–2027.</p></details>
           <details><summary>Các cơ sở có cùng chương trình không?</summary><p>Các cơ sở cùng chia sẻ triết lý giáo dục và hệ thống chương trình của VAS. Mỗi cơ sở có thể khác nhau về quy mô, không gian, tiện ích và cộng đồng học sinh.</p></details>
           <details><summary>Có xe đưa đón học sinh không?</summary><p>VAS có dịch vụ xe đưa đón tại một số cơ sở và tuyến đường. Gia đình nên xác nhận tuyến, điểm đón và điều kiện áp dụng khi đăng ký tư vấn.</p></details>
-          <details><summary>Có thể tham quan cơ sở trước khi đăng ký không?</summary><p>Có. Một chuyến tham quan giúp gia đình nhìn thấy lớp học, không gian sinh hoạt và nhịp sống thực tế. Hãy gửi nhu cầu qua form tư vấn để đội ngũ sắp xếp.</p></details>
+          <details><summary>Có thể tham quan cơ sở trước khi đăng ký không?</summary><p>Có. Một chuyến tham quan giúp gia đình nhìn thấy lớp học, không gian sinh hoạt và nhịp sống thực tế. Hãy chọn khung giờ còn trống tại trang Đặt lịch tham quan.</p></details>
           <details><summary>Có thể chuyển cơ sở sau khi nhập học không?</summary><p>Gia đình có thể trao đổi với bộ phận tuyển sinh về khả năng chuyển cơ sở theo cấp học, chỗ trống và yêu cầu của chương trình tại thời điểm chuyển.</p></details>
         </div>
       </div>
@@ -187,7 +187,7 @@
           <span class="eyebrow light">Một chuyến tham quan, một hình dung rõ hơn</span>
           <h2>Đến và cảm nhận VAS.</h2>
           <p>Một chuyến tham quan có thể giúp gia đình hình dung rõ hơn nơi con sẽ học tập, vui chơi và trưởng thành mỗi ngày.</p>
-          <div class="row"><a href="../tuyen-sinh/?intent=visit#dang-ky" class="btn btn-light">Tham quan VAS →</a><a href="#tim-co-so" class="btn btn-outline-light">Tìm cơ sở gần bạn →</a></div>
+          <div class="row"><a href="../dat-lich-tham-quan/" class="btn btn-light">Tham quan VAS →</a><a href="#tim-co-so" class="btn btn-outline-light">Tìm cơ sở gần bạn →</a></div>
         </div>
       </div>
     </section>
@@ -198,5 +198,6 @@
   <script src="../assets/shared.js?v=ux-upgrade-20260823"></script>
   <script src="../assets/vas-decision-data.js?v=ux-upgrade-20260823"></script>
   <script src="script.js?v=ux-upgrade-20260823"></script>
+<script defer src="../assets/vas-prototype-data.js?v=20261113"></script><script defer src="../assets/vas-prototype.js?v=20261113"></script><script defer src="../assets/vas-prototype-flows.js?v=20261113"></script>
 </body>
 </html>

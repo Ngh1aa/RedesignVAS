@@ -13,7 +13,7 @@ const CAMPUSES = [
     ages: "Mầm non — THPT",
     levels: ["mam-non", "tieu-hoc", "thcs", "thpt"],
     priorities: ["gan-nha", "xanh", "xuyen-cap", "the-thao"],
-    label: "Mega Campus · Thủ Đức",
+    label: "Mega Campus, Thủ Đức",
     tagline: "Một không gian lớn để con lớn lên.",
     description: "Không gian rộng mở cho một hành trình xuyên cấp. Sala có hơn 7.000 m² đất dành cho cây xanh, hoạt động và trải nghiệm của học sinh.",
     highlights: ["Mầm non → THPT", "Khuôn viên xanh", "Hoạt động ngoài trời", "Cambridge", "Phòng chức năng", "Hồ bơi / thể thao"],
@@ -35,7 +35,7 @@ const CAMPUSES = [
     ages: "Mầm non — THPT",
     levels: ["mam-non", "tieu-hoc", "thcs", "thpt"],
     priorities: ["gan-nha", "xanh", "xuyen-cap", "the-thao", "nghe-thuat"],
-    label: "Mega Campus · Quận 7",
+    label: "Mega Campus, Quận 7",
     tagline: "Không gian để học. Khoảng xanh để lớn.",
     description: "Một campus lớn, một hành trình liền mạch. Riverside nổi bật với không gian hiện đại, nhiều mảng xanh cùng các khu vực khoa học, ICT, nghệ thuật và thể thao.",
     highlights: ["Mầm non → THPT", "Khuôn viên lớn", "Mảng xanh", "Phòng thí nghiệm", "ICT / nghệ thuật", "Thể thao"],
@@ -79,7 +79,7 @@ const CAMPUSES = [
     ages: "Mầm non — THPT",
     levels: ["mam-non", "tieu-hoc", "thcs", "thpt"],
     priorities: ["gan-nha", "xuyen-cap", "the-thao", "nghe-thuat"],
-    label: "Him Lam · Quận 7",
+    label: "Him Lam, Quận 7",
     tagline: "Một khởi đầu tốt cho hành trình dài.",
     description: "Khởi đầu nhẹ nhàng, phát triển vững vàng. Vị trí trong khu đô thị Him Lam giúp Sunrise trở thành lựa chọn thuận tiện cho gia đình Nam Sài Gòn.",
     highlights: ["Mầm non → THPT", "Khu đô thị Him Lam", "Không gian đa chức năng", "Cambridge", "Ngoại khóa", "Thể thao & nghệ thuật"],
@@ -164,7 +164,7 @@ function cardTemplate(campus) {
         <p class="campus-tagline">“${safe(campus.tagline)}”</p>
         <p>${safe(campus.description)}</p>
         <div class="tag-list">${campus.highlights.slice(0, 4).map((item) => `<span>${safe(item)}</span>`).join("")}</div>
-        <div class="campus-card-actions"><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.id)}#dang-ky">Tham quan →</a><a class="text-link" href="../tuyen-sinh/#hoc-phi">Học phí →</a></div>
+        <div class="campus-card-actions"><button class="text-link" type="button" data-vp-campus-detail="${safe(campus.id)}">Chi tiết cơ sở →</button><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../dat-lich-tham-quan/?campus=${encodeURIComponent(campus.id)}">Tham quan →</a><a class="text-link" href="../tuyen-sinh/#hoc-phi">Học phí →</a></div>
       </div>
       <div class="campus-card-gallery" aria-hidden="true"><img src="${imageUrl(campus.lifeImg, 520, 360)}" alt="" loading="lazy" /><img src="${imageUrl(campus.spaceImg, 520, 360)}" alt="" loading="lazy" /></div>
     </article>`;
@@ -226,7 +226,7 @@ document.querySelectorAll("[data-filter]").forEach((button) => {
 document.getElementById("resetFinder").addEventListener("click", resetFinder);
 
 function mapCardTemplate(campus) {
-  return `<span class="eyebrow">Cơ sở ${safe(campus.number)} · ${safe(campus.district)}</span><h3>${safe(campus.name)}</h3><p class="map-card-tagline">${safe(campus.tagline)}</p><p>${safe(campus.address)}.</p><div class="map-card-meta"><span>${safe(campus.ages)}</span><span>${safe(campus.phone)}</span></div><div class="row"><button type="button" class="btn btn-dark" data-focus-detail="${safe(campus.id)}">Xem cơ sở →</button><a class="btn btn-outline-dark" href="../tuyen-sinh/?intent=visit&campus=${encodeURIComponent(campus.id)}#dang-ky">Tham quan</a></div>`;
+  return `<span class="eyebrow">Cơ sở ${safe(campus.number)}, ${safe(campus.district)}</span><h3>${safe(campus.name)}</h3><p class="map-card-tagline">${safe(campus.tagline)}</p><p>${safe(campus.address)}.</p><div class="map-card-meta"><span>${safe(campus.ages)}</span><span>${safe(campus.phone)}</span></div><div class="row"><button type="button" class="btn btn-dark" data-vp-campus-detail="${safe(campus.id)}">Xem cơ sở →</button><a class="btn btn-outline-dark" href="../dat-lich-tham-quan/?campus=${encodeURIComponent(campus.id)}">Tham quan</a></div>`;
 }
 
 function setActiveMarker(id) {

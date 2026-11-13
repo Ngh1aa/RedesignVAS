@@ -23,7 +23,7 @@
     if (!note) return;
     if (/prototype UI\/UX|minh họa/i.test(note.textContent)) {
       const schoolYear = window.VAS_DECISION_DATA?.tuition?.schoolYear || '2026–2027';
-      note.textContent = `Mức ước tính tham khảo · ${schoolYear}. Biểu phí thực tế có thể thay đổi theo chính sách và lựa chọn của gia đình.`;
+      note.textContent = `Mức ước tính tham khảo, ${schoolYear}. Biểu phí thực tế có thể thay đổi theo chính sách và lựa chọn của gia đình.`;
     }
   }
 
@@ -32,11 +32,8 @@
     if (!msg || msg.hidden) return;
     const meter = $('.phase3-form-meter');
     if (meter) meter.hidden = true;
-    $$('span', msg).forEach((span) => {
-      span.innerHTML = span.innerHTML
-        .replace('Thông tin đã được ghi nhận trong phiên trải nghiệm.', 'Thông tin đã được ghi nhận. Đội ngũ tuyển sinh sẽ liên hệ để xác nhận bước tiếp theo.')
-        .replace(/prototype/gi, 'trực tuyến');
-    });
+    // Không viết lại nội dung: thông báo phải giữ ghi chú prototype (chưa gửi đi)
+    // và nút "Gửi nhu cầu khác" vẫn giữ trình xử lý sự kiện.
   }
 
   function polishStoryDialog() {

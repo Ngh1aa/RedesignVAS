@@ -369,7 +369,7 @@ body[data-page="Về VAS"] .page-hero .lead {
   bottom: 24px;
   color: rgba(255,255,255,.56);
   font-family: var(--vas-body-font);
-  font-size: 11px;
+  font-size:12px;
   font-weight: 700;
   letter-spacing: .28em;
 }

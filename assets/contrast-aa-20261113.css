@@ -1,0 +1,72 @@
+/* =====================================================================
+   VAS — WCAG AA contrast layer (2026-11-13)
+   Nạp cuối cùng qua motion-system.js. Không đổi bố cục hay nhận diện:
+   chỉ nâng chữ mờ trên nền đỏ lên trắng/kem, đổi vàng trên nền sáng
+   sang vàng đậm, và thêm nền dự phòng tối cho hero khi ảnh không tải.
+   ===================================================================== */
+:root {
+  --gold-soft: #f8ecd0;
+  --xp-gold-soft: #f8ecd0;
+  --aa-gold-on-light: #7a5c18;
+}
+
+/* Hero: nếu ảnh không tải được, chữ trắng vẫn nằm trên nền tối. */
+.hero, .page-hero { background-color: #3b1512; }
+
+/* Header trong suốt trên hero: thêm lớp scrim để menu trắng luôn đọc được. */
+.header:not(.solid) { background-image: linear-gradient(to bottom, rgba(26, 10, 8, .55), rgba(26, 10, 8, 0)); }
+
+/* Chữ phụ trên các bề mặt đỏ: không dùng trắng trong suốt. */
+:is(.bg-red, .xp-section.red, .xp-section.deep, .xp-cta-band, .visit-summary, .footer, .finder-section, .tuition-preview, .xp-hero:not(.careers-hero):not(.alumni-hero), .cta-band, .contact-destination, .scholarship-type:nth-child(2), .benefit-tile:first-child)
+  :is(p, span, small, li, dd, dt, em, i, legend, label, figcaption, blockquote, h4, a:not(.btn)):not(.btn *):not(button *):not(.enquiry *):not(.vp-card *):not(.campus-choice *):not(.prog-panel *):not(.vp-toolbar-actions b) {
+  color: #fff !important;
+}
+:is(.bg-red, .xp-section.red, .xp-section.deep, .xp-cta-band, .visit-summary, .footer, .finder-section, .tuition-preview, .xp-hero:not(.careers-hero):not(.alumni-hero), .cta-band, .contact-destination, .scholarship-type:nth-child(2), .benefit-tile:first-child)
+  :is(.eyebrow, .eyebrow.light, .xp-kicker, .xp-label, .idx, .fee-result > span):not(.enquiry *):not(.vp-card *):not(.prog-panel *) {
+  color: #f8ecd0 !important;
+}
+
+/* Hero sáng (tuyển dụng, cựu học sinh): breadcrumb dùng màu chữ phụ. */
+:is(.careers-hero, .alumni-hero) .breadcrumb, :is(.careers-hero, .alumni-hero) .breadcrumb :is(a, span) { color: #6b5a52 !important; }
+
+/* Vàng trên nền sáng → vàng đậm đạt AA. */
+.arrow, .hub-arrow, .phase3-home-actions-grid i, .fit-option span[aria-hidden] { color: #7a5c18 !important; }
+:is(.bg-red, .xp-section.red, .xp-section.deep, .footer, .finder-section, .tuition-preview) :is(.arrow, .hub-arrow, .journey-arrow) { color: #fff !important; }
+
+/* Form tư vấn: thanh tiến độ nằm trên thẻ trắng. */
+.phase3-form-meter, .phase3-form-meter * { color: var(--ink, #2a1a17) !important; }
+
+/* Hành trình tuyển sinh không tràn ngang trên điện thoại. */
+.journey-item { min-width: 0; max-width: 100%; }
+.journey-item > div { min-width: 0; overflow-wrap: anywhere; }
+
+.journey-arrow { right: 0 !important; }
+
+/* Breadcrumb trên hero tối. */
+:is(.page-hero, .hero) .breadcrumb, :is(.page-hero, .hero) .breadcrumb :is(a, span) { color: #fff !important; }
+
+/* Thẻ có ảnh làm nền: nền tối dự phòng khi ảnh chưa tải. */
+.story, .campus-photo { background-color: #3b1512; }
+
+/* Bộ lọc cơ sở trên nền đỏ, mục cơ sở đang chọn, thẻ cựu học sinh. */
+.finder-section .choice:not(.is-active) { color: #fff; }
+.campus-item :is(.meta, .meta *, .idx) { color: #fff !important; }
+.alumni-person p, .alumni-person .xp-kicker { color: #fff !important; }
+.alumni-person .initials { color: #f8ecd0 !important; }
+.events .eyebrow { color: var(--vas-red, #b51f1f) !important; }
+
+/* Số thứ tự trang trí trên thẻ học bổng: đủ tương phản cho chữ lớn. */
+.scholarship-type .index { color: #8f7a72; }
+.scholarship-type:nth-child(2) .index { color: #f8ecd0; }
+
+/* Nhãn liên kết ngắn không gãy dòng. */
+.consent a, a[href^="tel:"] { white-space: nowrap; }
+
+/* Hoạ tiết hero: chữ VAS vẽ bằng pseudo, ẩn trên màn hẹp để không tràn. */
+.scholarship-orbit span { display: none; }
+.scholarship-orbit::after { content: "VAS"; inset: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); border: 0; font-family: var(--font-display); font-size: clamp(3rem, 6vw, 6rem); color: var(--xp-gold-soft); }
+@media (max-width: 760px) { .scholarship-orbit, .alumni-portrait { display: none; } }
+
+/* Bản đồ cơ sở: điểm đang chọn nền vàng dùng chữ đậm. */
+:is(.map-marker:hover, .map-marker:focus-visible, .map-marker.is-active) span { color: #2a1a17; }
+.events .ev-top .eyebrow.eyebrow { color: #b51f1f !important; }

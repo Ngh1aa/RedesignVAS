@@ -9,7 +9,7 @@
     const section = document.createElement('section');
     section.className = 'phase3-home-actions';
     section.setAttribute('aria-label', 'Bắt đầu khám phá VAS');
-    section.innerHTML = `<div class="wrap"><span class="phase3-home-actions-label">Bắt đầu từ nhu cầu của gia đình</span><div class="phase3-home-actions-grid"><a href="find-my-path/"><span>01</span><strong>Tìm lộ trình</strong><small>CEP · CAP · CAPI</small><i aria-hidden="true">→</i></a><a href="co-so/#tim-co-so"><span>02</span><strong>Tìm cơ sở</strong><small>6 cơ sở tại TP.HCM</small><i aria-hidden="true">→</i></a><a href="tuyen-sinh/#hoc-phi"><span>03</span><strong>Ước tính học phí</strong><small>Theo cấp · chương trình · cơ sở</small><i aria-hidden="true">→</i></a><a href="tuyen-sinh/?intent=visit#dang-ky"><span>04</span><strong>Tham quan VAS</strong><small>Chọn cơ sở và thời gian</small><i aria-hidden="true">→</i></a></div></div>`;
+    section.innerHTML = `<div class="wrap"><span class="phase3-home-actions-label">Bắt đầu từ nhu cầu của gia đình</span><div class="phase3-home-actions-grid"><a href="find-my-path/"><span>01</span><strong>Tìm lộ trình</strong><small>CEP, CAP, CAPI</small><i aria-hidden="true">→</i></a><a href="co-so/#tim-co-so"><span>02</span><strong>Tìm cơ sở</strong><small>6 cơ sở tại TP.HCM</small><i aria-hidden="true">→</i></a><a href="tuyen-sinh/#hoc-phi"><span>03</span><strong>Ước tính học phí</strong><small>Theo cấp, chương trình, cơ sở</small><i aria-hidden="true">→</i></a><a href="dat-lich-tham-quan/"><span>04</span><strong>Tham quan VAS</strong><small>Chọn cơ sở và thời gian</small><i aria-hidden="true">→</i></a></div></div>`;
     hero.insertAdjacentElement('afterend', section);
   }
 

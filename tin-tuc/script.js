@@ -1,3 +1,4 @@
+const esc = window.esc || ((value) => String(value).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c])));
 const imageUrl = (source, w, h) => source.startsWith("http") ? source : img(source, w, h);
 
 const HUB_ITEMS = [
@@ -35,9 +36,9 @@ const STORIES = [
 ];
 
 const EVENTS = [
-  ["24", "Th8", "Ngày hội tuyển sinh", "Cơ sở Riverside · 24/08/2026"],
-  ["31", "Th8", "Hội thảo trực tuyến: Lộ trình CAPI", "Trực tuyến · 31/08/2026"],
-  ["07", "Th9", "Cà phê cùng phụ huynh", "Cơ sở Garden Hills · 07/09/2026"],
+  ["24", "Th8", "Ngày hội tuyển sinh", "Cơ sở Riverside, 24/08/2026"],
+  ["31", "Th8", "Hội thảo trực tuyến: Lộ trình CAPI", "Trực tuyến, 31/08/2026"],
+  ["07", "Th9", "Cà phê cùng phụ huynh", "Cơ sở Garden Hills, 07/09/2026"],
 ];
 
 const ACTIVITIES = [
@@ -57,11 +58,7 @@ const ARCHIVE = [
 document.getElementById("newsHub").innerHTML = HUB_ITEMS.map(([id, title, desc], index) => `
   <a class="hub-link" href="#${esc(id)}"><span class="hub-index">0${index + 1}</span><span class="hub-text"><strong>${esc(title)}</strong><small>${esc(desc)}</small></span><span class="hub-arrow" aria-hidden="true">→</span></a>`).join("");
 
-document.getElementById("latestNews").innerHTML = LATEST.map((a, index) => `
-  <article class="latest-card ${index === 0 ? "latest-card-feature" : ""}">
-    <div class="latest-thumb"><img src="${imageUrl(a.img, 1000, 700)}" alt="${esc(a.title)}" loading="lazy" /></div>
-    <div class="latest-body"><p class="meta"><b>${esc(a.cat)}</b><i></i><em>${esc(a.date)}</em></p><h3>${esc(a.title)}</h3><p>${esc(a.ex)}</p><a class="text-link" href="#tin-moi-nhat">Đọc tiếp <span aria-hidden="true">→</span></a></div>
-  </article>`).join("");
+/* Danh sách tin, bộ lọc, tìm kiếm và trang chi tiết: assets/vas-prototype-flows.js */
 
 document.getElementById("storyFeature").innerHTML = `
   <img src="${imageUrl(STORIES[0][3], 1100, 800)}" alt="${esc(STORIES[0][1])}" loading="lazy" />

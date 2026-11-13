@@ -14,7 +14,14 @@
     ["Học phí", "Ước tính học phí theo cấp học, lộ trình và cơ sở", "tuyen-sinh/#hoc-phi"],
     ["Điều kiện nhập học", "Yêu cầu đầu vào theo cấp học", "tuyen-sinh/#dieu-kien"],
     ["Đăng ký tư vấn", "Nhận tư vấn chương trình, cơ sở và bước tiếp theo", "tuyen-sinh/?intent=inquire#dang-ky"],
-    ["Tham quan VAS", "Chọn cơ sở và thời gian mong muốn", "tuyen-sinh/?intent=visit#dang-ky"],
+    ["Tham quan VAS", "Chọn cơ sở, ngày và khung giờ còn trống", "dat-lich-tham-quan/"],
+    ["Nộp hồ sơ dự tuyển", "Hồ sơ trực tuyến năm bước, lưu nháp được", "tuyen-sinh/#ung-tuyen"],
+    ["Hồ sơ của tôi", "Xem, chỉnh sửa bản nháp hoặc rút hồ sơ", "tuyen-sinh/#ho-so-cua-toi"],
+    ["Lịch của tôi", "Đổi hoặc hủy lịch tham quan", "dat-lich-tham-quan/#lich-cua-toi"],
+    ["Học bổng", "Kiểm tra điều kiện và nộp hồ sơ học bổng", "hoc-bong/"],
+    ["Tuyển dụng", "Vị trí đang tuyển và ứng tuyển trực tuyến", "tuyen-dung/"],
+    ["Cựu học sinh", "Đăng ký hoặc cập nhật thông tin cựu học sinh", "cuu-hoc-sinh/#ket-noi"],
+    ["Liên hệ", "Gửi tin nhắn cho đúng bộ phận", "lien-he/#gui-tin-nhan"],
     ["Tin tức", "Tin tức, sự kiện và câu chuyện từ cộng đồng VAS", "tin-tuc/"],
     ["Vòng quanh VAS", "Đời sống học đường, thể thao, nghệ thuật và câu lạc bộ", "vong-quanh-vas/"]
   ];
@@ -26,7 +33,7 @@
     dialog.id = 'vasSearchDialog';
     dialog.className = 'vas-search';
     dialog.hidden = true;
-    dialog.innerHTML = `<div class="vas-search-backdrop" data-search-close></div><section class="vas-search-panel" role="dialog" aria-modal="true" aria-labelledby="vasSearchTitle"><div class="vas-search-head"><div><span class="eyebrow">Tìm nhanh</span><h2 id="vasSearchTitle">Bạn đang tìm gì?</h2></div><button type="button" class="vas-search-close" data-search-close aria-label="Đóng tìm kiếm">×</button></div><label class="vas-search-field"><span class="sr-only">Từ khóa tìm kiếm</span><input type="search" id="vasSearchInput" placeholder="Ví dụ: học phí, CAPI, Sala…" autocomplete="off" /></label><div class="vas-search-results" id="vasSearchResults"></div><p class="vas-search-hint">Nhấn <kbd>Esc</kbd> để đóng · <kbd>/</kbd> để mở tìm kiếm</p></section>`;
+    dialog.innerHTML = `<div class="vas-search-backdrop" data-search-close></div><section class="vas-search-panel" role="dialog" aria-modal="true" aria-labelledby="vasSearchTitle"><div class="vas-search-head"><div><span class="eyebrow">Tìm nhanh</span><h2 id="vasSearchTitle">Bạn đang tìm gì?</h2></div><button type="button" class="vas-search-close" data-search-close aria-label="Đóng tìm kiếm">×</button></div><label class="vas-search-field"><span class="sr-only">Từ khóa tìm kiếm</span><input type="search" id="vasSearchInput" placeholder="Ví dụ: học phí, CAPI, Sala…" autocomplete="off" /></label><div class="vas-search-results" id="vasSearchResults"></div><p class="vas-search-hint">Nhấn <kbd>Esc</kbd> để đóng, <kbd>/</kbd> để mở tìm kiếm</p></section>`;
     document.body.appendChild(dialog);
     const input = $('#vasSearchInput');
     const results = $('#vasSearchResults');

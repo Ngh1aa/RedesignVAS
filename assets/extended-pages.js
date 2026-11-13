@@ -33,13 +33,7 @@
     if (guidanceTag) guidanceTag.textContent = data[2];
   }));
 
-  const jobFilters = $all('[data-job-filter]');
-  const jobs = $all('[data-job-role]');
-  jobFilters.forEach((btn) => btn.addEventListener('click', () => {
-    jobFilters.forEach((b) => b.classList.toggle('active', b === btn));
-    const filter = btn.dataset.jobFilter;
-    jobs.forEach((job) => job.hidden = filter !== 'all' && job.dataset.jobRole !== filter);
-  }));
+  /* Tuyển dụng: danh sách, chi tiết và ứng tuyển ở assets/vas-prototype-flows.js */
 
   const reasonButtons = $all('[data-contact-reason]');
   const contactTitle = document.querySelector('[data-contact-title]');
@@ -60,36 +54,5 @@
     if (contactLines) contactLines.innerHTML = data.lines;
   }));
 
-  const campusChoices = $all('[data-campus-choice]');
-  const visitCampusInput = document.querySelector('[name="visitCampus"]');
-  const visitSummaryCampus = document.querySelector('[data-summary-campus]');
-  const visitSummaryDate = document.querySelector('[data-summary-date]');
-  const visitSummaryTime = document.querySelector('[data-summary-time]');
-  const visitSummaryFamily = document.querySelector('[data-summary-family]');
-  campusChoices.forEach((btn) => btn.addEventListener('click', () => {
-    campusChoices.forEach((b) => b.classList.toggle('active', b === btn));
-    if (visitCampusInput) visitCampusInput.value = btn.dataset.campusChoice;
-    if (visitSummaryCampus) visitSummaryCampus.textContent = btn.dataset.campusChoice;
-  }));
-  const dateInput = document.querySelector('[name="visitDate"]');
-  const timeInput = document.querySelector('[name="visitTime"]');
-  const familyInput = document.querySelector('[name="familyName"]');
-  const syncVisit = () => {
-    if (visitSummaryDate) visitSummaryDate.textContent = dateInput?.value || 'Chưa chọn';
-    if (visitSummaryTime) visitSummaryTime.textContent = timeInput?.value || 'Linh hoạt';
-    if (visitSummaryFamily) visitSummaryFamily.textContent = familyInput?.value || 'Gia đình của bạn';
-  };
-  [dateInput,timeInput,familyInput].filter(Boolean).forEach((el) => el.addEventListener('input', syncVisit));
-  const visitForm = document.querySelector('[data-visit-form]');
-  if (visitForm) {
-    visitForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const submit = visitForm.querySelector('[type="submit"]');
-      if (!submit) return;
-      const original = submit.textContent;
-      submit.disabled = true;
-      submit.textContent = 'Đã ghi nhận mong muốn ✓';
-      setTimeout(() => { submit.disabled = false; submit.textContent = original; }, 1800);
-    });
-  }
+  /* Đặt lịch tham quan: xem assets/vas-prototype-flows.js */
 })();

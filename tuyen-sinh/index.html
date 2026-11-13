@@ -10,8 +10,9 @@
   <link rel="stylesheet" href="../assets/base.css?v=footer-deep-20260821" />
   <link rel="stylesheet" href="styles.css?v=admissions-v2-20260823b" />
 <link rel="stylesheet" href="../assets/motion-system.css?v=20260825" />
+<link rel="stylesheet" href="../assets/vas-prototype.css?v=20261113" />
 <script defer src="../assets/motion-system.js?v=20260825"></script>
-</head>
+<link rel="stylesheet" href="../assets/contrast-aa-20261113.css?v=20261113b" /></head>
 <body id="top" data-depth="1" data-page="Tuyển sinh">
   <div id="site-header"></div>
 
@@ -27,7 +28,7 @@
         <p class="hero-copy">Từ đăng ký dự tuyển đến ngày nhập học, VAS đồng hành cùng phụ huynh qua từng bước — tư vấn, đánh giá năng lực và lựa chọn lộ trình phù hợp cho mỗi học sinh.</p>
         <div class="hero-cta">
           <a href="?intent=inquire#dang-ky" class="btn btn-light">Nhận tư vấn <span aria-hidden="true">→</span></a>
-          <a href="tel:0911267755" class="btn btn-outline-light">Gọi 0911 267 755</a>
+          <a href="#ung-tuyen" class="btn btn-outline-light">Nộp hồ sơ trực tuyến</a>
         </div>
       </div>
     </section>
@@ -80,10 +81,17 @@
         <div class="reveal tuition-preview-copy">
           <p>Tra cứu theo cấp lớp, lộ trình và cơ sở để hiểu cấu trúc lựa chọn trước khi nhận biểu phí chính thức.</p>
           <p class="muted-light">Học phí thay đổi theo năm học và chính sách hiện hành. Bản xem nhanh dưới đây luôn ghi rõ năm học.</p>
-          <div class="fee-calculator" id="feeCalculator" aria-live="polite">
-            <div class="fee-fields"><label>Cấp / lớp<select id="feeGrade"><option value="mam-non">Mầm non</option><option value="1-5">Lớp 1–5</option><option value="6-8">Lớp 6–8</option><option value="9-12">Lớp 9–12</option></select></label><label>Lộ trình<select id="feeProgramme"><option value="cep">CEP</option><option value="cap" selected>CAP</option><option value="capi">CAPI</option></select></label><label>Cơ sở<select id="feeCampus"><option value="sala">Sala</option><option value="riverside">Riverside</option><option value="garden-hills">Garden Hills</option><option value="sunrise">Sunrise</option><option value="hoang-van-thu">Hoàng Văn Thụ</option><option value="ba-thang-hai">Ba Tháng Hai</option></select></label><label>Thanh toán<select id="feePlan"><option value="one">1 lần / năm</option><option value="two">2 lần / năm</option><option value="four">4 lần / năm</option></select></label></div>
-            <div class="fee-result"><span>Học phí dự kiến · 2026–2027</span><strong id="feeAmount">Chưa có bảng phí kết nối</strong><p id="feeNote">Gia đình vẫn có thể xem overview và nhận xác nhận chính thức từ admissions.</p></div>
-            <div class="fee-actions"><a class="btn btn-light" href="#dang-ky" data-fee-action="inquire">Nhận tư vấn</a><a class="btn btn-outline-light" href="#dang-ky" data-fee-action="visit">Tham quan cơ sở</a></div>
+          <div class="fee-calculator" id="tuitionEstimator">
+            <div class="fee-fields">
+              <label>Cấp / lớp<select id="tcBand" name="band"><option value="mam-non">Mầm non</option><option value="1-5" selected>Lớp 1–5</option><option value="6-8">Lớp 6–8</option><option value="9-12">Lớp 9–12</option></select></label>
+              <label>Lộ trình<select id="tcProgramme" name="programme"><option value="cep">CEP</option><option value="cap" selected>CAP</option><option value="capi">CAPI</option></select></label>
+              <label>Cơ sở<select id="tcCampus" name="campus"><option value="sala">Sala</option><option value="riverside">Riverside</option><option value="garden-hills">Garden Hills</option><option value="sunrise">Sunrise</option><option value="hoang-van-thu">Hoàng Văn Thụ</option><option value="ba-thang-hai">Ba Tháng Hai</option></select></label>
+              <label>Thanh toán<select id="tcPlan" name="plan"><option value="one">1 lần / năm</option><option value="two" selected>2 lần / năm</option><option value="four">4 lần / năm</option></select></label>
+              <label>Anh chị em đang học tại VAS<select id="tcSibling" name="sibling"><option value="none">Không có</option><option value="one">1 anh/chị/em (giảm 5%)</option><option value="two">Từ 2 anh/chị/em (giảm 10%)</option></select></label>
+              <fieldset class="tc-extras"><legend>Dịch vụ thêm</legend><label><input type="checkbox" name="extras" value="meal" /> Bữa ăn bán trú</label><label><input type="checkbox" name="extras" value="bus" /> Xe đưa rước</label></fieldset>
+            </div>
+            <div class="fee-result" id="tcResult" aria-live="polite"><span>Học phí dự kiến năm học 2026–2027</span><strong>Đang tính…</strong></div>
+            <div class="fee-actions"><a class="btn btn-light" id="tcApply" href="#ung-tuyen">Dùng cho hồ sơ dự tuyển</a><a class="btn btn-outline-light" id="tcVisit" href="../dat-lich-tham-quan/">Đặt lịch tham quan</a></div>
           </div>
         </div>
       </div>
@@ -106,6 +114,30 @@
       </div>
     </section>
 
+    <!-- ONLINE APPLICATION -->
+    <section class="section bg-paper-deep" id="ung-tuyen">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Hồ sơ dự tuyển trực tuyến</span>
+          <h2>Nộp hồ sơ trong năm bước.</h2>
+          <p>Thông tin học sinh, phụ huynh, cơ sở và giấy tờ. Bạn có thể lưu nháp ở bất kỳ bước nào và quay lại hoàn thiện sau.</p>
+        </div>
+        <div class="vp-app" id="applyApp" data-vp-app="apply"><noscript>Vui lòng bật JavaScript để nộp hồ sơ trực tuyến, hoặc gọi 0911 267 755.</noscript></div>
+      </div>
+    </section>
+
+    <!-- MY APPLICATIONS -->
+    <section class="section bg-paper" id="ho-so-cua-toi">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Hồ sơ của tôi</span>
+          <h2>Theo dõi hồ sơ đã lưu và đã nộp.</h2>
+          <p>Xem lại chi tiết, tiếp tục bản nháp hoặc rút hồ sơ khi gia đình thay đổi kế hoạch.</p>
+        </div>
+        <div class="vp-list" id="myApplications" aria-live="polite"></div>
+      </div>
+    </section>
+
     <!-- FAQ -->
     <section class="section bg-paper-deep" id="faq">
       <div class="wrap">
@@ -125,7 +157,7 @@
             <span class="eyebrow light">Đăng ký tư vấn</span>
             <h2 class="display" style="margin-top:20px;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.05">Nhận tư vấn phù hợp cho hành trình của con.</h2>
             <p style="margin-top:20px;max-width:30rem;color:rgba(255,255,255,.85)">Chia sẻ nhu cầu của gia đình, độ tuổi và định hướng của con. Đội ngũ VAS sẽ tư vấn chương trình, lộ trình và cơ sở phù hợp trước khi gia đình đưa ra quyết định.</p>
-            <div class="journey-mini" aria-label="Các bước đăng ký tư vấn">
+            <div role="group" class="journey-mini" aria-label="Các bước đăng ký tư vấn">
               <span>Chia sẻ nhu cầu</span><i aria-hidden="true">→</i><span>Nhận tư vấn</span><i aria-hidden="true">→</i><span>Chọn bước tiếp theo</span>
             </div>
             <div class="contact-info">
@@ -158,7 +190,7 @@
             </div>
               <label>Nhu cầu của gia đình<select name="intentReason" required><option value="">Chọn nhu cầu</option><option value="programme">Tôi muốn được tư vấn chương trình</option><option value="campus">Tôi muốn tìm cơ sở phù hợp</option><option value="fee">Tôi muốn biết học phí</option><option value="visit">Tôi muốn tham quan cơ sở</option><option value="apply">Tôi muốn đăng ký dự tuyển</option><option value="other">Khác</option></select></label>
               <label>Lời nhắn (tuỳ chọn)<textarea name="note" rows="3" placeholder="Điều gia đình muốn được tư vấn…"></textarea></label>
-              <label class="consent"><input type="checkbox" name="consent" required /> <span>Tôi đồng ý để VAS liên hệ về nhu cầu trên và đã đọc <a href="../ve-vas/#privacy">chính sách bảo mật</a>.</span></label>
+              <label class="consent"><input type="checkbox" name="consent" required /> <span>Tôi đồng ý để VAS liên hệ về nhu cầu trên và đã đọc <a href="../lien-he/#chinh-sach-bao-mat">chính sách bảo mật</a>.</span></label>
               <p class="field-error" id="formError" role="alert" hidden></p>
               <button type="submit" class="btn btn-light" style="justify-content:center;width:100%">Gửi nhu cầu <span aria-hidden="true">→</span></button>
               <p class="form-msg" id="formMsg" hidden></p>
@@ -173,6 +205,9 @@
 
   <script src="../assets/shared.js?v=ux-upgrade-20260823"></script>
   <script src="../assets/vas-decision-data.js?v=ux-upgrade-20260823"></script>
-  <script src="script.js?v=admissions-v2-20260823b"></script>
+  <script src="script.js?v=full-prototype-20261113"></script>
+  <script defer src="../assets/vas-prototype-data.js?v=20261113"></script>
+  <script defer src="../assets/vas-prototype.js?v=20261113"></script>
+  <script defer src="../assets/vas-prototype-flows.js?v=20261113"></script>
 </body>
 </html>

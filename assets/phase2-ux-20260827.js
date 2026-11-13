@@ -88,7 +88,7 @@
       ['Câu chuyện VAS', 'cau-chuyen'],
       ['Giá trị cốt lõi', 'gia-tri'],
       ['Dòng thời gian', 'lich-su'],
-      ['Thành tích học sinh · 2025–2026', 'thanh-tich'],
+      ['Thành tích học sinh 2025–2026', 'thanh-tich'],
       ['Lộ trình vào đại học', 'dau-ra'],
       ['Ban lãnh đạo & đội ngũ giáo viên', 'doi-ngu']
     ]);
@@ -127,7 +127,7 @@
       if (exact.has(text)) node.textContent = exact.get(text);
     });
     $$('.image-caption').forEach((node) => {
-      if (/Classroom · Projects/i.test(node.textContent)) node.textContent = 'Lớp học · Dự án · Giờ nghỉ · Thư viện · Đời sống học đường';
+      if (/Classroom, Projects/i.test(node.textContent)) node.textContent = 'Lớp học, Dự án, Giờ nghỉ, Thư viện, Đời sống học đường';
     });
   }
 
@@ -136,7 +136,7 @@
     const heroCopy = $('.hero-inner > p');
     if (heroCopy) heroCopy.textContent = 'Từ Mầm non đến Lớp 12, VAS kết hợp chương trình Việt Nam và Cambridge để học sinh phát triển học thuật, kỹ năng và bản lĩnh.';
     const heroTag = $('.hero-tag');
-    if (heroTag) heroTag.textContent = 'Mầm non → Lớp 12 · CEP · CAP · CAPI · 6 cơ sở';
+    if (heroTag) heroTag.textContent = 'Mầm non → Lớp 12. CEP, CAP, CAPI, 6 cơ sở';
     const peopleHeading = $$('.section-head h2').find((node) => /Những người thầy đứng sau/i.test(node.textContent));
     if (peopleHeading) peopleHeading.innerHTML = 'Những người thầy <span class="italic text-red">đồng hành cùng con.</span>';
     const storyLink = $('.stories-head > a');

@@ -65,8 +65,8 @@ const PROGRAMMES = [
 
 const PEOPLE = [
   { name: "Cô Nguyễn Thị Y Vân", role: "Khối tiểu học", exp: "20 năm kinh nghiệm", quote: "Nhiệm vụ của tôi là giúp mỗi học sinh tìm ra tiềm năng của bản thân giúp các em bừng sáng.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fco-nguyen-thi-y-van.jpeg&w=3840&q=75" },
-  { name: "Cô Nguyễn Thu Hà", role: "Trưởng khối Tiểu học · Riverside", exp: "14 năm · Mầm non & Tiểu học", quote: "Sự tự tin của con bắt đầu từ cảm giác được thấu hiểu và yêu thương.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fco-melanie-martir-maligon.jpeg&w=3840&q=75" },
-  { name: "Cô Văn Phương Liên", role: "Cố vấn Đại học & Hướng nghiệp", exp: "12 năm · Tuyển sinh toàn cầu", quote: "Chúng tôi vạch lối cho các con đến đúng ước mơ mà các con muốn", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F496096070_24085485431044575_61883385863057877_Lien%20Van%20Phuong.jpg&w=3840&q=75" },
+  { name: "Cô Nguyễn Thu Hà", role: "Trưởng khối Tiểu học, Riverside", exp: "14 năm, Mầm non & Tiểu học", quote: "Sự tự tin của con bắt đầu từ cảm giác được thấu hiểu và yêu thương.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2Fco-melanie-martir-maligon.jpeg&w=3840&q=75" },
+  { name: "Cô Văn Phương Liên", role: "Cố vấn Đại học & Hướng nghiệp", exp: "12 năm, Tuyển sinh toàn cầu", quote: "Chúng tôi vạch lối cho các con đến đúng ước mơ mà các con muốn", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2F496096070_24085485431044575_61883385863057877_Lien%20Van%20Phuong.jpg&w=3840&q=75" },
 ];
 
 const DAY = [
@@ -90,9 +90,9 @@ const CAMPUSES = [
 ];
 
 const STORIES = [
-  { name: "Minh Anh", grade: "Lớp 11 · Riverside", quote: "Em đã tìm thấy đam mê với robotics tại VAS.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FTestimonial_Nga.jpg&w=3840&q=75" },
-  { name: "Đức Huy", grade: "Lớp 12 · Ba Tháng Hai", quote: "Thầy cô giúp em tin rằng mình có thể du học ngành y.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FTestimonial_Khôi.jpg&w=3840&q=75" },
-  { name: "Gia Bảo", grade: "Lớp 9 · Garden Hills", quote: "Trên sân bóng là nơi em học được cách dẫn dắt.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FNam-sinh-do-dai-hoc-john-hopkins-1.jpeg&w=3840&q=75" },
+  { name: "Minh Anh", grade: "Lớp 11. Riverside", quote: "Em đã tìm thấy đam mê với robotics tại VAS.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FTestimonial_Nga.jpg&w=3840&q=75" },
+  { name: "Đức Huy", grade: "Lớp 12. Ba Tháng Hai", quote: "Thầy cô giúp em tin rằng mình có thể du học ngành y.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FTestimonial_Khôi.jpg&w=3840&q=75" },
+  { name: "Gia Bảo", grade: "Lớp 9, Garden Hills", quote: "Trên sân bóng là nơi em học được cách dẫn dắt.", img: "https://www.vas.edu.vn/_next/image?url=https%3A%2F%2Fmgs-storage.sgp1.digitaloceanspaces.com%2Fvas%2Fmedia%2FNam-sinh-do-dai-hoc-john-hopkins-1.jpeg&w=3840&q=75" },
 ];
 
 const OUTCOMES = [
@@ -102,9 +102,9 @@ const OUTCOMES = [
 ];
 
 const VOICES = [
-  { stage: "Phụ huynh nổi tiếng", quote: "Điều chúng tôi trân trọng nhất ở VAS là sự tận tâm của giáo viên và cách trường giúp các con phát triển kỹ năng mềm một cách rất tự nhiên.", name: "Diễn viên Đinh Ngọc Diệp · phu nhân đạo diễn Victor Vũ" },
-  { stage: "Tiểu học", quote: "Tôi từng lo con mình lạc lõng trong một ngôi trường lớn. Nhưng thầy cô hiểu con hơn cả tôi mong đợi — sáng nào con cũng háo hức đến trường.", name: "Chị Lan · phụ huynh cơ sở Sunrise" },
-  { stage: "Trung học", quote: "Chương trình song ngữ giúp con gái tôi tự tin tiếng Anh mà không hề đánh mất tiếng Việt. Sự cân bằng đó chính là điều gia đình tôi tìm kiếm.", name: "Anh Tuấn · phụ huynh cơ sở Riverside" },
+  { stage: "Phụ huynh nổi tiếng", quote: "Điều chúng tôi trân trọng nhất ở VAS là sự tận tâm của giáo viên và cách trường giúp các con phát triển kỹ năng mềm một cách rất tự nhiên.", name: "Diễn viên Đinh Ngọc Diệp, phu nhân đạo diễn Victor Vũ" },
+  { stage: "Tiểu học", quote: "Tôi từng lo con mình lạc lõng trong một ngôi trường lớn. Nhưng thầy cô hiểu con hơn cả tôi mong đợi — sáng nào con cũng háo hức đến trường.", name: "Chị Lan, phụ huynh cơ sở Sunrise" },
+  { stage: "Trung học", quote: "Chương trình song ngữ giúp con gái tôi tự tin tiếng Anh mà không hề đánh mất tiếng Việt. Sự cân bằng đó chính là điều gia đình tôi tìm kiếm.", name: "Anh Tuấn, phụ huynh cơ sở Riverside" },
 ];
 
 const STEPS = [
@@ -123,7 +123,7 @@ const NEWS = [
 
 const EVENTS = [
   ["Ngày hội tuyển sinh", "Cơ sở Riverside", "24/08/2026"],
-  ["Hội thảo trực tuyến", "Trực tuyến · Lộ trình CAPI", "31/08/2026"],
+  ["Hội thảo trực tuyến", "Trực tuyến, Lộ trình CAPI", "31/08/2026"],
   ["Cà phê cùng phụ huynh", "Cơ sở Garden Hills", "07/09/2026"],
 ];
 
@@ -180,7 +180,7 @@ function renderMega(k) {
       <div>
         <p class="mega-heading">${esc(m.heading)}</p>
         <p class="mega-note">${esc(m.note)}</p>
-        <div class="mega-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="mega-cta">Nhận tư vấn <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=visit#dang-ky" class="mega-cta">Tham quan VAS <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=apply#dang-ky" class="mega-cta">Đăng ký dự tuyển <span aria-hidden="true">→</span></a></div>
+        <div class="mega-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="mega-cta">Nhận tư vấn <span aria-hidden="true">→</span></a><a href="dat-lich-tham-quan/" class="mega-cta">Tham quan VAS <span aria-hidden="true">→</span></a><a href="tuyen-sinh/?intent=apply#dang-ky" class="mega-cta">Đăng ký dự tuyển <span aria-hidden="true">→</span></a></div>
       </div>
       <ul class="mega-links">
         ${m.links.map((l) => `<li><a href="${PAGE[k]}">${esc(l)} <span aria-hidden="true">→</span></a></li>`).join("")}
@@ -218,7 +218,7 @@ navKeys.forEach((k) => {
     </details>`);
   mobileMenu.appendChild(d);
 });
-mobileMenu.appendChild(el(`<div class="mobile-admission-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="btn btn-red">Nhận tư vấn</a><a href="tuyen-sinh/?intent=visit#dang-ky" class="btn btn-outline">Tham quan VAS</a><a href="tuyen-sinh/?intent=apply#dang-ky" class="btn btn-outline">Đăng ký dự tuyển</a></div>`));
+mobileMenu.appendChild(el(`<div class="mobile-admission-actions"><a href="tuyen-sinh/?intent=inquire#dang-ky" class="btn btn-red">Nhận tư vấn</a><a href="dat-lich-tham-quan/" class="btn btn-outline">Tham quan VAS</a><a href="tuyen-sinh/?intent=apply#dang-ky" class="btn btn-outline">Đăng ký dự tuyển</a></div>`));
 const burger = document.getElementById("burger");
 burger.addEventListener("click", () => {
   mobileMenu.classList.toggle("open");
@@ -308,7 +308,7 @@ function renderCampus(idx) {
     <div class="campus-photo">
       <img src="${imageUrl(c.img, 1100, 700)}" alt="Cơ sở VAS ${esc(c.name)}" />
       <div class="grad"></div>
-      <div class="cap"><h3>${esc(c.name)}</h3><p>${esc(c.district)} · ${esc(c.ages)}</p></div>
+      <div class="cap"><h3>${esc(c.name)}</h3><p>${esc(c.district)}, ${esc(c.ages)}</p></div>
     </div>
     <div class="campus-info">
       <p>${esc(c.note)}</p>
@@ -337,7 +337,7 @@ document.getElementById("storiesGrid").innerHTML = STORIES.map((s, i) => `
   <article class="story reveal" style="transition-delay:${i * 100}ms">
     <img src="${imageUrl(s.img, 720, 900)}" alt="${esc(s.name)}, ${esc(s.grade)}" loading="lazy" />
     <div class="grad"></div>
-    <div class="cap"><p>“${esc(s.quote)}”</p><span>${esc(s.name)} · ${esc(s.grade)}</span></div>
+    <div class="cap"><p>“${esc(s.quote)}”</p><span>${esc(s.name)}, ${esc(s.grade)}</span></div>
   </article>`).join("");
 
 // outcomes

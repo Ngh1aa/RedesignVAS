@@ -205,7 +205,7 @@
             <div class="addr">
               <p><b>Công ty Cổ phần Giáo dục Quốc tế Việt Úc</b></p>
               <p>Trụ sở chính: 594 Ba Tháng Hai, Phường 14, Quận 10, TP.HCM</p>
-              <p>Hotline: 0911 267 755 · admissions@vas.edu.vn</p>
+              <p>Hotline: 0911 267 755. Email: admissions@vas.edu.vn</p>
             </div>
             <p>© 2026 Trường Quốc tế Việt Úc (VAS). Bảo lưu mọi quyền.</p>
           </div>

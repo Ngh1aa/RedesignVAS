@@ -7,7 +7,9 @@ const HUB_ITEMS = [
   { id: "hoc-phi", title: "Học phí", desc: "Ước tính theo cấp lớp, chương trình và cơ sở.", icon: "02" },
   { id: "dieu-kien", title: "Điều kiện nhập học", desc: "Đánh giá năng lực theo từng cấp học và chương trình.", icon: "03" },
   { id: "faq", title: "Câu hỏi thường gặp", desc: "Những điều phụ huynh cần biết trước khi lựa chọn VAS.", icon: "04" },
-  { id: "dang-ky", title: "Bắt đầu với VAS", desc: "Nhận tư vấn, đặt lịch tham quan hoặc bắt đầu dự tuyển.", icon: "05" },
+  { id: "ung-tuyen", title: "Nộp hồ sơ trực tuyến", desc: "Năm bước, lưu nháp được, nhận mã hồ sơ ngay.", icon: "05" },
+  { id: "ho-so-cua-toi", title: "Hồ sơ của tôi", desc: "Xem, chỉnh sửa bản nháp hoặc rút hồ sơ.", icon: "06" },
+  { id: "dang-ky", title: "Nhận tư vấn", desc: "Gửi câu hỏi cho đội ngũ tuyển sinh.", icon: "07" },
 ];
 const STEPS = [
   ["01", "Đăng ký dự tuyển", "Phụ huynh đăng ký thông tin và nhận tư vấn về cấp học, chương trình và cơ sở phù hợp."],
@@ -52,8 +54,8 @@ const formError = document.getElementById("formError");
 const formMsg = document.getElementById("formMsg");
 const intentCopy = {
   inquire: "Dành cho gia đình đang tìm hiểu chương trình, cấp học hoặc cơ sở phù hợp.",
-  visit: "Chọn cơ sở, ngày và khung giờ mong muốn để trải nghiệm flow đặt lịch tham quan.",
-  apply: "Dành cho gia đình đã sẵn sàng bắt đầu quy trình dự tuyển cho học sinh.",
+  visit: "Gửi mong muốn tham quan để được gọi lại, hoặc chọn ngay khung giờ còn trống tại trang Đặt lịch tham quan.",
+  apply: "Gửi nhu cầu dự tuyển để được hướng dẫn, hoặc nộp hồ sơ đầy đủ ở mục Hồ sơ dự tuyển trực tuyến phía trên.",
 };
 const query = new URLSearchParams(window.location.search);
 const canonicalValue = (value) => String(value || "").trim().toLowerCase();
@@ -74,6 +76,8 @@ function setIntent(next) {
   intent = next;
   document.querySelectorAll("[data-intent]").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.intent === intent)));
   intentDescription.textContent = intentCopy[intent];
+  if (intent === "visit") intentDescription.insertAdjacentHTML("beforeend", ' <a href="../dat-lich-tham-quan/">Chọn khung giờ →</a>');
+  if (intent === "apply") intentDescription.insertAdjacentHTML("beforeend", ' <a href="#ung-tuyen">Mở hồ sơ trực tuyến →</a>');
   visitFields.hidden = intent !== "visit";
   form.elements.intentReason.value = intent === "visit" ? "visit" : intent === "apply" ? "apply" : "";
   form.querySelector("button[type=submit]").innerHTML = `${intent === "visit" ? "Gửi yêu cầu tham quan" : intent === "apply" ? "Bắt đầu dự tuyển" : "Gửi nhu cầu"} <span aria-hidden="true">→</span>`;
@@ -119,8 +123,10 @@ const buildLeadPayload = () => {
 const transmitLead = async (lead) => {
   const endpoint = form.dataset.endpoint || window.VAS_ADMISSIONS_ENDPOINT;
   if (!endpoint) {
-    await new Promise((resolve) => setTimeout(resolve, 900));
-    return { status: "mock", message: "Thông tin đã được ghi nhận trong phiên trải nghiệm." };
+    const proto = window.VASProto;
+    if (!proto) throw new Error("Prototype store unavailable");
+    await proto.request(() => proto.store.upsert("inquiries", { ...lead, ref: lead.ref }));
+    return { status: "prototype", message: proto.PROTOTYPE_NOTE };
   }
   const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(lead), keepalive: true });
   if (!response.ok) throw new Error(`Admissions endpoint returned ${response.status}`);
@@ -148,20 +154,30 @@ form.addEventListener("submit", (event) => {
   submit.innerHTML = '<span class="prototype-spinner" aria-hidden="true"></span> Đang gửi…';
   form.setAttribute("aria-busy", "true");
   const lead = buildLeadPayload();
+  lead.ref = window.VASProto ? window.VASProto.ref("TV") : `TV-${Date.now()}`;
   transmitLead(lead).then((result) => {
     lead.transmission = result.status;
     lead.transmittedAt = new Date().toISOString();
-    localStorage.setItem("redesignvas-last-lead", JSON.stringify(lead));
     window.__REDESIGNVAS_LAST_ADMISSIONS_PAYLOAD__ = lead;
     form.querySelectorAll("input, select, textarea, button, .form-progress, .intent-switch, .intent-description").forEach((control) => { control.hidden = true; });
     formMsg.hidden = false;
     const title = intent === "visit" ? "Đã nhận yêu cầu tham quan VAS." : intent === "apply" ? "Đã bắt đầu hồ sơ dự tuyển." : "Đã nhận nhu cầu tư vấn.";
-    formMsg.innerHTML = `<strong>${title}</strong><span>${esc(result.message)} Chúng tôi sẽ dùng lựa chọn <b>${esc(lead.preferences.programmeCode || "chương trình phù hợp")}</b>${lead.preferences.campusName ? ` tại <b>${esc(lead.preferences.campusName)}</b>` : ""} để chuẩn bị bước tiếp theo.</span><span class="success-actions"><a class="btn btn-light" href="../find-my-path/?grade=${encodeURIComponent(state.grade || "3")}&program=${encodeURIComponent(state.program || "cap")}">Xem lại lộ trình</a><a class="btn btn-outline-light" href="../co-so/#tim-co-so">Xem cơ sở</a><a class="btn btn-outline-light" href="#hoc-phi">Ước tính học phí</a></span>`;
+    formMsg.innerHTML = `<strong>${title}</strong><span>Mã yêu cầu: <b data-ref>${esc(lead.ref)}</b></span><span class="form-proto-note">${esc(result.message)}</span><span>Khi kết nối hệ thống thật, chúng tôi sẽ dùng lựa chọn <b>${esc(lead.preferences.programmeCode || "chương trình phù hợp")}</b>${lead.preferences.campusName ? ` tại <b>${esc(lead.preferences.campusName)}</b>` : ""} để chuẩn bị bước tiếp theo.</span><span class="success-actions"><a class="btn btn-light" href="../find-my-path/?grade=${encodeURIComponent(state.grade || "3")}&program=${encodeURIComponent(state.program || "cap")}">Xem lại lộ trình</a><a class="btn btn-outline-light" href="../co-so/#tim-co-so">Xem cơ sở</a><a class="btn btn-outline-light" href="#hoc-phi">Ước tính học phí</a><button type="button" class="btn btn-outline-light" id="leadAgain">Gửi nhu cầu khác</button></span>`;
+    document.getElementById("leadAgain").addEventListener("click", () => {
+      form.reset();
+      form.querySelectorAll("input, select, textarea, button, .form-progress, .intent-switch, .intent-description, .phase3-form-meter").forEach((control) => { control.hidden = false; });
+      document.getElementById("visitFields").hidden = intent !== "visit";
+      formMsg.hidden = true;
+      formError.hidden = true;
+      submit.disabled = false;
+      setIntent(intent);
+      form.elements.name.focus();
+    });
     track(intent === "visit" ? "tour_submit" : intent === "apply" ? "apply_start" : "inquiry_submit", { lead });
     form.removeAttribute("aria-busy");
   }).catch((error) => {
-    console.error("Admissions transmission failed", error);
-    formError.textContent = "Chưa thể hoàn tất thao tác. Vui lòng thử lại.";
+    console.warn("Admissions transmission failed", error.message);
+    formError.textContent = `${error.message || "Chưa thể gửi yêu cầu."} Thông tin bạn nhập vẫn còn nguyên, hãy bấm gửi lại.`;
     formError.hidden = false;
     submit.disabled = false;
     submit.textContent = intent === "visit" ? "Gửi yêu cầu tham quan" : intent === "apply" ? "Bắt đầu dự tuyển" : "Gửi nhu cầu";
@@ -169,32 +185,4 @@ form.addEventListener("submit", (event) => {
   });
 });
 
-const feeGrade = document.getElementById("feeGrade");
-const feeProgramme = document.getElementById("feeProgramme");
-const feeCampus = document.getElementById("feeCampus");
-const feePlan = document.getElementById("feePlan");
-const feeAmount = document.getElementById("feeAmount");
-const feeNote = document.getElementById("feeNote");
-const FEE_BASE = { "mam-non": 180000000, "1-5": 220000000, "6-8": 260000000, "9-12": 300000000 };
-const PROGRAMME_FACTOR = { cep: 1, cap: 1.16, capi: 1.35 };
-const CAMPUS_OFFSET = { sala: 20000000, riverside: 15000000, "garden-hills": 8000000, sunrise: 10000000, "hoang-van-thu": 0, "ba-thang-hai": 5000000 };
-const PLAN_FACTOR = { one: .97, two: 1, four: 1.03 };
-const formatMoney = (value) => `${Math.round(value / 1000000)} triệu đồng / năm`;
-function updateFee() {
-  const level = DATA.gradeToLevel(feeGrade.value);
-  const programme = DATA.programmeById(feeProgramme.value);
-  const campus = DATA.campusById(feeCampus.value);
-  const valid = programme && campus && programme.levels.includes(level) && campus.levels.includes(level) && campus.programmes.includes(programme.id);
-  if (valid) {
-    const estimate = ((FEE_BASE[feeGrade.value] || 220000000) * (PROGRAMME_FACTOR[feeProgramme.value] || 1) + (CAMPUS_OFFSET[feeCampus.value] || 0)) * (PLAN_FACTOR[feePlan.value] || 1);
-    feeAmount.textContent = formatMoney(estimate);
-    feeNote.textContent = `Ước tính minh họa cho prototype UI/UX · ${DATA.tuition.schoolYear}. Số liệu không phải biểu phí chính thức.`;
-  } else {
-    feeAmount.textContent = "Tổ hợp này chưa khả dụng";
-    feeNote.textContent = "Hãy chọn lại cấp/lớp, lộ trình hoặc cơ sở để xem một tổ hợp phù hợp.";
-  }
-  document.querySelectorAll("[data-fee-action]").forEach((link) => { link.href = `?intent=${link.dataset.feeAction}&grade=${encodeURIComponent(feeGrade.value)}&program=${encodeURIComponent(feeProgramme.value)}&campus=${encodeURIComponent(feeCampus.value)}#dang-ky`; });
-  track("fee_calculator_change", { grade: feeGrade.value, program: feeProgramme.value, campus: feeCampus.value, paymentPlan: feePlan.value });
-}
-[feeGrade, feeProgramme, feeCampus, feePlan].forEach((select) => select.addEventListener("change", updateFee));
-updateFee();
+/* Ước tính học phí: xem assets/vas-prototype-flows.js (dùng bảng phí trong vas-prototype-data.js). */

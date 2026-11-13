@@ -10,9 +10,9 @@
   const esc = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
 
   const verifiedOutcomes = [
-    { value: "2.600+", label: "giải thưởng trong nước & quốc tế · 2025–2026" },
-    { value: "154", label: "suất học bổng đại học · tính đến 05/2026" },
-    { value: "6,47 triệu USD", label: "tổng giá trị học bổng · 2025–2026" },
+    { value: "2.600+", label: "giải thưởng trong nước & quốc tế, 2025–2026" },
+    { value: "154", label: "suất học bổng đại học, tính đến 05/2026" },
+    { value: "6,47 triệu USD", label: "tổng giá trị học bổng, 2025–2026" },
   ];
 
   const verifiedVoices = [
@@ -155,7 +155,9 @@
         const strong = fee.querySelector("strong");
         const copy = fee.querySelector("p");
         if (strong?.textContent.includes("Chưa có bảng phí kết nối")) strong.textContent = "Xem biểu phí VAS 2026–2027";
-        if (copy && strong?.textContent.includes("biểu phí")) copy.textContent = "Học phí thay đổi theo cấp/lớp, lộ trình, cơ sở và phương án thanh toán; admissions sẽ xác nhận theo biểu phí chính thức.";
+        const feeCopy = "Học phí thay đổi theo cấp/lớp, lộ trình, cơ sở và phương án thanh toán; đội tuyển sinh sẽ xác nhận theo biểu phí chính thức.";
+        // Chỉ ghi khi khác: ghi lại cùng nội dung vẫn tạo mutation và kích hoạt observer này vô hạn.
+        if (copy && strong?.textContent.includes("biểu phí") && copy.textContent !== feeCopy) copy.textContent = feeCopy;
       });
       result.querySelectorAll('a[href="../tuyen-sinh/#hoc-phi"]').forEach((link) => {
         const url = new URL(link.href, window.location.href);

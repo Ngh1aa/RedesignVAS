@@ -56,7 +56,7 @@
 .enquiry textarea { resize: vertical; }
 .form-two { display: grid; gap: 16px; grid-template-columns: 1fr; }
 @media (min-width: 600px) { .form-two { grid-template-columns: 1fr 1fr; } }
-.form-progress { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 10px; text-transform: uppercase; letter-spacing: .09em; }
+.form-progress { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size:12px; text-transform: uppercase; letter-spacing: .09em; }
 .form-progress span:nth-child(odd) { color: var(--vas-red); font-family: var(--font-display); font-size: 15px; letter-spacing: 0; }
 .form-msg { margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--vas-red); }
 
