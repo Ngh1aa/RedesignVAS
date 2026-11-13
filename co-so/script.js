@@ -164,7 +164,7 @@ function cardTemplate(campus) {
         <p class="campus-tagline">“${safe(campus.tagline)}”</p>
         <p>${safe(campus.description)}</p>
         <div class="tag-list">${campus.highlights.slice(0, 4).map((item) => `<span>${safe(item)}</span>`).join("")}</div>
-        <div class="campus-card-actions"><button class="text-link" type="button" data-vp-campus-detail="${safe(campus.id)}">Chi tiết cơ sở →</button><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../dat-lich-tham-quan/?campus=${encodeURIComponent(campus.id)}">Tham quan →</a><a class="text-link" href="../tuyen-sinh/#hoc-phi">Học phí →</a></div>
+        <div class="campus-card-actions"><button class="text-link" type="button" data-vp-campus-detail="${safe(campus.id)}">Chi tiết cơ sở →</button><button class="text-link" type="button" data-focus-campus="${safe(campus.id)}">Xem trên bản đồ →</button><a class="text-link" href="../dat-lich-tham-quan/?campus=${encodeURIComponent(campus.id)}">Tham quan →</a></div>
       </div>
       <div class="campus-card-gallery" aria-hidden="true"><img src="${imageUrl(campus.lifeImg, 520, 360)}" alt="" loading="lazy" /><img src="${imageUrl(campus.spaceImg, 520, 360)}" alt="" loading="lazy" /></div>
     </article>`;

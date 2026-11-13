@@ -82,7 +82,8 @@ async function idsOf(context, url, cache) {
   const p = await context.newPage();
   let ids = null;
   try {
-    const res = await p.goto(key, { waitUntil: "load", timeout: 20000 });
+    let res = null;
+    for (let attempt = 0; attempt < 5 && !res; attempt += 1) res = await p.goto(key, { waitUntil: "load", timeout: 20000 }).catch(() => null);
     if (res && res.status() < 400) {
       await p.waitForTimeout(900);
       ids = new Set(await p.evaluate(() => [...document.querySelectorAll("[id], a[name]")].map((n) => n.id || n.getAttribute("name"))));
@@ -93,8 +94,12 @@ async function idsOf(context, url, cache) {
   return ids;
 }
 
+// python -m http.server can refuse connections under load; retry the navigation instead of failing the run.
 async function open(page, url) {
-  await page.goto(url, { waitUntil: "load", timeout: 30000 }).catch(() => page.goto(url, { waitUntil: "domcontentloaded", timeout: 30000 }));
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    try { await page.goto(url, { waitUntil: "load", timeout: 30000 }); break; }
+    catch (error) { if (attempt === 4) throw error; await page.waitForTimeout(1000); }
+  }
   await page.waitForTimeout(800);
 }
 

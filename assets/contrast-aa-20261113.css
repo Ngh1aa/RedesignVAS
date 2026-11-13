@@ -11,7 +11,7 @@
 }
 
 /* Hero: nếu ảnh không tải được, chữ trắng vẫn nằm trên nền tối. */
-.hero, .page-hero { background-color: #3b1512; }
+.hero, .page-hero { background-color: #3b1512 !important; }
 
 /* Header trong suốt trên hero: thêm lớp scrim để menu trắng luôn đọc được. */
 .header:not(.solid) { background-image: linear-gradient(to bottom, rgba(26, 10, 8, .55), rgba(26, 10, 8, 0)); }
@@ -70,3 +70,9 @@
 /* Bản đồ cơ sở: điểm đang chọn nền vàng dùng chữ đậm. */
 :is(.map-marker:hover, .map-marker:focus-visible, .map-marker.is-active) span { color: #2a1a17; }
 .events .ev-top .eyebrow.eyebrow { color: #b51f1f !important; }
+#su-kien .events .eyebrow { color: #b51f1f !important; }
+#su-kien .events .arrow { color: #7a5c18 !important; }
+.consent a { white-space: nowrap; display: inline-block; }
+.page-hero.campus-hero .breadcrumb { display: inline-flex; gap: 6px; padding: 4px 12px; border-radius: 999px; background: #3b1512; }
+.page-hero.campus-hero .breadcrumb :is(a, span) { color: #fff !important; }
+.campus-card-actions { flex-wrap: wrap; overflow: visible !important; row-gap: 6px; }
