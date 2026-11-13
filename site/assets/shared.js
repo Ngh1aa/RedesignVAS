@@ -8,7 +8,7 @@
    trên <body>. Các trang con đặt data-depth="1".
    ===================================================================== */
 (function () {
-  const LOGO = "https://www.vas.edu.vn/asset/svg/logo-top.svg";
+  const LOGO = "../".repeat(Number(document.body.dataset.depth || 0)) + "assets/vas-wordmark.svg";
   const HOTLINE = "0911267755";
 
   const PAGE = {
