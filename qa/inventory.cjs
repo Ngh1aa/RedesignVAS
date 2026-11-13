@@ -70,6 +70,7 @@ async function collect(page) {
         href: el.getAttribute("href"),
         text: (el.getAttribute("aria-label") || el.textContent || el.getAttribute("placeholder") || el.name || "").replace(/\s+/g, " ").trim().slice(0, 60),
         visible: visible(el),
+        disabled: el.disabled === true || el.getAttribute("aria-disabled") === "true",
       });
     });
     return out;
@@ -155,6 +156,7 @@ async function clickAndObserve(page, ctrlId, pageUrl) {
       for (const c of controls) {
         const row = { ...c };
         if (!c.visible) { row.result = "hidden"; rows.push(row); continue; }
+        if (c.disabled) { row.result = "disabled"; rows.push(row); continue; } // intentional disabled state (e.g. component-states specimens)
         if (["input", "select", "textarea"].includes(c.tag) && !["submit", "button", "reset", "checkbox", "radio"].includes(c.type)) { row.result = "field"; rows.push(row); continue; }
         const href = c.href;
         if (c.tag === "a" && href !== null) {
